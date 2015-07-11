@@ -340,7 +340,7 @@
 	"outputs": {
 		"publicIP": {
 			"type": "object",
-			"value": "[reference(concat(variables('publicIpAddressName'), 'master'))]"
+			"value": "[reference(concat(variables('publicIPAddressName'), 'master'))]"
 		}
 	}
 }
