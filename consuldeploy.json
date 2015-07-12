@@ -275,67 +275,6 @@
 					]
 				}
 			}
-		},
-		{
-			"type": "Microsoft.Compute/virtualMachines/extensions",
-			"name": "[concat(variables('vmName'), 'master', '/', variables('extensionName'))]",
-			"apiVersion": "2015-05-01-preview",
-			"location": "[variables('location')]",
-			"dependsOn": [
-				"[concat('Microsoft.Compute/virtualMachines/', variables('vmName'), 'master')]",
-				"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), 'master')]",
-				"[concat('Microsoft.Network/networkInterfaces/', variables('nicName'), 'master')]"
-			],
-			"properties": {
-				"publisher": "Microsoft.Azure.Extensions",
-				"type": "DockerExtension",
-				"typeHandlerVersion": "1.0",
-				"settings": {
-					"docker": {
-						"port": "2375"
-					},
-					"compose": {
-						"consul": {
-							"image": "progrium/consul",
-							"restart": "always",
-							"command": "[concat('-server -advertise ', reference(concat(variables('nicName'), 'master')).ipConfigurations[0].properties.publicIPAddress, ' -bootstrap-expect 3')]",
-							"ports": ["8300:8300", "8301:8301", "8301:8301/udp", "8302:8302", "8302:8302/udp", "8400:8400", "8500:8500", "53:53/udp"]
-						}
-					}
-				}
-			}
-		},
-		{
-			"type": "Microsoft.Compute/virtualMachines/extensions",
-			"name": "[concat(variables('vmName'), copyIndex(), '/', variables('extensionName'))]",
-			"apiVersion": "2015-05-01-preview",
-			"location": "[variables('location')]",
-			"copy": {
-				"name": "extLoop",
-				"count": "[parameters('slaveCount')]"
-			},
-			"dependsOn": [
-				"[concat('Microsoft.Compute/virtualMachines/', variables('vmName'), copyIndex())]",
-				"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), copyIndex())]"
-			],
-			"properties": {
-				"publisher": "Microsoft.Azure.Extensions",
-				"type": "DockerExtension",
-				"typeHandlerVersion": "1.0",
-				"settings": {
-					"docker": {
-						"port": "2375"
-					},
-					"compose": {
-						"consul": {
-							"image": "progrium/consul",
-							"restart": "always",
-							"command": "[concat('-server -advertise ', reference(concat(variables('nicName'), copyIndex())).ipConfigurations[0].properties.privateIPAddress, ' -join ', reference(concat(variables('nicName'), 'master')).ipConfigurations[0].properties.privateIPAddress)]",
-							"ports": ["8300:8300", "8301:8301", "8301:8301/udp", "8302:8302", "8302:8302/udp", "8400:8400", "8500:8500", "53:53/udp"]
-						}
-					}
-				}
-			}
 		}
 	],
 	"outputs": {
