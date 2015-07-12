@@ -283,7 +283,8 @@
 			"location": "[variables('location')]",
 			"dependsOn": [
 				"[concat('Microsoft.Compute/virtualMachines/', variables('vmName'), 'master')]",
-				"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), 'master')]"
+				"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), 'master')]",
+				"[concat(variables('nicName'), 'master')]"
 			],
 			"properties": {
 				"publisher": "Microsoft.Azure.Extensions",
