@@ -302,7 +302,7 @@
 					"newStorageAccountName": { "value": "[parameters('newStorageAccountName')]" },
 					"adminUsername": { "value": "[parameters('adminUserName')]" },
 					"adminPassword": { "value": "[parameters('adminPassword')]" },
-					"dnsNameForPublicIP": { "value": "consul" },
+					"dnsNameForPublicIP": { "value": "consulIP" },
 					"ubuntuOSVersion": { "value": "[parameters('ubuntuOSVersion')]" },
 					"slaveCount": {"value": 2}
 				}
