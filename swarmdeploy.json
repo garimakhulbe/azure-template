@@ -295,7 +295,7 @@
 			"properties": {
 				"mode": "Incremental",
 				"templateLink": {
-					"uri": "https://raw.githubusercontent.com/gabrielhartmann/azure-quickstart-templates/swarm/consul/azuredeploy.json",
+					"uri": "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/consuldeploy.json",
 					"contentVersion": "1.0.0.0"
 				},
 				"parameters": {
