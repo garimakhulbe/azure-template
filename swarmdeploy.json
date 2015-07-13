@@ -62,7 +62,6 @@
 		"subnetName": "Subnet",
 		"subnetPrefix": "10.0.0.0/24",
 		"storageAccountType": "Standard_LRS",
-		"consulpublicIPAddressName": "consulIP",
 		"publicIPAddressName": "myPublicIP",
 		"publicIPAddressType": "Dynamic",
 		"vmStorageAccountContainerName": "vhds",
@@ -359,7 +358,7 @@
 							"image": "swarm",
 							"restart": "always",
 							"ports": ["8333:2375"],
-							"command": "[concat('manage consul://', reference(concat(variables('consulpublicIpAddressName'), 'master')).ipAddress, ':8500/swarm')]"
+							"command": "[concat('manage consul://', reference('ConsulCluster').outputs.publicIP.value.ipAddress, ':8500/swarm')]"
 						}
 					}
 				}
