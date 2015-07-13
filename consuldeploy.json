@@ -298,7 +298,7 @@
 						"consul": {
 							"image": "progrium/consul",
 							"restart": "always",
-							"command": "[concat('-server -advertise ', reference('consulNicmaster').ipConfigurations[0].properties.publicIPAddress, ' -bootstrap-expect 3')]",
+							"command": "[concat('-server -advertise ', reference('consulNicmaster').ipConfigurations[0].properties.privateIPAddress, ' -bootstrap-expect 3')]",
 							"ports": ["8300:8300", "8301:8301", "8301:8301/udp", "8302:8302", "8302:8302/udp", "8400:8400", "8500:8500", "53:53/udp"]
 						}
 					}
