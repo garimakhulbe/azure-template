@@ -354,7 +354,7 @@
 	],
 	"outputs": {
 		"publicIP": {
-			"type": "object",
+			"type": "string",
 			"value": "[reference(concat(variables('publicIPAddressName'), 'master'))]"
 		}
 	}
