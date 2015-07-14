@@ -70,6 +70,7 @@
 		"vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
 		"subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]"
 	},
+	"resources":[],
 	"outputs": {
 		"publicIP": {
 			"type": "string",
