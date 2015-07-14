@@ -24,8 +24,8 @@
 	"resources":[],
 	"outputs": {
 		"publicIP": {
-			"type": "string",
-			"value": "[resourceId('Microsoft.Network/publicIPAddresses',concat(variables('publicIPAddressName'), 'master').ipAddress]"
+			"type": "object",
+			"value": "[resourceId('Microsoft.Network/publicIPAddresses',concat(variables('publicIPAddressName'), 'master')]"
 		}
 	}
 }
