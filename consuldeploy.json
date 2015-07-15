@@ -97,6 +97,9 @@
 			"name": "ClusterPublicIP",
 			"type": "Microsoft.Resources/deployments",
 			"apiVersion": "2015-01-01",
+			"dependsOn": [
+				"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), 'master')]"
+			],
 			"properties": {
 				"mode": "Incremental",
 				"templateLink": {
