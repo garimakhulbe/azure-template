@@ -21,7 +21,18 @@
 		"vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
 		"subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]"
 	},
-	"resources":[],
+	"resources":[	{
+			"apiVersion": "2015-05-01-preview",
+			"type": "Microsoft.Network/publicIPAddresses",
+			"name": "[concat(variables('publicIPAddressName'), 'master')]",
+			"location": "[variables('location')]",
+			"properties": {
+				"publicIPAllocationMethod": "[variables('publicIPAddressType')]",
+				"dnsSettings": {
+					"domainNameLabel": "[concat(parameters('dnsNameForPublicIP'), 'master')]"
+				}
+			}
+		},],
 	"outputs": {
 		"publicIP": {
 			"type": "object",
