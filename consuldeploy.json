@@ -343,7 +343,7 @@
 	"outputs": {
 		"publicIP": {
 			"type": "string",
-			"value": "[reference(concat(variables('publicIPAddressName'), 'master'))]"
+			"value": "[reference('ClusterPublicIP').outputs.publicIP.value.ipAddress]"
 		}
 	}
 }
