@@ -82,16 +82,20 @@
 			}
 		},
 		{
-			"apiVersion": "2015-05-01-preview",
-			"type": "Microsoft.Network/publicIPAddresses",
-			"name": "[concat(variables('publicIPAddressName'), 'master')]",
-			"location": "[variables('location')]",
+			"name": "ClusterPublicIP",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2015-01-01",
 			"properties": {
-				"publicIPAllocationMethod": "[variables('publicIPAddressType')]",
-				"dnsSettings": {
-					"domainNameLabel": "[concat(parameters('dnsNameForPublicIP'), 'master')]"
+				"mode": "Incremental",
+				"templateLink": {
+					"uri": "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/thirdtemplate.json",
+					"contentVersion": "1.0.0.0"
 				}
+			},
+			"parameters": {
+				"dnsNameForPublicIP": { "value": "[parameters('dnsNameForPublicIP')]" }
 			}
+
 		},
 		{
 			"apiVersion": "2015-05-01-preview",
@@ -136,7 +140,7 @@
 			"name": "[concat(variables('nicName'), 'master')]",
 			"location": "[variables('location')]",
 			"dependsOn": [
-				"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), 'master')]",
+				"ClusterPublicIP",
 				"[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
 			],
 			"properties": {
@@ -277,28 +281,13 @@
 			}
 		},
 		{
-			"name": "ClusterPublicIP",
-			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2015-01-01",
-			"dependsOn": [
-				"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), 'master')]"
-			],
-			"properties": {
-				"mode": "Incremental",
-				"templateLink": {
-					"uri": "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/thirdtemplate.json",
-					"contentVersion": "1.0.0.0"
-				}
-			}
-		},
-		{
 			"type": "Microsoft.Compute/virtualMachines/extensions",
 			"name": "[concat(variables('vmName'), 'master', '/', variables('extensionName'))]",
 			"apiVersion": "2015-05-01-preview",
 			"location": "[variables('location')]",
 			"dependsOn": [
 				"[concat('Microsoft.Compute/virtualMachines/', variables('vmName'), 'master')]",
-				"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), 'master')]"
+				"ClusterPublicIP"
 			],
 			"properties": {
 				"publisher": "Microsoft.Azure.Extensions",
