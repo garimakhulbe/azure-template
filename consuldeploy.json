@@ -90,12 +90,11 @@
 				"templateLink": {
 					"uri": "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/thirdtemplate.json",
 					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"dnsNameForPublicIP": { "value": "[parameters('dnsNameForPublicIP')]" }
 				}
-			},
-			"parameters": {
-				"dnsNameForPublicIP": { "value": "[parameters('dnsNameForPublicIP')]" }
 			}
-
 		},
 		{
 			"apiVersion": "2015-05-01-preview",
