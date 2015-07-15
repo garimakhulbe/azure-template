@@ -82,6 +82,18 @@
 			}
 		},
 		{
+			"apiVersion": "2015-05-01-preview",
+			"type": "Microsoft.Network/publicIPAddresses",
+			"name": "[concat(variables('publicIPAddressName'), 'master')]",
+			"location": "[variables('location')]",
+			"properties": {
+				"publicIPAllocationMethod": "[variables('publicIPAddressType')]",
+				"dnsSettings": {
+					"domainNameLabel": "[concat(parameters('dnsNameForPublicIP'), 'master')]"
+				}
+			}
+		},
+		{
 			"name": "ClusterPublicIP",
 			"type": "Microsoft.Resources/deployments",
 			"apiVersion": "2015-01-01",
@@ -90,9 +102,6 @@
 				"templateLink": {
 					"uri": "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/thirdtemplate.json",
 					"contentVersion": "1.0.0.0"
-				},
-				"parameters": {
-					"dnsNameForPublicIP": { "value": "[parameters('dnsNameForPublicIP')]" }
 				}
 			}
 		},
@@ -139,7 +148,7 @@
 			"name": "[concat(variables('nicName'), 'master')]",
 			"location": "[variables('location')]",
 			"dependsOn": [
-				"ClusterPublicIP",
+				"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), 'master')]",
 				"[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
 			],
 			"properties": {
@@ -149,7 +158,7 @@
 						"properties": {
 							"privateIPAllocationMethod": "Dynamic",
 							"publicIPAddress": {
-								"id": "[resourceId(reference('ClusterPublicIP'),"")]"
+								"id": "[resourceId('Microsoft.Network/publicIPAddresses',concat(variables('publicIPAddressName'), 'master'))]"
 							},
 							"subnet": {
 								"id": "[variables('subnetRef')]"
@@ -286,7 +295,7 @@
 			"location": "[variables('location')]",
 			"dependsOn": [
 				"[concat('Microsoft.Compute/virtualMachines/', variables('vmName'), 'master')]",
-				"ClusterPublicIP"
+				"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), 'master')]"
 			],
 			"properties": {
 				"publisher": "Microsoft.Azure.Extensions",
@@ -300,7 +309,7 @@
 						"consul": {
 							"image": "progrium/consul",
 							"restart": "always",
-							"command": "[concat('-server -advertise ', reference(concat(variables('nicName'), 'master')).ipConfigurations[0].properties.privateIPAddress, ' -advertise-wan ', reference('ClusterPublicIP').outputs.publicIP.value.ipAddress , ' -bootstrap-expect 3')]",
+							"command": "[concat('-server -advertise ', reference(concat(variables('nicName'), 'master')).ipConfigurations[0].properties.privateIPAddress, ' -advertise-wan ', reference('ClusterPublicIP').ipAddress, ' -bootstrap-expect 3')]",
 							"ports": ["8300:8300", "8301:8301", "8301:8301/udp", "8302:8302", "8302:8302/udp", "8400:8400", "8500:8500", "53:53/udp"]
 						}
 					}
@@ -342,8 +351,8 @@
 	],
 	"outputs": {
 		"publicIP": {
-			"type": "string",
-			"value": "[reference('ClusterPublicIP').outputs.publicIP.value.ipAddress]"
+			"type": "object",
+			"value": "[reference(concat(variables('publicIpAddressName'), 'master'))]"
 		}
 	}
 }
