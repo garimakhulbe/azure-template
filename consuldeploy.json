@@ -98,7 +98,8 @@
 			"type": "Microsoft.Resources/deployments",
 			"apiVersion": "2015-01-01",
 			"dependsOn": [
-				"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), 'master')]"
+				"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), 'master')]",
+				"[concat('Microsoft.Compute/virtualMachines/', variables('vmName'), 'master')]"
 			],
 			"properties": {
 				"mode": "Incremental",
