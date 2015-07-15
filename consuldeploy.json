@@ -294,9 +294,9 @@
 		}
 	],
 	"outputs": {
-		"publicIP": {
+		"myIP": {
 			"type": "object",
-			"value": "[reference(ClusterPublicIP).outputs.PublicIP]"
+			"value": "[reference(ClusterPublicIP).outputs.publicIP]"
 		}
 	}
 }
