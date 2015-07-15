@@ -82,18 +82,6 @@
 			}
 		},
 		{
-			"apiVersion": "2015-05-01-preview",
-			"type": "Microsoft.Network/publicIPAddresses",
-			"name": "[concat(variables('publicIPAddressName'), 'master')]",
-			"location": "[variables('location')]",
-			"properties": {
-				"publicIPAllocationMethod": "[variables('publicIPAddressType')]",
-				"dnsSettings": {
-					"domainNameLabel": "[concat(parameters('dnsNameForPublicIP'), 'master')]"
-				}
-			}
-		},
-		{
 			"name": "ClusterPublicIP",
 			"type": "Microsoft.Resources/deployments",
 			"apiVersion": "2015-01-01",
