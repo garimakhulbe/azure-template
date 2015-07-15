@@ -11,8 +11,6 @@
 		"vmName": "ConsulVM",
 		"vmSize": "Standard_D1",
 		"publicID": "[resourceId('Microsoft.Network/publicIPAddresses',concat(variables('publicIPAddressName'), 'master'))]",
-		"vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
-		"subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]"
 	},
 	"resources":[],
 	"outputs": {
