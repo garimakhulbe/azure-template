@@ -93,6 +93,9 @@
 				"templateLink": {
 					"uri": "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/thirdtemplate.json",
 					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"dnsNameForPublicIP": { "value": "[parameters('dnsNameForPublicIP')]" }
 				}
 			}
 		},
@@ -139,7 +142,7 @@
 			"name": "[concat(variables('nicName'), 'master')]",
 			"location": "[variables('location')]",
 			"dependsOn": [
-				"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), 'master')]",
+				"ClusterPublicIP",
 				"[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
 			],
 			"properties": {
@@ -149,7 +152,7 @@
 						"properties": {
 							"privateIPAllocationMethod": "Dynamic",
 							"publicIPAddress": {
-								"id": "[resourceId('Microsoft.Network/publicIPAddresses',concat(variables('publicIPAddressName'), 'master'))]"
+								"id": "[resourceId(resourceGroup().name,'Microsoft.Network/publicIPAddresses',concat(variables('publicIPAddressName'), 'master'))]"
 							},
 							"subnet": {
 								"id": "[variables('subnetRef')]"
@@ -286,7 +289,6 @@
 			"location": "[variables('location')]",
 			"dependsOn": [
 				"[concat('Microsoft.Compute/virtualMachines/', variables('vmName'), 'master')]",
-				"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), 'master')]",
 				"ClusterPublicIP"
 			],
 			"properties": {
