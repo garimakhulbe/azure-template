@@ -91,7 +91,7 @@
 			"properties": {
 				"mode": "Incremental",
 				"templateLink": {
-					"uri": "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/thirdtemplate.json",
+					"uri": "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/third.v2.json",
 					"contentVersion": "1.0.0.0"
 				},
 				"parameters": {
