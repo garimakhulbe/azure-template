@@ -296,7 +296,7 @@
 	"outputs": {
 		"myIP": {
 			"type": "object",
-			"value": "[reference(ClusterPublicIP).outputs.publicIP]"
+			"value": "[reference(resourceId(resourceGroup().name,'Microsoft.Network/publicIPAddresses',concat(variables('publicIPAddressName'), 'master')))]"
 		}
 	}
 }
