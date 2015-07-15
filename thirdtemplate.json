@@ -44,6 +44,10 @@
 		"publicIP": {
 			"type": "object",
 			"value": "[concat('http://',reference(resourceId('Microsoft.Network/publicIPAddresses',concat(variables('publicIPAddressName'), 'master'))))]"
+		},
+		"id": {
+			"type": "id",
+			"value": "[concat('http://',reference(resourceId('Microsoft.Network/publicIPAddresses',concat(variables('publicIPAddressName'), 'master'))))]"
 		}
 	}
 }
