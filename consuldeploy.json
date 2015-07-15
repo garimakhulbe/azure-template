@@ -149,7 +149,7 @@
 						"properties": {
 							"privateIPAllocationMethod": "Dynamic",
 							"publicIPAddress": {
-								"id": "[reference('ClusterPublicIP').outputs.publicIP]"
+								"id": "[reference('ClusterPublicIP').outputs.publicID.id.value]"
 							},
 							"subnet": {
 								"id": "[variables('subnetRef')]"
