@@ -9,14 +9,13 @@
 		"publicIPAddressType": "Dynamic",
 		"vmStorageAccountContainerName": "vhds",
 		"vmName": "ConsulVM",
-		"vmSize": "Standard_D1",
-		"publicID": "[resourceId('Microsoft.Network/publicIPAddresses',concat(variables('publicIPAddressName'), 'master'))]",
+		"vmSize": "Standard_D1"
 	},
 	"resources":[],
 	"outputs": {
 		"publicIP": {
 			"type": "object",
-			"value": "[concat('http://',reference(variables('publicID')))]"
+			"value": "[resourceId(resourceGroup().name,'Microsoft.Network/publicIPAddresses',concat(variables('publicIPAddressName'), 'master'))"
 		}
 	}
 }
