@@ -228,7 +228,7 @@
 						"swarm": {
 							"image": "swarm",
 							"restart": "always",
-							"command": "[concat('swarm join --advertise=', reference(concat(variables('nicName'), copyIndex())).ipConfigurations[0].properties.privateIPAddress), ':2375 token://', variables('clusterId')]"
+							"command": "[concat('swarm join --advertise=', reference(concat(variables('nicName'), copyIndex())).ipConfigurations[0].properties.privateIPAddress, ':2375 token://', variables('clusterId'))]"
 						}
 					}
 				}
