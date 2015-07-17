@@ -285,29 +285,6 @@
 			}
 		},
 		{
-			"name": "ConsulCluster",
-			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2015-01-01",
-			"dependsOn": [
-				"[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountName'))]"
-			],
-			"properties": {
-				"mode": "Incremental",
-				"templateLink": {
-					"uri": "https://raw.githubusercontent.com/gabrielhartmann/azure-quickstart-templates/swarm/consul/azuredeploy.json",
-					"contentVersion": "1.0.0.0"
-				},
-				"parameters": {
-					"newStorageAccountName": { "value": "[parameters('newStorageAccountName')]" },
-					"adminUsername": { "value": "[parameters('adminUserName')]" },
-					"adminPassword": { "value": "[parameters('adminPassword')]" },
-					"dnsNameForPublicIP": { "value": "consul" },
-					"ubuntuOSVersion": { "value": "[parameters('ubuntuOSVersion')]" },
-					"slaveCount": {"value": 2}
-				}
-			}
-		},
-		{
 			"apiVersion": "2015-05-01-preview",
 			"type": "Microsoft.Network/networkSecurityGroups",
 			"name": "[variables('nsgName')]",
