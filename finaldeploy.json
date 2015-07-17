@@ -129,6 +129,30 @@
 		},
 		{
 			"apiVersion": "2015-05-01-preview",
+			"type": "Microsoft.Network/networkSecurityGroups",
+			"name": "[variables('nsgName')]",
+			"location": "[variables('location')]",
+			"properties": {
+				"securityRules": [
+					{
+						"name": "swarmManagementPort",
+						"properties": {
+							"description": "Docker swarm endpoint",
+							"protocol": "Tcp",
+							"sourcePortRange": "*",
+							"destinationPortRange": "8333",
+							"sourceAddressPrefix": "*",
+							"destinationAddressPrefix": "*",
+							"access": "Allow",
+							"priority": 100,
+							"direction": "Inbound"
+						}
+					}
+				]
+			}
+		},
+		{
+			"apiVersion": "2015-05-01-preview",
 			"type": "Microsoft.Network/networkInterfaces",
 			"name": "[concat(variables('nicName'),copyIndex())]",
 			"location": "[variables('location')]",
