@@ -314,8 +314,7 @@
 			"apiVersion": "2015-05-01-preview",
 			"location": "[variables('location')]",
 			"dependsOn": [
-				"[concat('Microsoft.Compute/virtualMachines/', variables('vmName'), 'master')]",
-				"ConsulCluster"
+				"[concat('Microsoft.Compute/virtualMachines/', variables('vmName'), 'master')]"
 			],
 			"properties": {
 				"publisher": "Microsoft.Azure.Extensions",
@@ -324,19 +323,6 @@
 				"settings": {
 					"docker": {
 						"port": "2375"
-					},
-					"compose": {
-						"swarm": {
-							"image": "swarm",
-							"restart": "always",
-							"command": "[concat('join --addr=', reference(concat(variables('nicName'), 'master')).ipConfigurations[0].properties.privateIPAddress, ':2375 consul://', resourceId('Microsoft.Network/publicIPAddresses',concat(variables('consulPublicIPAddressName'), 'master')).properties.ipAddress, ':8500/swarm')]"
-						},
-						"swarmManager": {
-							"image": "swarm",
-							"restart": "always",
-							"ports": ["8333:2375"],
-							"command": "[concat('manage consul://', resourceId('Microsoft.Network/publicIPAddresses',concat(variables('consulPublicIPAddressName'), 'master')).properties.ipAddress, ':8500/swarm')]"
-						}
 					}
 				}
 			}
