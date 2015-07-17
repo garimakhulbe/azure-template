@@ -352,7 +352,7 @@
 						"swarm": {
 							"image": "swarm",
 							"restart": "always",
-							"command": "[concat('join --addr=', reference(concat(variables('nicName'), 'master')).ipConfigurations[0].properties.privateIPAddress, ':2375 consul://', reference('ConsulCluster').outputs.publicIP.value.ipAddress, ':8500/swarm')]"
+							"command": "[concat('join --addr=', reference(concat(variables('nicName'), 'master')).ipConfigurations[0].properties.privateIPAddress, ':2375)]"
 						},
 						"swarmManager": {
 							"image": "swarm",
