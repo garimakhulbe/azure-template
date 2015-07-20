@@ -80,8 +80,8 @@
 		"nsgNameMaster": "swarmNSGMaster",
 		"nsgNameSlave": "swarmNSGSlave",
 		"nsgID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgName'))]",
-		"nsgIDMaster": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgName'))]",
-		"nsgIDSlave": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgName'))]"
+		"nsgIDMaster": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgNameMaster'))]",
+		"nsgIDSlave": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgNameSlave'))]"
 	},
 	"resources": [
 		{
