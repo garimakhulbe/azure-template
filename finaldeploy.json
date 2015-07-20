@@ -122,7 +122,7 @@
 			"name": "[variables('virtualNetworkName')]",
 			"location": "[variables('location')]",
 			"dependsOn": [
-				"[variables('nsgID')]"
+				"[variables('nsgIDMaster')]","[variables('nsgIDSlave')]"
 			],
 			"properties": {
 				"addressSpace": {
