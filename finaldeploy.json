@@ -45,7 +45,7 @@
 		},
 		"slaveCount": {
 			"type": "int",
-			"defaultValue": 3,
+			"defaultValue": 1,
 			"metadata": {
 				"description": "Number of slave nodes"
 			}
@@ -68,7 +68,6 @@
 		"vmName": "swarm-",
 		"vmSize": "Standard_D1",
 		"virtualNetworkName": "SwarmVNET",
-		"clusterId": "846cc92b6ff83979b26b2a5dee6e9624",
 		"vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
 		"subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
 		"nsgName": "swarmNSG",
