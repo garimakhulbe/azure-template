@@ -57,21 +57,21 @@
 		"imagePublisher": "Canonical",
 		"imageOffer": "UbuntuServer",
 		"OSDiskName": "osdiskforlinuxsimple",
-		"nicName": "myVMNic",
+		"nicName": "swarmVMNic",
 		"addressPrefix": "10.0.0.0/16",
 		"subnetName": "Subnet",
 		"subnetPrefix": "10.0.0.0/24",
 		"storageAccountType": "Standard_LRS",
-		"publicIPAddressName": "myPublicIP",
+		"publicIPAddressName": "swarmPublicIP",
 		"publicIPAddressType": "Dynamic",
 		"vmStorageAccountContainerName": "vhds",
-		"vmName": "MyUbuntuVM",
+		"vmName": "swarm-",
 		"vmSize": "Standard_D1",
-		"virtualNetworkName": "MyVNET",
+		"virtualNetworkName": "SwarmVNET",
 		"clusterId": "846cc92b6ff83979b26b2a5dee6e9624",
 		"vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
 		"subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
-		"nsgName": "myNSG",
+		"nsgName": "swarmNSG",
 		"nsgID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgName'))]"
 	},
 	"resources": [
@@ -346,13 +346,6 @@
 				"settings": {
 					"docker": {
 						"port": "2375"
-					},
-					"compose": {
-						"swarm": {
-							"image": "swarm",
-							"restart": "always",
-							"command": "[concat('swarm join --advertise=', reference(concat(variables('nicName'), copyIndex())).ipConfigurations[0].properties.privateIPAddress, ':2375 token://', variables('clusterId'))]"
-						}
 					}
 				}
 			}
