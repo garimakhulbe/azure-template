@@ -122,7 +122,8 @@
 			"name": "[variables('virtualNetworkName')]",
 			"location": "[variables('location')]",
 			"dependsOn": [
-				"[variables('nsgIDMaster')]","[variables('nsgIDSlave')]"
+				"[concat('Microsoft.Network/networkSecurityGroups/', variables('nsgNameMaster'))]",
+				"[concat('Microsoft.Network/networkSecurityGroups/', variables('nsgNameSlave'))]"
 			],
 			"properties": {
 				"addressSpace": {
