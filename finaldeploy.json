@@ -141,7 +141,7 @@
 						"properties": {
 							"addressPrefix": "[variables('subnetPrefixMaster')]",
 							"networkSecurityGroup" : {
-								"id": "[variables('nsgID')]"
+								"id": "[variables('nsgIDMaster')]"
 							}
 						}
 					},
@@ -150,7 +150,7 @@
 						"properties": {
 							"addressPrefix": "[variables('subnetPrefixSlave')]",
 							"networkSecurityGroup" : {
-								"id": "[variables('nsgID')]"
+								"id": "[variables('nsgIDSlave')]"
 							}
 						}
 					}
