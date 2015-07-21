@@ -92,6 +92,12 @@
     		"vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
 		"subnetRefMaster": "[concat(variables('vnetID'),'/subnets/',variables('subnetNameMaster'))]",
 		"subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
+		"vmName": "swarmVM",
+		"vmSize": "Standard_D1",
+		"imagePublisher": "Canonical",
+		"imageOffer": "UbuntuServer",
+		"OSDiskName": "osdiskforlinuxsimple",
+		"vmStorageAccountContainerName": "vhds",
             	"nsgName" : "swarmNSG",
             	"nsgMaster" : "swarmNSGMaster",
             	"nsgID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgName'))]",
@@ -241,6 +247,96 @@
 					}
 				}
 			]
+		}
+	},
+	{
+		"apiVersion": "2015-05-01-preview",
+		"type": "Microsoft.Compute/virtualMachines",
+		"name": "[concat(variables('vmName'), 'master')]",
+		"location": "[parameters('location')]",
+		"dependsOn": [
+			"[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountName'))]",
+			"[concat('Microsoft.Network/networkInterfaces/', variables('nicName'), 'master')]"
+		],
+		"properties": {
+			"hardwareProfile": {
+				"vmSize": "[variables('vmSize')]"
+			},
+			"osProfile": {
+				"computername": "[concat(variables('vmName'), 'master')]",
+				"adminUsername": "[parameters('adminUsername')]",
+				"adminPassword": "[parameters('adminPassword')]"
+			},
+			"storageProfile": {
+				"imageReference": {
+					"publisher": "[variables('imagePublisher')]",
+					"offer": "[variables('imageOffer')]",
+					"sku" : "[parameters('ubuntuOSVersion')]",
+					"version":"latest"
+				},
+				"osDisk" : {
+					"name": "osdisk",
+					"vhd": {
+						"uri": "[concat('http://', parameters('newStorageAccountName'), '.blob.core.windows.net/', variables('vmStorageAccountContainerName'), '/', variables('OSDiskName'), 'master-osdisk.vhd')]"
+					},
+					"caching": "ReadWrite",
+					"createOption": "FromImage"
+				}
+			},
+			"networkProfile": {
+				"networkInterfaces": [
+					{
+						"id": "[resourceId('Microsoft.Network/networkInterfaces',concat(variables('nicName'), 'master'))]"
+					}
+				]
+			}
+		}
+	},
+	{
+		"apiVersion": "2015-05-01-preview",
+		"type": "Microsoft.Compute/virtualMachines",
+		"name": "[concat(variables('vmName'), copyIndex())]",
+		"location": "[variables('location')]",
+		"copy": {
+			"name": "vmLoop",
+			"count": "[parameters('slaveCount')]"
+		},
+		"dependsOn": [
+			"[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountName'))]",
+			"[concat('Microsoft.Network/networkInterfaces/', variables('nicName'), copyIndex())]"
+		],
+		"properties": {
+			"hardwareProfile": {
+				"vmSize": "[variables('vmSize')]"
+			},
+			"osProfile": {
+				"computername": "[concat(variables('vmName'), copyIndex())]",
+				"adminUsername": "[parameters('adminUsername')]",
+				"adminPassword": "[parameters('adminPassword')]"
+			},
+			"storageProfile": {
+				"imageReference": {
+					"publisher": "[variables('imagePublisher')]",
+					"offer": "[variables('imageOffer')]",
+					"sku" : "[parameters('ubuntuOSVersion')]",
+					"version":"latest"
+				},
+				"osDisk" : {
+					"name": "osdisk",
+					"vhd": {
+						"uri": "[concat('http://', parameters('newStorageAccountName'), '.blob.core.windows.net/', variables('vmStorageAccountContainerName'), '/', variables('OSDiskName'), copyIndex(), '-osdisk.vhd')]"
+					},
+					"caching": "ReadWrite",
+					"createOption": "FromImage"
+				}
+			},
+			"networkProfile": {
+				"networkInterfaces": [
+					{
+						"id": "[resourceId('Microsoft.Network/networkInterfaces',concat(variables('nicName'), copyindex()))]"
+					}
+				]
+			}
 		}
 	}
     ]
