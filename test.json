@@ -129,13 +129,13 @@
 		        },
 		        "subnets": [
 		          {
-		            "name": "subnet1",
+		            "name": "[variables('subnetNameSlave')]",
 		            "properties" : {
 		              "addressPrefix": "[variables('subnetPrefixSlave')]"
 		            }
 		          },
 		          {
-		            "name": "subnet2Name",
+		            "name": "[variables('subnetNameMaster')]",
 		            "properties" : {
 		              "addressPrefix": "[variables('subnetPrefixMaster')]"
 		            }
