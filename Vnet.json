@@ -26,7 +26,7 @@
       		},
 	      "subnetMasterPrefix" : {
 		        "type" : "string",
-		        "defaultValue" : "20.2.0.0/8",
+		        "defaultValue" : "201.2.0.0/8",
 		        "metadata" : {
 		          "Description" : "Subnet Master Prefix"
 		        }
@@ -79,9 +79,16 @@
 			"metadata": {
 				"description": "Number of slave nodes"
 			}
+		},
+		"swarmClusterId": {
+			"type": "string",
+			"metadata": {
+				"description": "Swarm cluster id"
+			}
 		}
     },
     "variables": {
+    		"extensionName": "DockerExtension",
     		"storageAccountType": "Standard_LRS",
     		"publicIPAddressName": "swarmPublicIP",
     		"publicIPAddressType": "Dynamic",
@@ -336,6 +343,63 @@
 						"id": "[resourceId('Microsoft.Network/networkInterfaces',concat(variables('nicName'), copyindex()))]"
 					}
 				]
+			}
+		}
+	}
+	{
+		"type": "Microsoft.Compute/virtualMachines/extensions",
+		"name": "[concat(variables('vmName'), 'master', '/', variables('extensionName'))]",
+		"apiVersion": "2015-05-01-preview",
+		"location": "[parameters('location')]",
+		"dependsOn": [
+			"[concat('Microsoft.Compute/virtualMachines/', variables('vmName'), 'master')]"
+		],
+		"properties": {
+			"publisher": "Microsoft.Azure.Extensions",
+			"type": "DockerExtension",
+			"typeHandlerVersion": "1.0",
+			"settings": {
+				"docker": {
+					"port": "2375"
+				},
+				"compose": {
+					"swarm": {
+						"image": "swarm",
+						"restart": "always",
+						"ports": ["5555:2375"]
+						"command": "[concat('manage token://',parameters('swarmClusterId'))]"
+					}
+				}
+			}
+		}
+	},
+{
+		"type": "Microsoft.Compute/virtualMachines/extensions",
+		"name": "[concat(variables('vmName'), copyIndex(), '/', variables('extensionName'))]",
+		"apiVersion": "2015-05-01-preview",
+		"location": "[parameters('location')]",
+		"copy": {
+			"name": "extLoop",
+			"count": "[parameters('slaveCount')]"
+		},
+		"dependsOn": [
+			"[concat('Microsoft.Compute/virtualMachines/', variables('vmName'), copyIndex())]"
+		],
+		"properties": {
+			"publisher": "Microsoft.Azure.Extensions",
+			"type": "DockerExtension",
+			"typeHandlerVersion": "1.0",
+			"settings": {
+				"docker": {
+					"port": "2375"
+				},
+				"compose": {
+					"swarm": {
+						"image": "swarm",
+						"restart": "always",
+						"command": "[concat('join --addr=', reference(concat(variables('nicName'), copyIndex())).ipConfigurations[0].properties.privateIPAddress, ':2375 token://',parameters('swarmClusterId'))]"
+					}
+				}
 			}
 		}
 	}
