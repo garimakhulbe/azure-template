@@ -24,13 +24,6 @@
 		          "Description" : "Subnet Slave Prefix"
 		        }
       		},
-	      "subnetMasterPrefix" : {
-		        "type" : "string",
-		        "defaultValue" : "10.0.1.0/24",
-		        "metadata" : {
-		          "Description" : "Subnet Master Prefix"
-		        }
-      		},
       		"newStorageAccountName": {
 			"type": "string",
 			"metadata": {
@@ -94,10 +87,8 @@
     		"publicIPAddressType": "Dynamic",
     		"nicName": "swarmVMNic",
     		"virtualNetworkName": "SwarmVNET",
-    		"subnetNameMaster": "subset2Master",
-		"subnetName": "subnet1",
+		"subnetName": "subnet",
     		"vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
-		"subnetRefMaster": "[concat(variables('vnetID'),'/subnets/',variables('subnetNameMaster'))]",
 		"subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
 		"vmName": "swarmVM",
 		"vmSize": "Standard_D1",
@@ -106,9 +97,7 @@
 		"OSDiskName": "osdiskforlinuxsimple",
 		"vmStorageAccountContainerName": "vhds",
             	"nsgName" : "swarmNSG",
-            	"nsgMaster" : "swarmNSGMaster",
-            	"nsgID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgName'))]",
-            	"nsgIDMaster": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgMaster'))]"
+            	"nsgID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgName'))]"
     },
     "resources": [
     	{
@@ -154,7 +143,7 @@
               "name": "[variables('virtualNetworkName')]",
               "location": "[parameters('location')]",
               "dependsOn": [
-			"[variables('nsgID')]","[variables('nsgIDMaster')]"
+			"[variables('nsgID')]"
 		],
               "properties": {
                 "addressSpace": {
@@ -171,27 +160,10 @@
 		              "id": "[variables('nsgID')]"
 			}
                     }
-                  },
-                  {
-                    "name": "[variables('subnetNameMaster')]",
-                    "properties" : {
-                      "addressPrefix": "[parameters('subnetMasterPrefix')]",
-		      "networkSecurityGroup" : {
-		              "id": "[variables('nsgIDMaster')]"
-			}
-                    }
                   }
-                  ]
+                ]
                }
         },
-        {
-		"apiVersion": "2015-05-01-preview",
-		"type": "Microsoft.Network/networkSecurityGroups",
-		"name": "[variables('nsgMaster')]",
-		"location": "[parameters('location')]",
-		"properties": {
-		}
-	},
 	{
 		"apiVersion": "2015-05-01-preview",
 		"type": "Microsoft.Network/networkSecurityGroups",
@@ -219,7 +191,7 @@
 							"id": "[resourceId('Microsoft.Network/publicIPAddresses',concat(variables('publicIPAddressName'), 'master'))]"
 						},
 						"subnet": {
-							"id": "[variables('subnetRefMaster')]"
+							"id": "[variables('subnetRef')]"
 						}
 					}
 				}
