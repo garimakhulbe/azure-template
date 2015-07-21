@@ -184,6 +184,20 @@
 						"priority": 100,
 						"direction": "Inbound"
 					}
+				},
+				{
+					"name": "SSH",
+					"properties": {
+						"description": "SSH endpoint",
+						"protocol": "Tcp",
+						"sourcePortRange": "*",
+						"destinationPortRange": "22",
+						"sourceAddressPrefix": "*",
+						"destinationAddressPrefix": "*",
+						"access": "Allow",
+						"priority": 200,
+						"direction": "Inbound"
+					}
 				}
 			]
 		}
