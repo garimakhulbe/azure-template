@@ -170,6 +170,22 @@
 		"name": "[variables('nsgName')]",
 		"location": "[parameters('location')]",
 		"properties": {
+			"securityRules": [
+				{
+					"name": "swarmport",
+					"properties": {
+						"description": "Docker swarm endpoint",
+						"protocol": "Tcp",
+						"sourcePortRange": "*",
+						"destinationPortRange": "5555",
+						"sourceAddressPrefix": "*",
+						"destinationAddressPrefix": "*",
+						"access": "Allow",
+						"priority": 100,
+						"direction": "Inbound"
+					}
+				}
+			]
 		}
 	},
 	{
