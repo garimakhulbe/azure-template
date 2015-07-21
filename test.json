@@ -62,7 +62,7 @@
 		"subnetNameMaster": "SubnetMaster",
 		"subnetNameSlave": "SubnetSlave",
 		"subnetPrefixMaster": "10.0.0.0/21",
-		"subnetPrefixSlave": "10.0.0.0/31",
+		"subnetPrefixSlave": "10.0.1.0/21",
 		"storageAccountType": "Standard_LRS",
 		"publicIPAddressName": "swarmPublicIP",
 		"publicIPAddressType": "Dynamic",
