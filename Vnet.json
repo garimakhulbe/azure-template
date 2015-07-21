@@ -87,6 +87,12 @@
     		"storageAccountType": "Standard_LRS",
     		"publicIPAddressName": "swarmPublicIP",
     		"publicIPAddressType": "Dynamic",
+    		"nicName": "swarmVMNic",
+    		"virtualNetworkName": "SwarmVNET",
+    		"subnetNameMaster": "subset2Master",
+		"subnetName": "subnet1",
+    		"vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
+		"subnetRefMaster": "[concat(variables('vnetID'),'/subnets/',variables('subnetNameMaster'))]",
             	"nsgName" : "swarmNSG",
             	"nsgMaster" : "swarmNSGMaster",
             	"nsgID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgName'))]",
@@ -133,7 +139,7 @@
         {
               "apiVersion": "2015-05-01-preview",
               "type": "Microsoft.Network/virtualNetworks",
-              "name": "virtualNetwork1",
+              "name": "[variables('virtualNetworkName')]",
               "location": "[parameters('location')]",
               "dependsOn": [
 			"[variables('nsgID')]","[variables('nsgIDMaster')]"
@@ -146,7 +152,7 @@
                 },
                 "subnets": [
                   {
-                    "name": "subnet1",
+                    "name": "[variables('subnetName')]",
                     "properties" : {
                       "addressPrefix": "[parameters('subnet1Prefix')]",
 		      "networkSecurityGroup" : {
@@ -155,7 +161,7 @@
                     }
                   },
                   {
-                    "name": "subnet2Name",
+                    "name": "[variables('subnetNameMaster')]",
                     "properties" : {
                       "addressPrefix": "[parameters('subnet2Prefix')]",
 		      "networkSecurityGroup" : {
@@ -180,62 +186,6 @@
 		"name": "[variables('nsgName')]",
 		"location": "[parameters('location')]",
 		"properties": {
-		}
-	},
-	{
-		"apiVersion": "2015-05-01-preview",
-		"type": "Microsoft.Network/networkInterfaces",
-		"name": "[concat(variables('nicName'), 'master')]",
-		"location": "[variables('location')]",
-		"dependsOn": [
-			"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), 'master')]",
-			"[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
-		],
-		"properties": {
-			"ipConfigurations": [
-				{
-					"name": "ipconfig1",
-					"properties": {
-						"privateIPAllocationMethod": "Dynamic",
-						"publicIPAddress": {
-							"id": "[resourceId('Microsoft.Network/publicIPAddresses',concat(variables('publicIPAddressName'), 'master'))]"
-						},
-						"subnet": {
-							"id": "[variables('subnetRefMaster')]"
-						}
-					}
-				}
-			]
-		}
-	},
-	{
-		"apiVersion": "2015-05-01-preview",
-		"type": "Microsoft.Network/networkInterfaces",
-		"name": "[concat(variables('nicName'),copyIndex())]",
-		"location": "[variables('location')]",
-		"copy": {
-			"name": "nicLoop",
-			"count": "[parameters('slaveCount')]"
-		},
-		"dependsOn": [
-			"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), copyIndex())]",
-			"[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
-		],
-		"properties": {
-			"ipConfigurations": [
-				{
-					"name": "ipconfig1",
-					"properties": {
-						"privateIPAllocationMethod": "Dynamic",
-						"publicIPAddress": {
-							"id": "[resourceId('Microsoft.Network/publicIPAddresses',concat(variables('publicIPAddressName'), copyindex()))]"
-						},
-						"subnet": {
-							"id": "[variables('subnetRefSlave')]"
-						}
-					}
-				}
-			]
 		}
 	}
     ]
