@@ -1,0 +1,173 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"newStorageAccountName": {
+			"type": "string",
+			"metadata": {
+				"description": "Unique DNS Name for the Storage Account where the Virtual Machine's disks will be placed."
+			}
+		},
+		"adminUsername": {
+			"type": "string",
+			"metadata": {
+				"description": "User name for the Virtual Machine."
+			}
+		},
+		"adminPassword": {
+			"type": "securestring",
+			"metadata": {
+				"description": "Password for the Virtual Machine."
+			}
+		},
+		"dnsNameForPublicIP": {
+			"type": "string",
+			"metadata": {
+				"description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
+			}
+		},
+		"ubuntuOSVersion": {
+			"type": "string",
+			"defaultValue": "14.10",
+			"allowedValues": [
+				"12.04.2-LTS",
+				"12.04.3-LTS",
+				"12.04.4-LTS",
+				"12.04.5-LTS",
+				"12.10",
+				"14.04.2-LTS",
+				"14.10",
+				"15.04"
+			],
+			"metadata": {
+				"description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version. Allowed values: 12.04.2-LTS, 12.04.3-LTS, 12.04.4-LTS, 12.04.5-LTS, 12.10, 14.04.2-LTS, 14.10, 15.04."
+			}
+		},
+		"slaveCount": {
+			"type": "int",
+			"defaultValue": 1,
+			"metadata": {
+				"description": "Number of slave nodes"
+			}
+		}
+	},
+	"variables": {
+		"extensionName": "DockerExtension",
+		"location": "West US",
+		"imagePublisher": "Canonical",
+		"imageOffer": "UbuntuServer",
+		"OSDiskName": "osdiskforlinuxsimple",
+		"nicName": "swarmVMNic",
+		"addressPrefix": "10.0.0.0/16",
+		"subnetNameMaster": "SubnetMaster",
+		"subnetNameSlave": "SubnetSlave",
+		"subnetPrefixMaster": "10.0.0.0/21",
+		"subnetPrefixSlave": "10.0.0.0/31",
+		"storageAccountType": "Standard_LRS",
+		"publicIPAddressName": "swarmPublicIP",
+		"publicIPAddressType": "Dynamic",
+		"vmStorageAccountContainerName": "vhds",
+		"vmName": "swarm-",
+		"vmSize": "Standard_D1",
+		"virtualNetworkName": "SwarmVNET",
+		"vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
+		"subnetRefMaster": "[concat(variables('vnetID'),'/subnets/',variables('subnetNameMaster'))]",
+		"subnetRefSlave": "[concat(variables('vnetID'),'/subnets/',variables('subnetNameSlave'))]",
+		"nsgNameMaster": "swarmNSGMaster",
+		"nsgNameSlave": "swarmNSGSlave",
+		"nsgIDMaster": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgNameMaster'))]",
+		"nsgIDSlave": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgNameSlave'))]"
+	},
+	"resources": [
+		{
+			"type": "Microsoft.Storage/storageAccounts",
+			"name": "[parameters('newStorageAccountName')]",
+			"apiVersion": "2015-05-01-preview",
+			"location": "[variables('location')]",
+			"properties": {
+				"accountType": "[variables('storageAccountType')]"
+			}
+		},
+		{
+			"apiVersion": "2015-05-01-preview",
+			"type": "Microsoft.Network/publicIPAddresses",
+			"name": "[concat(variables('publicIPAddressName'), 'master')]",
+			"location": "[variables('location')]",
+			"properties": {
+				"publicIPAllocationMethod": "[variables('publicIPAddressType')]",
+				"dnsSettings": {
+					"domainNameLabel": "[concat(parameters('dnsNameForPublicIP'), 'master')]"
+				}
+			}
+		},
+		{
+			"apiVersion": "2015-05-01-preview",
+			"type": "Microsoft.Network/publicIPAddresses",
+			"name": "[concat(variables('publicIPAddressName'), copyIndex())]",
+			"location": "[variables('location')]",
+			"copy": {
+				"name": "pubIpLoop",
+				"count": "[parameters('slaveCount')]"
+			},
+			"properties": {
+				"publicIPAllocationMethod": "[variables('publicIPAddressType')]",
+				"dnsSettings": {
+					"domainNameLabel": "[concat(parameters('dnsNameForPublicIP'), copyIndex())]"
+				}
+			}
+		},
+		{
+			"apiVersion": "2015-05-01-preview",
+			"type": "Microsoft.Network/virtualNetworks",
+			"name": "[variables('virtualNetworkName')]",
+			"location": "[variables('location')]",
+			"dependsOn": [
+				"[concat('Microsoft.Network/networkSecurityGroups/', variables('nsgNameMaster'))]",
+				"[concat('Microsoft.Network/networkSecurityGroups/', variables('nsgNameSlave'))]"
+			],
+			"properties": {
+				"addressSpace": {
+					"addressPrefixes": [
+						"[variables('addressPrefix')]"
+					]
+				},
+				"subnets": [
+					{
+						"name": "[variables('subnetNameMaster')]",
+						"properties": {
+							"addressPrefix": "[variables('subnetPrefixMaster')]",
+							"networkSecurityGroup" : {
+								"id": "[variables('nsgIDMaster')]"
+							}
+						}
+					},
+					{
+						"name": "[variables('subnetNameSlave')]",
+						"properties": {
+							"addressPrefix": "[variables('subnetPrefixSlave')]",
+							"networkSecurityGroup" : {
+								"id": "[variables('nsgIDSlave')]"
+							}
+						}
+					}
+				]
+			}
+		},
+		{
+			"apiVersion": "2015-05-01-preview",
+			"type": "Microsoft.Network/networkSecurityGroups",
+			"name": "[variables('nsgNameMaster')]",
+			"location": "[variables('location')]",
+			"properties": {
+			}
+		},
+		{
+			"apiVersion": "2015-05-01-preview",
+			"type": "Microsoft.Network/networkSecurityGroups",
+			"name": "[variables('nsgNameSlave')]",
+			"location": "[variables('location')]",
+			"properties": {
+			}
+		}
+	]
+}
