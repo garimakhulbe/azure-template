@@ -135,19 +135,13 @@
 					{
 						"name": "[variables('subnetNameMaster')]",
 						"properties": {
-							"addressPrefix": "[variables('subnetPrefixMaster')]",
-							"networkSecurityGroup" : {
-								"id": "[variables('nsgIDMaster')]"
-							}
+							"addressPrefix": "[variables('subnetPrefixMaster')]"
 						}
 					},
 					{
 						"name": "[variables('subnetNameSlave')]",
 						"properties": {
-							"addressPrefix": "[variables('subnetPrefixSlave')]",
-							"networkSecurityGroup" : {
-								"id": "[variables('nsgIDSlave')]"
-							}
+							"addressPrefix": "[variables('subnetPrefixSlave')]"
 						}
 					}
 				]
