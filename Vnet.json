@@ -19,14 +19,14 @@
       		},
 	      "subnetSlavePrefix" : {
 		        "type" : "string",
-		        "defaultValue" : "101.1.0.0/8",
+		        "defaultValue" : "10.0.0.0/8",
 		        "metadata" : {
 		          "Description" : "Subnet Slave Prefix"
 		        }
       		},
 	      "subnetMasterPrefix" : {
 		        "type" : "string",
-		        "defaultValue" : "201.2.0.0/8",
+		        "defaultValue" : "10.0.1.0/8",
 		        "metadata" : {
 		          "Description" : "Subnet Master Prefix"
 		        }
