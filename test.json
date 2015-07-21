@@ -69,7 +69,7 @@
 		"vmStorageAccountContainerName": "vhds",
 		"vmName": "swarm-",
 		"vmSize": "Standard_D1",
-		"virtualNetworkName": "SwarmVNET",
+		"virtualNetworkName": "SwarmVNET1",
 		"vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
 		"subnetRefMaster": "[concat(variables('vnetID'),'/subnets/',variables('subnetNameMaster'))]",
 		"subnetRefSlave": "[concat(variables('vnetID'),'/subnets/',variables('subnetNameSlave'))]",
