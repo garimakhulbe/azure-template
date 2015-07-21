@@ -17,7 +17,7 @@
 		          "Description" : "Address prefix"
 		        }
       		},
-	      "subnetSlavePrefix" : {
+	      "subnetPrefix" : {
 		        "type" : "string",
 		        "defaultValue" : "10.0.0.0/24",
 		        "metadata" : {
@@ -155,7 +155,7 @@
                   {
                     "name": "[variables('subnetName')]",
                     "properties" : {
-                      "addressPrefix": "[parameters('subnetSlavePrefix')]",
+                      "addressPrefix": "[parameters('subnetPrefix')]",
 		      "networkSecurityGroup" : {
 		              "id": "[variables('nsgID')]"
 			}
