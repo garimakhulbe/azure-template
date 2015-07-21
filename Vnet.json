@@ -56,7 +56,7 @@
                   {
                     "name": "subnet1",
                     "properties" : {
-                      "addressPrefix": "[parameters('subnet1Prefix')]")]",
+                      "addressPrefix": "[parameters('subnet1Prefix')]",
 		      "networkSecurityGroup" : {
 		              "id": "[variables('nsgID')]"
 			}
