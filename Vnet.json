@@ -32,50 +32,64 @@
         }
       }
     },
-    "resources": [
-    {
-      "apiVersion": "2015-05-01-preview",
-      "type": "Microsoft.Network/virtualNetworks",
-      "name": "virtualNetwork1",
-      "location": "[parameters('location')]",
-      "properties": {
-        "addressSpace": {
-          "addressPrefixes": [
-            "[parameters('addressPrefix')]"
-          ]
-        },
-        "subnets": [
-          {
-            "name": "subnet1",
-            "properties" : {
-              "addressPrefix": "[parameters('subnet1Prefix')]"
-            }
-          },
-          {
-            "name": "subnet2Name",
-            "properties" : {
-              "addressPrefix": "[parameters('subnet2Prefix')]"
-            }
-          }
-        ]
-      }
+    "variables": {
+            "nsgName" : "swarmNSG",
+            "nsgMaster" : "swarmNSGMaster",
+            "nsgID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgName'))]",
+            "nsgIDMaster": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgMaster'))]"
     },
-    {
+    "resources": [
+        {
+              "apiVersion": "2015-05-01-preview",
+              "type": "Microsoft.Network/virtualNetworks",
+              "name": "virtualNetwork1",
+              "location": "[parameters('location')]",
+              "dependsOn": [
+			"[variables('nsgID')]","[variables('nsgIDMaster')]"
+		],
+              "properties": {
+                "addressSpace": {
+                  "addressPrefixes": [
+                    "[parameters('addressPrefix')]"
+                  ]
+                },
+                "subnets": [
+                  {
+                    "name": "subnet1",
+                    "properties" : {
+                      "addressPrefix": "[parameters('subnet1Prefix')]")]",
+		      "networkSecurityGroup" : {
+		              "id": "[variables('nsgID')]"
+			}
+                    }
+                  },
+                  {
+                    "name": "subnet2Name",
+                    "properties" : {
+                      "addressPrefix": "[parameters('subnet2Prefix')]",
+		      "networkSecurityGroup" : {
+		              "id": "[variables('nsgIDMaster')]"
+			}
+                    }
+                  }
+                ]
+              }
+            },
+            {
 			"apiVersion": "2015-05-01-preview",
 			"type": "Microsoft.Network/networkSecurityGroups",
-			"name": "[variables('nsgNameMaster')]",
-			"location": "[variables('location')]",
+			"name": "[variables('nsgMaster')]",
+			"location": "[parameters('location')]",
 			"properties": {
 			}
 		},
 		{
 			"apiVersion": "2015-05-01-preview",
 			"type": "Microsoft.Network/networkSecurityGroups",
-			"name": "[variables('nsgNameSlave')]",
-			"location": "[variables('location')]",
+			"name": "[variables('nsgName')]",
+			"location": "[parameters('location')]",
 			"properties": {
 			}
 		}
-    
-    ]
+        ]
 }
