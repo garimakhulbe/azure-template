@@ -19,7 +19,7 @@
       		},
 	      "subnetSlavePrefix" : {
 		        "type" : "string",
-		        "defaultValue" : "10.1.0.0/8",
+		        "defaultValue" : "101.1.0.0/8",
 		        "metadata" : {
 		          "Description" : "Subnet Slave Prefix"
 		        }
