@@ -17,18 +17,18 @@
 		          "Description" : "Address prefix"
 		        }
       		},
-	      "subnet1Prefix" : {
+	      "subnetSlavePrefix" : {
 		        "type" : "string",
-		        "defaultValue" : "10.0.0.0/24",
+		        "defaultValue" : "10.1.0.0/8",
 		        "metadata" : {
-		          "Description" : "Subnet 1 Prefix"
+		          "Description" : "Subnet Slave Prefix"
 		        }
       		},
-	      "subnet2Prefix" : {
+	      "subnetMasterPrefix" : {
 		        "type" : "string",
-		        "defaultValue" : "10.0.1.0/24",
+		        "defaultValue" : "20.2.0.0/8",
 		        "metadata" : {
-		          "Description" : "Subnet 2 Prefix"
+		          "Description" : "Subnet Master Prefix"
 		        }
       		},
       		"newStorageAccountName": {
@@ -159,7 +159,7 @@
                   {
                     "name": "[variables('subnetName')]",
                     "properties" : {
-                      "addressPrefix": "[parameters('subnet1Prefix')]",
+                      "addressPrefix": "[parameters('subnetSlavePrefix')]",
 		      "networkSecurityGroup" : {
 		              "id": "[variables('nsgID')]"
 			}
@@ -168,7 +168,7 @@
                   {
                     "name": "[variables('subnetNameMaster')]",
                     "properties" : {
-                      "addressPrefix": "[parameters('subnet2Prefix')]",
+                      "addressPrefix": "[parameters('subnetMasterPrefix')]",
 		      "networkSecurityGroup" : {
 		              "id": "[variables('nsgIDMaster')]"
 			}
