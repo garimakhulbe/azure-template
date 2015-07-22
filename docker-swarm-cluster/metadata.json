@@ -1,0 +1,7 @@
+{
+  "itemDisplayName": "Create Swarm cluster using azure docker extension",
+  "description": "This template creates docker swarm cluster using docker extension.",
+  "summary": "This template serves as a validation reference",
+  "githubUsername": "garimakhulbe",
+  "dateUpdated": "2015-07-22"
+}
