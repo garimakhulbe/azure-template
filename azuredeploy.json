@@ -9,20 +9,6 @@
 		          "Description" : "Deployment location"
 		        }
       		},
-	      "addressPrefix":{
-		        "type" : "string",
-		        "defaultValue" : "10.0.0.0/16",
-		        "metadata" : {
-		          "Description" : "Address prefix"
-		        }
-      		},
-	      "subnetPrefix" : {
-		        "type" : "string",
-		        "defaultValue" : "10.0.0.0/24",
-		        "metadata" : {
-		          "Description" : "Subnet Prefix"
-		        }
-      		},
       		"newStorageAccountName": {
 			"type": "string",
 			"metadata": {
@@ -86,6 +72,8 @@
     		"nicName": "swarmVMNic",
     		"virtualNetworkName": "SwarmVNET",
 		"subnetName": "subnet",
+		"addressPrefix": "10.0.0.0/16",
+		"subnetPrefix": "10.0.0.0/24",
     		"vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
 		"subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
 		"vmName": "swarmVM",
@@ -146,14 +134,14 @@
               "properties": {
                 "addressSpace": {
                   "addressPrefixes": [
-                    "[parameters('addressPrefix')]"
+                    "[variables('addressPrefix')]"
                   ]
                 },
                 "subnets": [
                   {
                     "name": "[variables('subnetName')]",
                     "properties" : {
-                      "addressPrefix": "[parameters('subnetPrefix')]",
+                      "addressPrefix": "[variables('subnetPrefix')]",
 		      "networkSecurityGroup" : {
 		              "id": "[variables('nsgID')]"
 			}
