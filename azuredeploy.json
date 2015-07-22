@@ -4,6 +4,7 @@
     	"parameters" : {
       		"location": {
         		"type": "string",
+        		"defaultValue" : "West US",
 		        "allowedValues": ["East US", "West US", "West Europe", "East Asia", "South East Asia"],
 		        "metadata" : {
 		          "Description" : "Deployment location"
@@ -31,6 +32,7 @@
 		},
 		"adminUsername": {
 			"type": "string",
+			"defaultValue" : "test-user",
 			"metadata": {
 				"description": "User name for the Virtual Machine."
 			}
@@ -43,6 +45,7 @@
 		},
 		"dnsNameForPublicIP": {
 			"type": "string",
+			"defaultValue" : "test-intern-swarm-5",
 			"metadata": {
 				"description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
 			}
