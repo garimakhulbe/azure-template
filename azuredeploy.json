@@ -4,7 +4,6 @@
     	"parameters" : {
       		"location": {
         		"type": "string",
-        		"defaultValue" : "West US",
 		        "allowedValues": ["East US", "West US", "West Europe", "East Asia", "South East Asia"],
 		        "metadata" : {
 		          "Description" : "Deployment location"
@@ -21,7 +20,7 @@
 		        "type" : "string",
 		        "defaultValue" : "10.0.0.0/24",
 		        "metadata" : {
-		          "Description" : "Subnet Slave Prefix"
+		          "Description" : "Subnet Prefix"
 		        }
       		},
       		"newStorageAccountName": {
@@ -32,7 +31,6 @@
 		},
 		"adminUsername": {
 			"type": "string",
-			"defaultValue" : "test-user",
 			"metadata": {
 				"description": "User name for the Virtual Machine."
 			}
@@ -405,5 +403,12 @@
 			}
 		}
 	}
-    ]
+    ],
+    "outputs": {
+	"publicIP": {
+			"type": "object",
+			"value": "[reference(concat(variables('publicIPAddressName'), 'master'))]"
+		}
+	}	
+
 }
