@@ -1,27 +1,18 @@
 {
     "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {
-        "location": {
-                "value": "West US"
-        },
-        "addressPrefix":{
-                "value": ""
-        },
-        "subnetPrefix" : {
-                "value": ""
-        },
+    "parameters": 
         "newStorageAccountName": {
-                "value": "garstorageswarm5"
+                "value": ""
         },
         "adminUsername": {
                 "value": "test-user"
         },
         "adminPassword": {
-                "value": "Abc123@"
+                "value": ""
         },
         "dnsNameForPublicIP": {
-                "value": "test-intern-swarm-5"
+                "value": ""
         },
         "ubuntuOSVersion": {
                 "value": ""
@@ -30,7 +21,7 @@
                 "value":  ""
         },
         "swarmClusterId": {
-                "value": "52afdaab89ef14d6730d4b683a887ff6"
+                "value": ""
         }
    }
 }
