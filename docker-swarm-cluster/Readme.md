@@ -1,5 +1,5 @@
 This is a docker swarm cluster template which can be used to create a swarm cluster on azure using docker extension. 
-It used docker hub as a discovery service and requires token(cluster id) as a parameter in template. Therefore, user needs to create a token using 'docker run swarm create' command and provide it to the template.
+It uses docker hub as a discovery service and requires token(cluster id) as a parameter in template. Therefore, user needs to create a token using 'docker run swarm create' command and provide it to the template.
 
 For example,
 The below token(cluster id)
