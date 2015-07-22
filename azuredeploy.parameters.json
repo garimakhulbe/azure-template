@@ -1,0 +1,36 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+                "value": ""
+        },
+        "addressPrefix":{
+                "value": ""
+        },
+        "subnetPrefix" : {
+                "value": ""
+        },
+        "newStorageAccountName": {
+                "value": ""
+        },
+        "adminUsername": {
+                "value": ""
+        },
+        "adminPassword": {
+                "value": ""
+        },
+        "dnsNameForPublicIP": {
+                "value": ""
+        },
+        "ubuntuOSVersion": {
+                "value": ""  
+        },
+        "slaveCount": {
+                "value": "" 
+        },
+        "swarmClusterId": {
+                "value": ""
+        }
+   }
+}
