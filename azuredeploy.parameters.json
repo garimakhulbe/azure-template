@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "location": {
-                "value": ""
+                "value": "West US"
         },
         "addressPrefix":{
                 "value": ""
@@ -12,16 +12,16 @@
                 "value": ""
         },
         "newStorageAccountName": {
-                "value": ""
+                "value": "garstorageswarm5"
         },
         "adminUsername": {
-                "value": ""
+                "value": "test-user"
         },
         "adminPassword": {
-                "value": ""
+                "value": "Abc123@"
         },
         "dnsNameForPublicIP": {
-                "value": ""
+                "value": "test-intern-swarm-5"
         },
         "ubuntuOSVersion": {
                 "value": ""  
@@ -30,7 +30,7 @@
                 "value": "" 
         },
         "swarmClusterId": {
-                "value": ""
+                "value": "915df48d4f92135e4d7212563c7ba22a"
         }
    }
 }
