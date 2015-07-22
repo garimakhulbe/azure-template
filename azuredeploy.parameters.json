@@ -24,13 +24,13 @@
                 "value": "test-intern-swarm-5"
         },
         "ubuntuOSVersion": {
-                "value": ""  
+                "value": 
         },
         "slaveCount": {
-                "value": "" 
+                "value":  
         },
         "swarmClusterId": {
-                "value": "915df48d4f92135e4d7212563c7ba22a"
+                "value": "52afdaab89ef14d6730d4b683a887ff6"
         }
    }
 }
