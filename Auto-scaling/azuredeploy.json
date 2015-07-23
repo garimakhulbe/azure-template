@@ -40,7 +40,7 @@
 		},
 		"slaveCount": {
 			"type": "int",
-			"defaultValue": 3,
+			"defaultValue": 1,
 			"metadata": {
 				"description": "Number of slave nodes"
 			}
@@ -359,63 +359,42 @@
 	},
 	{
 		"type": "Microsoft.insights/autoscalesettings",
+		"name": "[concat(variables('vmName'), 'autoscaledSlave/', variables('extensionName'))]",
 		"apiVersion": "2015-05-01-preview",
-		
-	      
 		"location": "[variables('location')]",
-		"dependsOn": ["[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"],
+		"dependsOn": [
+				"[concat('Microsoft.Compute/virtualMachines/extensions/', variables('vmName'), '0/', variables('extensionName')))]"
+			],
 		"properties": {
-	        "profiles": [
-	        	{
-			"name": "Default",
-			"capacity": {
-			"minimum": "1",
-			"maximum": "2",
-			"default": "1"
-	            },
-		"rules": [
-	            {
-	              "metricTrigger": 
-	              {
-			"metricName": "CpuPercentage",
-			"metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
-			"timeGrain": "PT1M",
-			"statistic": "Average",
-			"timeWindow": "PT10M",
-			"timeAggregation": "Average",
-			"operator": "GreaterThan",
-			"threshold": 80.0
-	              },
-	              "scaleAction": 
-	              {
-			"direction": "Increase",
-			"type": "ChangeCount",
-			"value": "1",
-			"cooldown": "PT10M"
-	              }
-	            },
-	            {
-	              "metricTrigger": 
-	              {
-	                "metricName": "CpuPercentage",
-	                "metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
-	                "timeGrain": "PT1M",
-	                "statistic": "Average",
-	                "timeWindow": "PT1H",
-	                "timeAggregation": "Average",
-	                "operator": "LessThan",
-	                "threshold": 60.0
-	              },
-	              "scaleAction": 
-	              {
-	                "direction": "Decrease",
-	                "type": "ChangeCount",
-	                "value": "1",
-	                "cooldown": "PT1H"
-	              }
-	            }
-	            ]
-	          }
+		        "profiles": [
+		        	{
+				"name": "Default",
+				"capacity": {
+				"minimum": "1",
+				"maximum": "1",
+				"default": "1"
+		            },
+			"rules": [
+		            {
+		              "metricTrigger": 
+		              {
+				"metricName": "CpuPercentage",
+				"metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Compute/virtualMachines/extensions/', variables('vmName'), '0/', variables('extensionName'))]",
+				"timeGrain": "PT1M",
+				"statistic": "Average",
+				"timeWindow": "PT10M",
+				"timeAggregation": "Average",
+				"operator": "GreaterThan",
+				"threshold": 80.0
+		              },
+		              "scaleAction": 
+		              {
+				"direction": "Increase",
+				"type": "ChangeCount",
+				"value": "1",
+				"cooldown": "PT10M"
+		              }
+		            },
 	          ],
 		"enabled": false,
 		"name": "[concat(parameters('hostingPlanName'), '-', resourceGroup().name)]",
