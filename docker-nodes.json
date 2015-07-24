@@ -175,6 +175,7 @@
 			"count": "[parameters('slaveCount')]"
 		},
 		"dependsOn": [
+			"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), copyIndex())]",
 			"[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
 		],
 		"properties": {
