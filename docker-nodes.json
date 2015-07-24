@@ -183,6 +183,9 @@
 					"name": "ipConfigSlave",
 					"properties": {
 						"privateIPAllocationMethod": "Dynamic",
+						"publicIPAddress": {
+								"id": "[resourceId('Microsoft.Network/publicIPAddresses',concat(variables('publicIPAddressName'), copyindex()))]"
+							},
 						"subnet": {
 							"id": "[variables('subnetRef')]"
 						}
@@ -239,27 +242,29 @@
 		}
 	},
 	{
-		"type": "Microsoft.Compute/virtualMachines/extensions",
-		"name": "[concat(variables('vmName'), copyIndex(), '/', variables('extensionName'))]",
-		"apiVersion": "2015-05-01-preview",
-		"location": "[variables('location')]",
-		"copy": {
-			"name": "extLoop",
-			"count": "[parameters('slaveCount')]"
-		},
-		"dependsOn": [
-			"[concat('Microsoft.Compute/virtualMachines/', variables('vmName'), copyIndex())]"
-		],
-		"properties": {
-			"publisher": "Microsoft.Azure.Extensions",
-			"type": "DockerExtension",
-			"typeHandlerVersion": "1.0",
-			"settings": {
-				"docker": {
-					"port": "2375"
+			"type": "Microsoft.Compute/virtualMachines/extensions",
+			"name": "[concat(variables('vmName'), copyIndex(), '/', variables('extensionName'))]",
+			"apiVersion": "2015-05-01-preview",
+			"location": "[variables('location')]",
+			"copy": {
+				"name": "extLoop",
+				"count": "[parameters('slaveCount')]"
+			},
+			"dependsOn": [
+				"[concat('Microsoft.Compute/virtualMachines/', variables('vmName'), copyIndex())]",
+				"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), copyIndex())]"
+			],
+			"properties": {
+				"publisher": "Microsoft.Azure.Extensions",
+				"type": "DockerExtension",
+				"typeHandlerVersion": "1.0",
+				"settings": {
+					"docker": {
+						"port": "2375"
+					}
 				}
 			}
 		}
-	}
+
     ]
 }
