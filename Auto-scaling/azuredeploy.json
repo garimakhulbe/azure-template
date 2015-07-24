@@ -398,9 +398,10 @@
 	          ],
 		"enabled": false,
 		"name": "[concat(parameters('hostingPlanName'), '-', resourceGroup().name)]",
-		"targetResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+		"targetResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Compute/virtualMachines/extensions/', variables('vmName'), '0/', variables('extensionName'))]"
 		}
 	  }
+	}
     ],
     "outputs": {
 	"SwarmManagerHostName": {
