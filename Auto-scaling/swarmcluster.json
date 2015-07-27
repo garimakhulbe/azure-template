@@ -322,8 +322,7 @@
 	      "type": "microsoft.insights/autoscalesettings",
 	      "location": "East US",
 	      "dependsOn": [
-	      		"[concat('Microsoft.Compute/availabilitySets/', variables('availabilitySetSlaves'))]",
-	      		"[concat('Microsoft.Compute/virtualMachines/', variables('vmName'), copyIndex())]"
+	      		"[concat('Microsoft.Compute/availabilitySets/', variables('availabilitySetSlaves'))]"
 	      	],
 	      "properties": {
 	        "profiles": [
