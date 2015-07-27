@@ -60,19 +60,19 @@
     		"publicIPAddressType": "Dynamic",
     		"nicName": "swarmVMNic",
     		"virtualNetworkName": "SwarmVNET",
-		"subnetName": "subnet",
-		"addressPrefix": "10.0.0.0/16",
-		"subnetPrefix": "10.0.0.0/24",
+		    "subnetName": "subnet",
+		    "addressPrefix": "10.0.0.0/16",
+		    "subnetPrefix": "10.0.0.0/24",
     		"vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
-		"subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
-		"vmName": "swarmVM",
-		"vmSizeSlave": "Standard_D1",
-		"imagePublisher": "Canonical",
-		"imageOffer": "UbuntuServer",
-		"OSDiskName": "osdiskforlinuxsimple",
-		"vmStorageAccountContainerName": "vhds",
-            	"nsgName" : "swarmNSG",
-            	"nsgID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgName'))]"
+		    "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
+		    "vmName": "swarmVM",
+		    "vmSizeSlave": "Standard_D1",
+		    "imagePublisher": "Canonical",
+		    "imageOffer": "UbuntuServer",
+		    "OSDiskName": "osdiskforlinuxsimple",
+		    "vmStorageAccountContainerName": "vhds",
+            "nsgName" : "swarmNSG",
+            "nsgID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgName'))]"
     },
     "resources": [
     	{
@@ -104,13 +104,13 @@
 		"properties": {}
     	},
         {
-              "apiVersion": "2015-05-01-preview",
-              "type": "Microsoft.Network/virtualNetworks",
-              "name": "[variables('virtualNetworkName')]",
-              "location": "[variables('location')]",
-              "dependsOn": [
-			"[variables('nsgID')]"
-		],
+        "apiVersion": "2015-05-01-preview",
+        "type": "Microsoft.Network/virtualNetworks",
+        "name": "[variables('virtualNetworkName')]",
+        "location": "[variables('location')]",
+        "dependsOn": [
+	            "[variables('nsgID')]"
+		    ],
               "properties": {
                 "addressSpace": {
                   "addressPrefixes": [
@@ -130,7 +130,7 @@
                 ]
                }
         },
-	{
+	    {
 		"apiVersion": "2015-05-01-preview",
 		"type": "Microsoft.Network/networkSecurityGroups",
 		"name": "[variables('nsgName')]",
@@ -380,6 +380,4 @@
 			"value": "2376"
 		}
 	}	
-
 }
-
