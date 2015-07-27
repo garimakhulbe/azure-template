@@ -338,7 +338,7 @@
 	              "metricTrigger": 
 	              {
 	                "metricName": "CpuPercentage",
-	                "metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Compute/availabilitySets/', variables('availabilitySetSlaves'))]",
+	                "metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Compute/virtualMachines/', concat(variables('vmName'), 'master'))]",
 	                "timeGrain": "PT1M",
 	                "statistic": "Average",
 	                "timeWindow": "PT10M",
@@ -359,7 +359,7 @@
 	          ],
 	          "enabled": true,
 	          "name": "AutoscaleSlave",
-	          "targetResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Compute/availabilitySets/', variables('availabilitySetSlaves'))]"
+	          "targetResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Compute/virtualMachines/', concat(variables('vmName'), 'master'))]"
 	        }
 	 },
 	{
