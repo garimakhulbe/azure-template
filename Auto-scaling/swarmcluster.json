@@ -57,22 +57,23 @@
     		"extensionName": "DockerExtension",
     		"storageAccountType": "Standard_LRS",
     		"publicIPAddressName": "swarmPublicIP",
+    		"availabilitySetSlaves": "swarm-nodes-set",
     		"publicIPAddressType": "Dynamic",
     		"nicName": "swarmVMNic",
     		"virtualNetworkName": "SwarmVNET",
-		    "subnetName": "subnet",
-		    "addressPrefix": "10.0.0.0/16",
-		    "subnetPrefix": "10.0.0.0/24",
-    		"vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
-		    "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
-		    "vmName": "swarmVM",
-		    "vmSizeSlave": "Standard_D1",
-		    "imagePublisher": "Canonical",
-		    "imageOffer": "UbuntuServer",
-		    "OSDiskName": "osdiskforlinuxsimple",
-		    "vmStorageAccountContainerName": "vhds",
-            "nsgName" : "swarmNSG",
-            "nsgID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgName'))]"
+		"subnetName": "subnet",
+		"addressPrefix": "10.0.0.0/16",
+		"subnetPrefix": "10.0.0.0/24",
+		"vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
+		"subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
+		"vmName": "swarmVM",
+		"vmSizeSlave": "Standard_D1",
+		"imagePublisher": "Canonical",
+		"imageOffer": "UbuntuServer",
+		"OSDiskName": "osdiskforlinuxsimple",
+		"vmStorageAccountContainerName": "vhds",
+		"nsgName" : "swarmNSG",
+		"nsgID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgName'))]"
     },
     "resources": [
     	{
@@ -104,67 +105,67 @@
 		"properties": {}
     	},
         {
-        "apiVersion": "2015-05-01-preview",
-        "type": "Microsoft.Network/virtualNetworks",
-        "name": "[variables('virtualNetworkName')]",
-        "location": "[variables('location')]",
-        "dependsOn": [
-	            "[variables('nsgID')]"
-		    ],
-              "properties": {
-                "addressSpace": {
-                  "addressPrefixes": [
-                    "[variables('addressPrefix')]"
-                  ]
-                },
-                "subnets": [
-                  {
-                    "name": "[variables('subnetName')]",
-                    "properties" : {
-                      "addressPrefix": "[variables('subnetPrefix')]",
-		      "networkSecurityGroup" : {
-		              "id": "[variables('nsgID')]"
+	        "apiVersion": "2015-05-01-preview",
+	        "type": "Microsoft.Network/virtualNetworks",
+	        "name": "[variables('virtualNetworkName')]",
+	        "location": "[variables('location')]",
+	        "dependsOn": [
+		            "[variables('nsgID')]"
+			    ],
+	              "properties": {
+	                "addressSpace": {
+	                  "addressPrefixes": [
+	                    "[variables('addressPrefix')]"
+	                  ]
+	                },
+	                "subnets": [
+	                  {
+	                    "name": "[variables('subnetName')]",
+	                    "properties" : {
+	                      "addressPrefix": "[variables('subnetPrefix')]",
+			      "networkSecurityGroup" : {
+			              "id": "[variables('nsgID')]"
 			}
                     }
                   }
                 ]
-               }
+	     }
         },
-	    {
-		"apiVersion": "2015-05-01-preview",
-		"type": "Microsoft.Network/networkSecurityGroups",
-		"name": "[variables('nsgName')]",
-		"location": "[variables('location')]",
-		"properties": {
-			"securityRules": [
-				{
-					"name": "swarmManagementEndpoint",
-					"properties": {
-						"description": "Docker swarm endpoint",
-						"protocol": "Tcp",
-						"sourcePortRange": "*",
-						"destinationPortRange": "2376",
-						"sourceAddressPrefix": "*",
-						"destinationAddressPrefix": "*",
-						"access": "Allow",
-						"priority": 100,
-						"direction": "Inbound"
-					}
-				},
-				{
-					"name": "SSH",
-					"properties": {
-						"description": "SSH endpoint",
-						"protocol": "Tcp",
-						"sourcePortRange": "*",
-						"destinationPortRange": "22",
-						"sourceAddressPrefix": "*",
-						"destinationAddressPrefix": "*",
-						"access": "Allow",
-						"priority": 200,
-						"direction": "Inbound"
-					}
+    {
+	"apiVersion": "2015-05-01-preview",
+	"type": "Microsoft.Network/networkSecurityGroups",
+	"name": "[variables('nsgName')]",
+	"location": "[variables('location')]",
+	"properties": {
+		"securityRules": [
+			{
+				"name": "swarmManagementEndpoint",
+				"properties": {
+					"description": "Docker swarm endpoint",
+					"protocol": "Tcp",
+					"sourcePortRange": "*",
+					"destinationPortRange": "2376",
+					"sourceAddressPrefix": "*",
+					"destinationAddressPrefix": "*",
+					"access": "Allow",
+					"priority": 100,
+					"direction": "Inbound"
 				}
+			},
+			{
+				"name": "SSH",
+				"properties": {
+					"description": "SSH endpoint",
+					"protocol": "Tcp",
+					"sourcePortRange": "*",
+					"destinationPortRange": "22",
+					"sourceAddressPrefix": "*",
+					"destinationAddressPrefix": "*",
+					"access": "Allow",
+					"priority": 200,
+					"direction": "Inbound"
+				}
+			}
 			]
 		}
 	},
