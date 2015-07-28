@@ -44,7 +44,7 @@
     		"location": "West US",
     		"storageAccountType": "Standard_LRS",
     		"publicIPAddressName": "PublicIP",
-    		"availabilitySet": "availability-nodes-set",
+    		"availabilitySet": "MyAvailabilitySet",
     		"publicIPAddressType": "Dynamic",
     		"nicName": "VMNicNode",
     		"virtualNetworkName": "VNETNode",
@@ -302,7 +302,7 @@
 	},
 	{
 		"apiVersion": "2015-04-01",
-		"name": "AutoScaleSlave",
+		"name": "AutoScale1",
 		"type": "Microsoft.insights/autoscalesettings",
 		"location": "West US",
 		"dependsOn": [
@@ -344,7 +344,7 @@
 		}
 		],
 		"enabled": true,
-		"name": "AutoScaleSlave",
+		"name": "AutoScale1",
 		"targetResourceUri": "[concat(resourceGroup().id,'/providers/Microsoft.Compute/availabilitySets/', variables('availabilitySet'))]"
 		}
 	 }
