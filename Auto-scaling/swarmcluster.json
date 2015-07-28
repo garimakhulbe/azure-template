@@ -301,52 +301,52 @@
 		}
 	},
 	{
-	      "apiVersion": "2015-05-01-preview",
-	      "name": "autoScaleSlave",
-	      "type": "Microsoft.insights/autoscalesettings",
-	      "location": "West US",
-	      "dependsOn": [
-	      		"[concat('Microsoft.Compute/availabilitySets/', variables('availabilitySet'))]",
-	      		"[concat('Microsoft.Compute/virtualMachines/', concat(variables('vmName'), '1'))]",
-	      		"[concat('Microsoft.Compute/virtualMachines/', concat(variables('vmName'), '2'))]"
-	      	],
-	      "properties": {
-	        "profiles": [
-	        {
-	          "name": "Default",
-	          "capacity": {
-	            "minimum": "1",
-	            "maximum": "2",
-	            "default": "1"
-	            },
-	            "rules": [
-	            {
-	              "metricTrigger": 
-	              {
-	                "metricName": "CpuPercentage",
-	                "metricResourceUri": "[concat(resourceGroup().id,'/providers/Microsoft.Compute/availabilitySets/', variables('availabilitySet'))]",
-	                "timeGrain": "PT1M",
-	                "statistic": "Average",
-	                "timeWindow": "PT40M",
-	                "timeAggregation": "Average",
-	                "operator": "GreaterThan",
-	                "threshold": 80.0
-	              },
-	              "scaleAction": 
-	              {
-	                  "direction": "Increase",
-	                  "type": "ChangeCount",
-	                  "value": "1",
-	                  "cooldown": "PT40M"
-	              }
-	            }
-	            ]
-	          }
-	          ],
-	          "enabled": true,
-	          "name": "autoScaleSlave",
-	          "targetResourceUri": "[concat(resourceGroup().id,'/providers/Microsoft.Compute/availabilitySets/', variables('availabilitySet'))]"
-	        }
+		"apiVersion": "2015-05-01-preview",
+		"name": "autoScaleSlave",
+		"type": "Microsoft.insights/autoscalesettings",
+		"location": "West US",
+		"dependsOn": [
+			"[concat('Microsoft.Compute/availabilitySets/', variables('availabilitySet'))]",
+			"[concat('Microsoft.Compute/virtualMachines/', concat(variables('vmName'), '1'))]",
+			"[concat('Microsoft.Compute/virtualMachines/', concat(variables('vmName'), '2'))]"
+			],
+		"properties": {
+			"profiles": [
+				{
+				"name": "Default",
+				"capacity": {
+				"minimum": "1",
+				"maximum": "2",
+				"default": "1"
+				},
+			"rules": [
+			{
+				"metricTrigger": 
+				{
+					"metricName": "CpuPercentage",
+					"metricResourceUri": "[concat(resourceGroup().id,'/providers/Microsoft.Compute/availabilitySets/', variables('availabilitySet'))]",
+					"timeGrain": "PT1M",
+					"statistic": "Average",
+					"timeWindow": "PT40M",
+					"timeAggregation": "Average",
+					"operator": "GreaterThan",
+					"threshold": 80.0
+					},
+				"scaleAction": 
+				{
+					  "direction": "Increase",
+					  "type": "ChangeCount",
+					  "value": "1",
+					  "cooldown": "PT40M"
+				}
+			}
+			]
+		}
+		],
+		"enabled": true,
+		"name": "autoScaleSlave",
+		"targetResourceUri": "[concat(resourceGroup().id,'/providers/Microsoft.Compute/availabilitySets/', variables('availabilitySet'))]"
+		}
 	 }
     ],
     "outputs": {
