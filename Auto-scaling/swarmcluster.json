@@ -421,7 +421,7 @@
 	          ],
 	          "enabled": true,
 	          "name": "autoScaleSlave",
-	          "targetResourceUri": "[concat('resourceGroup().id,'/providers/Microsoft.Compute/availabilitySets/', variables('availabilitySetSlaves'))]"
+	          "targetResourceUri": "[concat(resourceGroup().id,'/providers/Microsoft.Compute/availabilitySets/', variables('availabilitySetSlaves'))]"
 	        }
 	 },
 	{
