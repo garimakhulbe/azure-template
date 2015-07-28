@@ -324,7 +324,7 @@
 				"metricTrigger": 
 				{
 					"metricName": "CpuPercentage",
-					"metricResourceUri": "[concat(resourceGroup().id,'/providers/Microsoft.Compute/availabilitySets/', variables('availabilitySet'))]",
+					"metricResourceUri": "[concat(resourceGroup().id,'/providers/Microsoft.Compute/virtualMachines/',concat(variables('vmName'), '1'),'/availabilitySets/', variables('availabilitySet'))]",
 					"timeGrain": "PT1M",
 					"statistic": "Average",
 					"timeWindow": "PT40M",
@@ -345,14 +345,14 @@
 		],
 		"enabled": true,
 		"name": "AutoScale1",
-		"targetResourceUri": "[concat(resourceGroup().id,'/providers/Microsoft.Compute/availabilitySets/', variables('availabilitySet'))]"
+		"targetResourceUri": "[concat(resourceGroup().id,'/providers/Microsoft.Compute/virtualMachines/',concat(variables('vmName'), '1'),'/availabilitySets/', variables('availabilitySet'))]"
 		}
  	}
     ],
     "outputs": {
 	"SwarmManagerHostName": {
 			"type": "string",
-			"value": "[concat(resourceGroup().id,'/providers/Microsoft.Compute/availabilitySets/', variables('availabilitySet'))]"
+			"value": "[concat(resourceGroup().id,'/providers/Microsoft.Compute/virtualMachines/',concat(variables('vmName'), '1'),'/availabilitySets/', variables('availabilitySet'))]"
 		},
 	"SwarmManagerPort": {
 			"type": "string",
