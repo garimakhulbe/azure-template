@@ -400,7 +400,7 @@
 	              "metricTrigger": 
 	              {
 	                "metricName": "CpuPercentage",
-	                "metricResourceUri": "[concat('/subscriptions/5f20c827-31e2-4f17-9127-da8968795689/resourceGroups/TestRGIntern7/providers/Microsoft.Compute/availabilitySets/', variables('availabilitySetSlaves'))]"
+	                "metricResourceUri": "[concat('/subscriptions/5f20c827-31e2-4f17-9127-da8968795689/resourceGroups/TestRGIntern7/providers/Microsoft.Compute/availabilitySets/', variables('availabilitySetSlaves'))]",
 	                "timeGrain": "PT1M",
 	                "statistic": "Average",
 	                "timeWindow": "PT10M",
