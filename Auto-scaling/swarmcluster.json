@@ -76,7 +76,7 @@
 		"apiVersion": "2015-05-01-preview",
 		"type": "Microsoft.Network/publicIPAddresses",
 		"name": "[concat(variables('publicIPAddressName'), '1')]",
-		"location": "[[resourceGroup().location]]",
+		"location": "[resourceGroup().location]",
 		"properties": {
 			"publicIPAllocationMethod": "[variables('publicIPAddressType')]",
 			"dnsSettings": {
@@ -88,7 +88,7 @@
 		"apiVersion": "2015-05-01-preview",
 		"type": "Microsoft.Network/publicIPAddresses",
 		"name": "[concat(variables('publicIPAddressName'), '2')]",
-		"location": "[[resourceGroup().location]]",
+		"location": "[resourceGroup().location]",
 		"properties": {
 			"publicIPAllocationMethod": "[variables('publicIPAddressType')]",
 			"dnsSettings": {
@@ -107,7 +107,7 @@
 	        "apiVersion": "2015-05-01-preview",
 	        "type": "Microsoft.Network/virtualNetworks",
 	        "name": "[variables('virtualNetworkName')]",
-	        "location": "[[resourceGroup().location]]",
+	        "location": "[resourceGroup().location]",
 	        "dependsOn": [
 		            "[variables('nsgID')]"
 			    ],
@@ -134,7 +134,7 @@
 	"apiVersion": "2015-05-01-preview",
 	"type": "Microsoft.Network/networkSecurityGroups",
 	"name": "[variables('nsgName')]",
-	"location": "[[resourceGroup().location]]",
+	"location": "[resourceGroup().location]",
 	"properties": {
 		"securityRules": [
 			{
@@ -158,7 +158,7 @@
 		"apiVersion": "2015-05-01-preview",
 		"type": "Microsoft.Network/networkInterfaces",
 		"name": "[concat(variables('nicName'),'1')]",
-		"location": "[[resourceGroup().location]]",
+		"location": "[resourceGroup().location]",
 		"dependsOn": [
 			"[concat('Microsoft.Network/publicIPAddresses/',concat(variables('publicIPAddressName'), '1'))]",
 			"[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
@@ -184,7 +184,7 @@
 		"apiVersion": "2015-05-01-preview",
 		"type": "Microsoft.Network/networkInterfaces",
 		"name": "[concat(variables('nicName'),'2')]",
-		"location": "[[resourceGroup().location]]",
+		"location": "[resourceGroup().location]",
 		"dependsOn": [
 			"[concat('Microsoft.Network/publicIPAddresses/',concat(variables('publicIPAddressName'), '2'))]",
 			"[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
@@ -210,7 +210,7 @@
 		"apiVersion": "2015-05-01-preview",
 		"type": "Microsoft.Compute/virtualMachines",
 		"name": "[concat(variables('vmName'), '1')]",
-		"location": "[[resourceGroup().location]]",
+		"location": "[resourceGroup().location]",
 		"dependsOn": [
 			"[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountName'))]",
 			"[concat('Microsoft.Network/networkInterfaces/', variables('nicName'), '1')]",
@@ -257,7 +257,7 @@
 		"apiVersion": "2015-05-01-preview",
 		"type": "Microsoft.Compute/virtualMachines",
 		"name": "[concat(variables('vmName'), '2')]",
-		"location": "[[resourceGroup().location]]",
+		"location": "[resourceGroup().location]",
 		"dependsOn": [
 			"[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountName'))]",
 			"[concat('Microsoft.Network/networkInterfaces/', variables('nicName'), '2')]",
