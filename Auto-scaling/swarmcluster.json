@@ -291,7 +291,6 @@
 			"[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountName'))]",
 			"[concat('Microsoft.Network/networkInterfaces/', variables('nicName'), '1')]",
 			"[concat('Microsoft.Compute/availabilitySets/', variables('availabilitySetSlaves'))]"
-			
 		],
 		"properties": {
 			"availabilitySet": {
@@ -339,7 +338,6 @@
 			"[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountName'))]",
 			"[concat('Microsoft.Network/networkInterfaces/', variables('nicName'), '2')]",
 			"[concat('Microsoft.Compute/availabilitySets/', variables('availabilitySetSlaves'))]"
-			
 		],
 		"properties": {
 			"availabilitySet": {
@@ -382,11 +380,11 @@
 	      "apiVersion": "2014-04-01",
 	      "name": "AutoscaleSlave",
 	      "type": "Microsoft.insights/autoscalesettings",
-	      "location": "East US",
+	      "location": "West US",
 	      "dependsOn": [
 	      		"[concat('Microsoft.Compute/availabilitySets/', variables('availabilitySetSlaves'))]",
 	      		"[concat('Microsoft.Compute/virtualMachines/', concat(variables('vmName'), '1'))]",
-	      		"[concat('Microsoft.Compute/virtualMachines/', concat(variables('vmName'), '2'))]
+	      		"[concat('Microsoft.Compute/virtualMachines/', concat(variables('vmName'), '2'))]"
 	      	],
 	      "properties": {
 	        "profiles": [
