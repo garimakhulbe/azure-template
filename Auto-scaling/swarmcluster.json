@@ -44,7 +44,7 @@
     		"location": "West US",
     		"storageAccountType": "Standard_LRS",
     		"publicIPAddressName": "PublicIP",
-    		"availabilitySet": "MyAvailabilitySet",
+    		"availabilitySet": "availability-nodes-set",
     		"publicIPAddressType": "Dynamic",
     		"nicName": "VMNicNode",
     		"virtualNetworkName": "VNETNode",
