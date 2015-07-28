@@ -304,7 +304,7 @@
 		"apiVersion": "2015-04-01",
 		"name": "autoScaleSlave",
 		"type": "Microsoft.insights/autoscalesettings",
-		"location": "East US",
+		"location": "West US",
 		"dependsOn": [
 			"[concat('Microsoft.Compute/availabilitySets/', variables('availabilitySet'))]",
 			"[concat('Microsoft.Compute/virtualMachines/', concat(variables('vmName'), '1'))]",
