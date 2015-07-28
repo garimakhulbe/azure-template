@@ -324,7 +324,7 @@
 				"metricTrigger": 
 				{
 					"metricName": "CpuPercentage",
-					"metricResourceUri": "[concat(resourceGroup().id,'/providers/Microsoft.classicCompute/availabilitySets/', variables('availabilitySet'))]",
+					"metricResourceUri": "[concat(resourceGroup().id,'/providers/Microsoft.Compute/availabilitySets/', variables('availabilitySet'))]",
 					"timeGrain": "PT1M",
 					"statistic": "Average",
 					"timeWindow": "PT40M",
@@ -345,7 +345,7 @@
 		],
 		"enabled": true,
 		"name": "AutoScale1",
-		"targetResourceUri": "[concat(resourceGroup().id,'/providers/Microsoft.classicCompute/availabilitySets/', variables('availabilitySet'))]"
+		"targetResourceUri": "[concat(resourceGroup().id,'/providers/Microsoft.Compute/availabilitySets/', variables('availabilitySet'))]"
 		}
 	 }
     ],
