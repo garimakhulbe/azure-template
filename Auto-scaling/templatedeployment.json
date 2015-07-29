@@ -1,7 +1,7 @@
 {
   "properties": {
     "templateLink": {
-      "uri": "http://mystorageaccount.blob.core.windows.net/templates/template.json",
+      "uri": "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/Auto-scaling/testautoscale.json",
       "contentVersion": "1.0.0.0",
     },
     "mode": "Incremental",
