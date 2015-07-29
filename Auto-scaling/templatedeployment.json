@@ -1,14 +1,21 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-  "properties": {
-    "templateLink": {
-      "uri": "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/Auto-scaling/testautoscale.json",
-      "contentVersion": "1.0.0.0",
-    },
-    "mode": "Incremental",
-    "parametersLink": {
-      "uri": "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/Auto-scaling/azureparameters.json",
-      "contentVersion": "1.0.0.0",      
-    }
+  "contentVersion": "1.0.0.0", 
+  "variables": { },
+  "resources": [
+    {
+      "name": "shared",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2015-01-01",
+      "properties": {
+        "templateLink": {
+          "uri": "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/Auto-scaling/testautoscale.json",
+          "contentVersion": "1.0.0.0",
+        },
+        "mode": "Complete",
+        "parametersLink": {
+          "uri": "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/Auto-scaling/azureparameters.json",
+          "contentVersion": "1.0.0.0",      
+        }
   }
 }
