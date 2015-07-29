@@ -6,7 +6,7 @@
     },
     "mode": "Incremental",
     "parametersLink": {
-      "uri": "http://mystorageaccount.blob.core.windows.net/templates/parameters.json",
+      "uri": "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/Auto-scaling/azureparameters.json",
       "contentVersion": "1.0.0.0",      
     }
   }
