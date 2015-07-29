@@ -314,7 +314,7 @@
 		}
 	}	
 },
-"mode": "Incremental",
+"mode": "Complete",
      "parameters": {
        "newStorageAccountName": {
                 "value": ""
