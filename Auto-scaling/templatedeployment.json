@@ -18,5 +18,7 @@
           "uri": "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/Auto-scaling/azureparameters.json",
           "contentVersion": "1.0.0.0",      
         }
-  }
+      }
+    }
+  ]
 }
