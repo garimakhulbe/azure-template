@@ -316,11 +316,21 @@
 },
 "mode": "Incremental",
      "parameters": {
-       "siteName": { "value": "mysite1" }, 
-       "hostingPlanName": { "value": "myplan1" },
-       "siteLocation": { "value": "West US" },
-       "sku": { "value": "Free" },"workerSize": { "value": "0" }
-    }
-
+       "newStorageAccountName": {
+                "value": ""
+        },
+        "adminUsername": {
+                "value": "test-user"
+        },
+        "adminPassword": {
+                "value": ""
+        },
+        "dnsNameForPublicIP": {
+                "value": ""
+        },
+        "ubuntuOSVersion": {
+                "value": ""
+        }
+   }
 }
 }
