@@ -1,4 +1,6 @@
 {
+  "properties": {
+    "template": {
     	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     	"contentVersion": "1.0.0.0",
     	"parameters" : {
@@ -311,4 +313,14 @@
 			"value": "2376"
 		}
 	}	
+},
+"mode": "Incremental",
+     "parameters": {
+       "siteName": { "value": "mysite1" }, 
+       "hostingPlanName": { "value": "myplan1" },
+       "siteLocation": { "value": "West US" },
+       "sku": { "value": "Free" },"workerSize": { "value": "0" }
+    }
+
+}
 }
