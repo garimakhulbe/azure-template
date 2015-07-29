@@ -11,8 +11,6 @@
       "properties": {
         "mode": "Incremental",
     	"template": {
-    	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    	"contentVersion": "1.0.0.0",
     	"parameters" : {
       		"newStorageAccountName": {
 			"type": "string",
@@ -323,18 +321,7 @@
 			"value": "2376"
 		}
 	}	
-},
-"parameters": {
-       "newStorageAccountName": {
-                "value": ""
-        },
-        "adminPassword": {
-                "value": ""
-        },
-        "dnsNameForPublicIP": {
-                "value": ""
-        }
-   }
+}
 }
 }
 ]
