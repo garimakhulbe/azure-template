@@ -3,19 +3,19 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "newStorageAccountName": {
-                "value": ""
+                "value": "teststorageuser4"
         },
         "adminUsername": {
                 "value": "test-user"
         },
         "adminPassword": {
-                "value": ""
+                "value": "Abcd1234@"
         },
         "dnsNameForPublicIP": {
-                "value": ""
+                "value": "test-intern4"
         },
         "ubuntuOSVersion": {
-                "value": ""
+                "value": "14.12 LTS"
         }
    }
 }
