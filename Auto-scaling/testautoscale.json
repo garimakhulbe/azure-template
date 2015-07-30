@@ -41,7 +41,7 @@
 		},
 			"Count": {
 			"type": "int",
-			"defaultValue": 3,
+			"defaultValue": 2,
 			"metadata": {
 				"description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
 			}
