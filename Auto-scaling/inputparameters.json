@@ -1,21 +1,21 @@
 {
     "parameters": {
 		"Credentials": {
-			"TenantId":"",
-			"ClientId":"",
-			"ClientSecret": "",
-			"SubscriptionId": "",
-			"StorageAccountName": "",
-			"StorageAccessKey": ""
+			"TenantId":"ebbec650-885d-427d-80a9-41cf0af41e9e",
+			"ClientId":"3b249d2e-bfad-4f3e-801b-415da09f243c",
+			"ClientSecret": "Abcd1234",
+			"SubscriptionId": "56b3fc4b-19d1-4495-a008-8b58ded69e1b",
+			"StorageAccountName": "gartestrg3",
+			"StorageAccessKey": "o64lGJdOrRE89rlD1J1Xa0zRcXk/v21zxJw3vu4l7B/4nALFFkRkTX7c/o42XdR4jSpMnaMQQZhp4PEYnTHGSg=="
 		},
 		"Autoscale":{
-			"ResourceGroup": "",
-			"DeploymentTemplateURI":"",
-			"DeplymentParameterFileURI" : "",
-			"NodeCount": "",
+			"ResourceGroup": "testrg3",
+			"DeploymentTemplateURI":"https://raw.githubusercontent.com/garimakhulbe/azure-template/master/Auto-scaling/testautoscale.json",
+			"DeplymentParameterFileURI" : "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/Auto-scaling/azureparameters.json",
+			"NodeCount": "1",
 			"ThresholdPercentage": {
-				"up" : 90,
-				"down": 10
+				"up" : "90",
+				"down": "10"
 			}
 		}
    }
