@@ -1,0 +1,22 @@
+{
+    "parameters": {
+		"Credentials": {
+			"TenantId":"",
+			"ClientId":"",
+			"ClientSecret": "",
+			"SubscriptionId": "",
+			"StorageAccountName": "",
+			"StorageAccessKey": ""
+		},
+		"Autoscale":{
+			"ResourceGroup": "",
+			"DeploymentTemplateURI":"",
+			"DeplymentParameterFileURI" : "",
+			"NodeCount": "",
+			"ThresholdPercentage": {
+				"up" : 90,
+				"down": 10
+			}
+		}
+   }
+}
