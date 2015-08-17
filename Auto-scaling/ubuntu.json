@@ -45,11 +45,11 @@
         }
     },
     "variables": {
-        "location": "West US",
+        "location": "East US",
         "imagePublisher": "Canonical",
         "imageOffer": "UbuntuServer",
         "OSDiskName": "osdiskforlinuxsimple",
-        "nicName": "myVMNic",
+        "nicName": "VMMasterNic",
         "addressPrefix": "10.0.0.0/16",
         "subnetName": "Subnet",
         "subnetPrefix": "10.0.0.0/24",
@@ -57,10 +57,10 @@
         "publicIPAddressName": "myPublicIP",
         "publicIPAddressType": "Dynamic",
         "vmStorageAccountContainerName": "vhds",
-        "vmName": "MyUbuntuVM",
-        "nsgName" : "myNSG",
+        "vmName": "VMMaster",
+        "nsgName" : "VMmasterNSG",
         "vmSize": "Standard_D1",
-        "virtualNetworkName": "MyVNET",
+        "virtualNetworkName": "VMMasterNET",
         "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
         "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]"
     },
