@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "newStorageAccountName": {
-                "value": "garstoragetest71"
+                "value": "garstoragetest1111"
         },
         "adminUsername": {
                 "value": "test-user"
@@ -18,7 +18,7 @@
                 "value": "14.04.2-LTS"
         },
         "Count": {
-            "value": 2
+            "value": 1
         }
    }
 }
