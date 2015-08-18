@@ -20,6 +20,9 @@
         "Count": {
             "value": 1
         },
+        "swarmClusterId":{
+            "value":  
+        },
         "Autoscaleinput":{
             "value":
         }
