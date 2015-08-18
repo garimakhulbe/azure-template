@@ -54,6 +54,12 @@
 			"metadata": {
 				"description": "Swarm cluster id"
 			}
+		},
+		"Autoscaleinput":{
+			"type":"string",
+			"metadata":{
+				"description": "Input file link for Autoscale"
+			}
 		}
     },
     "variables": {
