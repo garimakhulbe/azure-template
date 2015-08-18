@@ -9,10 +9,10 @@
 			"StorageAccessKey": "yksauNF3rCq6Xc0pp9UtQAvt3ySfSOdxU07MOuixMJBa9MAnuLJfrwlej0X3qoDEtQgq0/1xWsiu5z3cj7Gi3A=="
 		},
 		"Autoscale":{
-			"ResourceGroup": "testgrp1",
+			"ResourceGroup": "testrgintern5",
 			"DeploymentTemplateURI":"https://raw.githubusercontent.com/garimakhulbe/azure-template/master/Auto-scaling/testautoscale.json",
 			"DeplymentParameterFileURI" : "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/Auto-scaling/azureparameters.json",
-			"NodeCount": 0,
+			"NodeCount": 1,
 			"ThresholdPercentage": {
 				"Upper" : "90",
 				"Lower": "10"
