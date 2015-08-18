@@ -45,7 +45,6 @@
 		},
 		"Count": {
 			"type": "int",
-			"defaultValue": 1,
 			"metadata": {
 				"description": "Number of slave nodes"
 			}
