@@ -352,7 +352,7 @@
 					},
 					"autoscale": {
 						"image": "garima0079/imgs1",
-						"restart": "always",
+						"restart": "always"
 					}
 				}
 			}
