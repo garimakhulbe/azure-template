@@ -11,7 +11,7 @@
 		"Autoscale":{
 			"ResourceGroup": "testrgintern5",
 			"DeploymentTemplateURI":"https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/azuredeployment.json",
-			"DeplymentParameterFileURI" : "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/Auto-scaling/azureparameters.json",
+			"DeplymentParameterFileURI" : "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/deploymentparameters.json",
 			"NodeCount": 1,
 			"ThresholdPercentage": {
 				"Upper" : "90",
