@@ -17,7 +17,7 @@
         "ubuntuOSVersion": {
                 "value": ""
         },
-        "slaveCount": {
+        "Count": {
                 "value":  ""
         },
         "swarmClusterId": {
