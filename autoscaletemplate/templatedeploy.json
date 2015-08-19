@@ -1,7 +1,6 @@
 {
    "properties": {
-    "template":
-	{
+    "template": {
 	    	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
 	    	"contentVersion": "1.0.0.0",
 	    	"parameters" : {
@@ -59,7 +58,7 @@
 				}
 			}
 	    },
-	    "variables": {
+	    	"variables": {
 	    		"location": "East US",
 	    		"extensionName": "DockerExtension",
 	    		"storageAccountType": "Standard_LRS",
@@ -391,27 +390,27 @@
 	},
     	"mode": "Complete",
 	"parameters": {
-	       "newStorageAccountName": {
-	                "value": "garstoragetest434"
-	        },
-	        "adminUsername": {
-	                "value": "test-user"
-	        },
-	        "adminPassword": {
-	                "value": "Abcd1234@"
-	        },
-	        "dnsNameForPublicIP": {
-	                "value": "testgardomain434"
-	        },
-	        "ubuntuOSVersion": {
-	                "value": "14.04.2-LTS"
-	        },
-	        "slaveCount": {
-	            "value": 1
-	        },
-	        "swarmClusterId": {
-	            "value": "2d91ad4f4294ebb4c452d89782f927a4"
-	        }
-	} 
-    }
+		       "newStorageAccountName": {
+		                "value": "garstoragetest434"
+		        },
+		        "adminUsername": {
+		                "value": "test-user"
+		        },
+		        "adminPassword": {
+		                "value": "Abcd1234@"
+		        },
+		        "dnsNameForPublicIP": {
+		                "value": "testgardomain434"
+		        },
+		        "ubuntuOSVersion": {
+		                "value": "14.04.2-LTS"
+		        },
+		        "slaveCount": {
+		            "value": 1
+		        },
+		        "swarmClusterId": {
+		            "value": "2d91ad4f4294ebb4c452d89782f927a4"
+		        }
+		}
+	}
 }
