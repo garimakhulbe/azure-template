@@ -351,6 +351,11 @@
 						"ports": ["5555:2375"],
 						"command": "[concat('manage token://',parameters('swarmClusterId'))]"
 					}
+					"garima0079/image2" :{
+						"image": "garima0079/image2",
+						"restart": "always",
+						"command": "[concat('/code/src/start.sh agent ',parameters('inputFilename'))]"
+					}
 				}
 			}
 		}
