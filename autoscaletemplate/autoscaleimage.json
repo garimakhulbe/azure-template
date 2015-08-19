@@ -28,7 +28,7 @@
 		},
 		"ubuntuOSVersion": {
 			"type": "string",
-			"defaultValue": "14.04.2-LTS",
+			"defaultValue": "14.10",
 			"allowedValues": [
 				"12.04.2-LTS",
 				"12.04.3-LTS",
@@ -55,16 +55,10 @@
 			"metadata": {
 				"description": "Swarm cluster id"
 			}
-		},
-		"inputFilename":{
-			"type":"string",
-			"metadata":{
-				"description": "Config file path for autoscale"
-			}
 		}
     },
     "variables": {
-    		"location": "East US",
+    		"location": "West US",
     		"extensionName": "DockerExtension",
     		"storageAccountType": "Standard_LRS",
     		"publicIPAddressName": "swarmPublicIP",
@@ -356,11 +350,6 @@
 						"restart": "always",
 						"ports": ["5555:2375"],
 						"command": "[concat('manage token://',parameters('swarmClusterId'))]"
-					},
-					"autoscale" :{
-						"image": "garima0079/image2",
-						"restart": "always",
-						"command": "[concat('/code/src/start.sh agent ',parameters('inputFilename'))]"
 					}
 				}
 			}
@@ -396,5 +385,12 @@
 			}
 		}
 	}
-    ]
+    ],
+    "outputs": {
+	"publicIP": {
+			"type": "object",
+			"value": "[reference(concat(variables('publicIPAddressName'), 'master'))]"
+		}
+	}	
+
 }
