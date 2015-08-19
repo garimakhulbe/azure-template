@@ -19,6 +19,9 @@
         },
         "slaveCount": {
             "value": 2
+        },
+        "swarmClusterId": {
+            "value": 
         }
    }
 }
