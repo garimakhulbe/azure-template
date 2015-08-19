@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "newStorageAccountName": {
-                "value": "garstoragetest1111"
+                "value": "garstorage333"
         },
         "adminUsername": {
                 "value": "test-user"
@@ -12,7 +12,7 @@
                 "value": "Abcd1234@"
         },
         "dnsNameForPublicIP": {
-                "value": "testgardomain7132"
+                "value": "domainiptest333"
         },
         "ubuntuOSVersion": {
                 "value": "14.04.2-LTS"
