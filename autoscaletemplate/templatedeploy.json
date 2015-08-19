@@ -392,7 +392,7 @@
     	"mode": "Complete",
 	"parameters": {
 	       "newStorageAccountName": {
-	                "value": "garstoragetest3434"
+	                "value": "garstoragetest434"
 	        },
 	        "adminUsername": {
 	                "value": "test-user"
@@ -401,7 +401,7 @@
 	                "value": "Abcd1234@"
 	        },
 	        "dnsNameForPublicIP": {
-	                "value": "testgardomain3434"
+	                "value": "testgardomain434"
 	        },
 	        "ubuntuOSVersion": {
 	                "value": "14.04.2-LTS"
@@ -410,7 +410,7 @@
 	            "value": 1
 	        },
 	        "swarmClusterId": {
-	            "value": "97c34faf5f3804dee07ffcfd54e8234b"
+	            "value": "2d91ad4f4294ebb4c452d89782f927a4"
 	        }
 	} 
     }
