@@ -64,7 +64,7 @@
 		}
     },
     "variables": {
-    		"location": "West US",
+    		"location": "East US",
     		"extensionName": "DockerExtension",
     		"storageAccountType": "Standard_LRS",
     		"publicIPAddressName": "swarmPublicIP",
