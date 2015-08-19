@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "newStorageAccountName": {
-                "value": "garstoragetest1789"
+                "value": "garstoragetest1111"
         },
         "adminUsername": {
                 "value": "test-user"
@@ -12,16 +12,13 @@
                 "value": "Abcd1234@"
         },
         "dnsNameForPublicIP": {
-                "value": "testdomain1789"
-        },
-        "slaveCount": {
-                "value":  1
+                "value": "testgardomain7132"
         },
         "ubuntuOSVersion": {
                 "value": "14.04.2-LTS"
         },
-        "swarmClusterId": {
-                "value": "0a035dff9ea329bd554092cd902ba9f7"
+        "Count": {
+            "value": 2
         }
    }
 }
