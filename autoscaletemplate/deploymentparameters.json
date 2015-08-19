@@ -1,6 +1,4 @@
 {
-    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentParameters.json#",
-    "contentVersion": "1.0.0.0",
     "parameters": {
         "newStorageAccountName": {
                 "value": "garstoragetest1111"
@@ -23,5 +21,4 @@
         "swarmClusterId": {
             "value": "97c34faf5f3804dee07ffcfd54e8234b"
         }
-   }
 }
