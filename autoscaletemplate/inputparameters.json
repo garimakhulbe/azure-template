@@ -5,8 +5,8 @@
 			"ClientId":"3b249d2e-bfad-4f3e-801b-415da09f243c",
 			"ClientSecret": "Abcd1234",
 			"SubscriptionId": "56b3fc4b-19d1-4495-a008-8b58ded69e1b",
-			"StorageAccountName": "garstorage333",
-			"StorageAccessKey": "i/cjIIR9QFKiniVLfXrARDM+Kr7DfXGQ28pAmgyNLZJVt+I1MJFzDF++nkCtGt9dHk0xTej7Qik/iOYsRZUKwQ=="
+			"StorageAccountName": "garstoragewarm6",
+			"StorageAccessKey": "1gyztSLr7QcnCGPTfhesqFTXYdH2DY69SgT1KU7RaU5IFOiePyxcPfroR0rXkW+Ivj9qCZT2vwdyw4oHgiDftQ=="
 		},
 		"Autoscale":{
 			"ResourceGroup": "testrg3",
