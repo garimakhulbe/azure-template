@@ -1,7 +1,7 @@
 {
    "properties": {
     "templateLink": {
-      "uri": "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/Auto-scaling/testautoscale.json",
+      "uri": "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/azuredeployment.json",
       "contentVersion": "1.0.0.0",
     },
     "mode": "Complete",
