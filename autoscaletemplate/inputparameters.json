@@ -5,16 +5,16 @@
 			"ClientId":"3b249d2e-bfad-4f3e-801b-415da09f243c",
 			"ClientSecret": "Abcd1234",
 			"SubscriptionId": "56b3fc4b-19d1-4495-a008-8b58ded69e1b",
-			"StorageAccountName": "garstoragetest445",
-			"StorageAccessKey": "uo63GAXhwh2luzfOXZDulgb0kVgJwR27qCZQWX+Y6JTXzOhIlXLa2KIBE343DXzKxFHiSFG/+RjPUq7OAFvX+A=="
+			"StorageAccountName": "garstorage333",
+			"StorageAccessKey": "i/cjIIR9QFKiniVLfXrARDM+Kr7DfXGQ28pAmgyNLZJVt+I1MJFzDF++nkCtGt9dHk0xTej7Qik/iOYsRZUKwQ=="
 		},
 		"Autoscale":{
-			"ResourceGroup": "testrgintern5",
+			"ResourceGroup": "testrg3",
 			"DeploymentTemplateURI":"https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/azuredeployment.json",
 			"DeplymentParameterFileURI" : "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/deploymentparameters.json",
 			"NodeCount": 1,
 			"ThresholdPercentage": {
-				"Upper" : "90",
+				"Upper" : "80",
 				"Lower": "10"
 			}
 		}
