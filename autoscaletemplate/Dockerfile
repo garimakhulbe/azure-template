@@ -16,3 +16,4 @@ RUN cd /code/src && npm install azure-common azure-arm-resource azure-storage ad
 
 RUN chmod +x /code/src/start.sh
 
+ENTRYPOINT ['/code/src/start.sh']
