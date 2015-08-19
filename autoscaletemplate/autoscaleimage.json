@@ -385,12 +385,5 @@
 			}
 		}
 	}
-    ],
-    "outputs": {
-	"publicIP": {
-			"type": "object",
-			"value": "[reference(concat(variables('publicIPAddressName'), 'master'))]"
-		}
-	}	
-
+    ]
 }
