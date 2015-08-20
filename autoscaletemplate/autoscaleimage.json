@@ -384,7 +384,7 @@
 					"autoscale":{
 						"image": "garima0079/image2",
 						"restart": "always",
-						"command": "['/code/scr/start.sh client https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/inputparameters.json']"
+						"command": "['/code/src/start.sh client https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/inputparameters.json']"
 					}
 				}
 			}
