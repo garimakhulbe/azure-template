@@ -1,10 +1,10 @@
 {
     "parameters": {
 		"Credentials": {
-			"TenantId":"ebbec650-885d-427d-80a9-41cf0af41e9e",
-			"ClientId":"3b249d2e-bfad-4f3e-801b-415da09f243c",
-			"ClientSecret": "Abcd1234",
-			"SubscriptionId": "56b3fc4b-19d1-4495-a008-8b58ded69e1b",
+			"TenantId":"72f988bf-86f1-41af-91ab-2d7cd011db47",
+			"ClientId":"e7ff5467-830f-4008-a3f6-ba079af60fdc",
+			"ClientSecret": "yIqsG35mdaHytbbR8EgyyenZhj+Fv4P8WmAi3dpcQSA=",
+			"SubscriptionId": "c3dfd792-49a4-4b06-80fc-6fc6d06c4742",
 			"StorageAccountName": "garstoragewarm6",
 			"StorageAccessKey": "1gyztSLr7QcnCGPTfhesqFTXYdH2DY69SgT1KU7RaU5IFOiePyxcPfroR0rXkW+Ivj9qCZT2vwdyw4oHgiDftQ=="
 		},
