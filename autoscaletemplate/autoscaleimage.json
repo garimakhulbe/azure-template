@@ -355,7 +355,7 @@
 					"autoscale": {
 						"image": "garima0079/autoscale",
 						"restart": "always",
-						"command": "[/autoscalecode/start.sh agent https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/inputparameters.json']"
+						"command": "['/autoscalecode/start.sh agent https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/inputparameters.json']"
 					}
 				}
 			}
@@ -390,7 +390,7 @@
 					"autoscale": {
 						"image": "garima0079/autoscale",
 						"restart": "always",
-						"command": "[/autoscalecode/start.sh client https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/inputparameters.json']"
+						"command": "['/autoscalecode/start.sh client https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/inputparameters.json']"
 					}
 				}
 			}
