@@ -11,11 +11,11 @@ RUN apt-get update
 RUN apt-get install -y git git-core nodejs npm
 
 RUN rm -rf code; true
-RUN git clone https://github.com/garimakhulbe/code.git
+RUN git clone https://github.com/garimakhulbe/autoscalecode.git
 
 
-RUN cd /code/src && npm install azure-common azure-arm-resource azure-storage adal-node
-WORKDIR /code/src
+RUN cd /autoscalecode && npm install azure-common azure-arm-resource azure-storage adal-node
+WORKDIR /autoscalecode
 RUN chmod +x start.sh
 
 #ENTRYPOINT /code/src/start.sh
