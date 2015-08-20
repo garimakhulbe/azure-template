@@ -350,11 +350,6 @@
 						"restart": "always",
 						"ports": ["5555:2375"],
 						"command": "[concat('manage token://',parameters('swarmClusterId'))]"
-					},
-					"autoscale":{
-						"image": "garima0079/autoscale",
-						"restart": "always",
-						"command": "['/autoscalecode/start.sh agent https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/inputparameters.json']"
 					}
 				}
 			}
@@ -385,11 +380,6 @@
 						"image": "swarm",
 						"restart": "always",
 						"command": "[concat('join --addr=', reference(concat(variables('nicName'), copyIndex())).ipConfigurations[0].properties.privateIPAddress, ':2375 token://',parameters('swarmClusterId'))]"
-					},
-					"autoscale":{
-						"image": "garima0079/autoscale",
-						"restart": "always",
-						"command": "['/autoscalecode/start.sh client https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/inputparameters.json']"
 					}
 				}
 			}
