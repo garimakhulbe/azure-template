@@ -9,7 +9,7 @@
 			"StorageAccessKey": "1gyztSLr7QcnCGPTfhesqFTXYdH2DY69SgT1KU7RaU5IFOiePyxcPfroR0rXkW+Ivj9qCZT2vwdyw4oHgiDftQ=="
 		},
 		"Autoscale":{
-			"ResourceGroup": "TestRGIntern17",
+			"ResourceGroup": "TestRGIntern7",
 			"DeploymentTemplateURI":"https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/autoscaleimage.json",
 			"DeplymentParameterFileURI" : "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/deploymentparameters.json",
 			"NodeCount": 1,
