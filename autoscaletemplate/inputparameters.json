@@ -10,7 +10,7 @@
 		},
 		"Autoscale":{
 			"enabled": "true",
-			"ResourceGroup": "TestRGIntern1",
+			"ResourceGroup": "TestRGIntern3",
 			"DeploymentTemplateURI":"https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/autoscaleimage.json",
 			"DeplymentParameterFileURI" : "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/deploymentparameters.json",
 			"NodeCount": 0,
