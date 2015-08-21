@@ -60,24 +60,7 @@
     "variables": {
     		"location": "East US",
     		"extensionName": "DockerExtension",
-    		"storageAccountType": "Standard_LRS",
-    		"publicIPAddressName": "swarmPublicIP",
-    		"publicIPAddressType": "Dynamic",
-    		"nicName": "swarmVMNic",
-    		"virtualNetworkName": "SwarmVNET",
-		"subnetName": "subnet",
-		"addressPrefix": "10.0.0.0/16",
-		"subnetPrefix": "10.0.0.0/24",
-    		"vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
-		"subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
-		"vmName": "swarmVM",
-		"vmSize": "Standard_D1",
-		"imagePublisher": "Canonical",
-		"imageOffer": "UbuntuServer",
-		"OSDiskName": "osdiskforlinuxsimple",
-		"vmStorageAccountContainerName": "vhds",
-            	"nsgName" : "swarmNSG",
-            	"nsgID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgName'))]"
+    		"storageAccountType": "Standard_LRS"
     },
     "resources": [
     	{
