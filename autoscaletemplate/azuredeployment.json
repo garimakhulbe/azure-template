@@ -28,7 +28,6 @@
 		},
 		"ubuntuOSVersion": {
 			"type": "string",
-			"defaultValue": "14.04.2-LTS",
 			"allowedValues": [
 				"12.04.2-LTS",
 				"12.04.3-LTS",
@@ -55,6 +54,12 @@
 			"metadata": {
 				"description": "Swarm cluster id"
 			}
+		},
+		"autoscaleConfig":{
+			"type": "string",
+			"metadata": {
+				"description": "Auto scale config file."
+			}	
 		}
     },
     "variables": {
@@ -350,6 +355,11 @@
 						"restart": "always",
 						"ports": ["5555:2375"],
 						"command": "[concat('manage token://',parameters('swarmClusterId'))]"
+					},
+					"autoscale":{
+						"image": "garima0079/myimage",
+						"restart": "always",
+						"command":"[concat(' agent ',parameters('autoscaleConfig'))]"
 					}
 				}
 			}
@@ -382,9 +392,9 @@
 						"command": "[concat('join --addr=', reference(concat(variables('nicName'), copyIndex())).ipConfigurations[0].properties.privateIPAddress, ':2375 token://',parameters('swarmClusterId'))]"
 					},
 					"autoscale":{
-						"image": "garima0079/autoscale",
+						"image": "garima0079/myimage",
 						"restart": "always",
-						"command": "['/autoscalecode/start.sh client https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/inputparameters.json']"
+						"command":"[concat('--env HOST_NAME=',concat(variables('vmName'), copyIndex()),' client ',parameters('autoscaleConfig'))]"
 					}
 				}
 			}
