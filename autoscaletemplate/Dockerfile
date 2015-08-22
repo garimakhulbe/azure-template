@@ -8,7 +8,7 @@ RUN apt-get update
 # install nodejs and npm
 RUN apt-get install -y git git-core nodejs npm
 
-RUN rm -rf code; true
+RUN rm -rf autoscalecode; true
 RUN git clone https://github.com/garimakhulbe/autoscalecode.git
 
 
