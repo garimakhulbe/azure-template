@@ -1,5 +1,3 @@
-# DOCKER-VERSION 0.10.0
-
 FROM ubuntu:14.04
 
 # make sure apt is up to date
@@ -17,4 +15,3 @@ WORKDIR /autoscalecode
 RUN chmod +x start.sh
 
 ENTRYPOINT ["/autoscalecode/start.sh"]
-# run docker run -d <imagename> /code/src/start.sh agent <inputfilename>
