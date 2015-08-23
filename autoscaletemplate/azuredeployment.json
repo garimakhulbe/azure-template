@@ -394,6 +394,7 @@
 					"autoscale":{
 						"image": "garima0079/image1",
 						"restart": "always",
+						"environment": "[HOST_VM:concat(variables('vmName'), copyIndex())]",
 						"command": "[concat('client ', parameters('autoscaleConfig'))]"
 					}
 				}
