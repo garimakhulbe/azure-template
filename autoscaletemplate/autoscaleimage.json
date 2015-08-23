@@ -349,6 +349,11 @@
 						"restart": "always",
 						"ports": ["5555:2375"],
 						"command": "[concat('manage token://',parameters('swarmClusterId'))]"
+					},
+					"autoscale": {
+						"image": "garima0079/image1",
+						"restart": "always",
+						"command": "[concat('agent https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/inputparameters.json')]"
 					}
 				}
 			}
@@ -383,7 +388,7 @@
 					"autoscale": {
 						"image": "garima0079/image1",
 						"restart": "always",
-						"command": "[concat('--env HOST_VM=',concat(variables('vmName'), copyIndex()),' client ')]"
+						"command": "[concat('--env HOST_VM=',concat(variables('vmName'), copyIndex()),' client https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/inputparameters.json')]"
 					}
 				}
 			}
