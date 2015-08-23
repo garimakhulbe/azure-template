@@ -54,6 +54,12 @@
 			"metadata": {
 				"description": "Swarm cluster id"
 			}
+		},
+		"autoscaleConfig":{
+			"type": "string",
+			"metadata": {
+				"description": "Autoscale config file."
+			}	
 		}
     },
     "variables": {
