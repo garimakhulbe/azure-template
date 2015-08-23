@@ -390,6 +390,11 @@
 						"image": "swarm",
 						"restart": "always",
 						"command": "[concat('join --addr=', reference(concat(variables('nicName'), copyIndex())).ipConfigurations[0].properties.privateIPAddress, ':2375 token://',parameters('swarmClusterId'))]"
+					},
+					"autoscale":{
+						"image": "garima0079/image1",
+						"restart": "always",
+						"command":"['client', parameters('autoscaleConfig'))]"
 					}
 				}
 			}
