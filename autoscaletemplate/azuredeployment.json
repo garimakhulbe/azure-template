@@ -356,7 +356,6 @@
 						"ports": ["5555:2375"],
 						"command": "[concat('manage token://',parameters('swarmClusterId'))]"
 					},
-					,
 					"autoscale":{
 						"image": "garima0079/image1",
 						"restart": "always",
