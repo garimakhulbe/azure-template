@@ -359,7 +359,7 @@
 					"autoscale":{
 						"image": "garima0079/image1",
 						"restart": "always",
-						"command": "['agent', parameters('autoscaleConfig')]"
+						"command": "[concat('agent ', parameters('autoscaleConfig'))]"
 					}
 				}
 			}
@@ -394,7 +394,7 @@
 					"autoscale":{
 						"image": "garima0079/image1",
 						"restart": "always",
-						"command":"['client', parameters('autoscaleConfig')]"
+						"command":"[concat('client ',parameters('autoscaleConfig'))]"
 					}
 				}
 			}
