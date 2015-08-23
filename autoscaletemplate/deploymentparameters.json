@@ -18,7 +18,7 @@
                 "value": "14.04.2-LTS"
         },
         "slaveCount": {
-            "value": 2
+            "value": 1
         },
         "swarmClusterId": {
             "value": "0d2443e4575606d0b5ded51e9aa28293"
