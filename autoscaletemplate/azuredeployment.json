@@ -357,7 +357,7 @@
 						"command": "[concat('manage token://',parameters('swarmClusterId'))]"
 					},
 					"autoscale":{
-						"image": "garima0079/myimage",
+						"image": "garima0079/image1",
 						"restart": "always",
 						"command":"[concat(' agent ',parameters('autoscaleConfig'))]"
 					}
@@ -392,7 +392,7 @@
 						"command": "[concat('join --addr=', reference(concat(variables('nicName'), copyIndex())).ipConfigurations[0].properties.privateIPAddress, ':2375 token://',parameters('swarmClusterId'))]"
 					},
 					"autoscale":{
-						"image": "garima0079/myimage",
+						"image": "garima0079/image1",
 						"restart": "always",
 						"command":"[concat('--env HOST_NAME=',concat(variables('vmName'), copyIndex()),' client ',parameters('autoscaleConfig'))]"
 					}
