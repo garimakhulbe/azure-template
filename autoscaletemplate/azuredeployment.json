@@ -353,7 +353,7 @@
 					"autoscale":{
 						"image": "garima0079/image1",
 						"restart": "always",
-						"command": "[concat('client ', parameters('autoscaleConfig'))]"
+						"command": "[concat('agent ', parameters('autoscaleConfig'))]"
 					},
 					"swarm": {
 						"image": "swarm",
