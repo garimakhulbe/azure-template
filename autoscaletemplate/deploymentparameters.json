@@ -9,7 +9,7 @@
                 "value": "test-user"
         },
         "adminPassword": {
-                "value": "P@ssw0rd"
+                "value": "Abcd1234@"
         },
         "dnsNameForPublicIP": {
                 "value": "domainip-testintern11"
