@@ -21,7 +21,7 @@
             "value": 1
         },
         "swarmClusterId": {
-            "value": "abffc18c2f3fdfbf01d9cd602003cbc9"
+            "value": "dd11f374896057e4764519d6f3326813"
         },
         "autoscaleConfig":{
             "value": "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/inputparameters.json"
