@@ -350,11 +350,6 @@
 					"port": "2375"
 				},
 				"compose": {
-					"autoscale":{
-						"image": "garima0079/image2",
-						"restart": "always",
-						"command": "[concat('agent ', parameters('autoscaleConfig'))]"
-					},
 					"swarm": {
 						"image": "swarm",
 						"restart": "always",
@@ -386,11 +381,6 @@
 					"port": "2375"
 				},
 				"compose": {
-					"autoscale":{
-						"image": "garima0079/image2",
-						"restart": "always",
-						"command": "[concat('client ', parameters('autoscaleConfig'))]"
-					},
 					"swarm": {
 						"image": "swarm",
 						"restart": "always",
