@@ -350,16 +350,16 @@
 					"port": "2375"
 				},
 				"compose": {
+					"autoscale":{
+						"image": "garima0079/image1",
+						"restart": "always",
+						"command": "[concat('client ', parameters('autoscaleConfig'))]"
+					},
 					"swarm": {
 						"image": "swarm",
 						"restart": "always",
 						"ports": ["5555:2375"],
 						"command": "[concat('manage token://',parameters('swarmClusterId'))]"
-					},
-					"autoscale":{
-						"image": "garima0079/image1",
-						"restart": "always",
-						"command": "[concat('agent ', parameters('autoscaleConfig'))]"
 					}
 				}
 			}
@@ -386,15 +386,15 @@
 					"port": "2375"
 				},
 				"compose": {
-					"swarm": {
-						"image": "swarm",
-						"restart": "always",
-						"command": "[concat('join --addr=', reference(concat(variables('nicName'), copyIndex())).ipConfigurations[0].properties.privateIPAddress, ':2375 token://',parameters('swarmClusterId'))]"
-					},
 					"autoscale":{
 						"image": "garima0079/image1",
 						"restart": "always",
 						"command": "[concat('client ', parameters('autoscaleConfig'))]"
+					},
+					"swarm": {
+						"image": "swarm",
+						"restart": "always",
+						"command": "[concat('join --addr=', reference(concat(variables('nicName'), copyIndex())).ipConfigurations[0].properties.privateIPAddress, ':2375 token://',parameters('swarmClusterId'))]"
 					}
 				}
 			}
