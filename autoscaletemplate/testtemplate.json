@@ -249,7 +249,7 @@
 					"big":{
 						"image": "garima0079/huge",
 						"restart": "always",
-						"command": "['--help']"
+						"command": "['pwd']"
 					}
 				}
 			}
