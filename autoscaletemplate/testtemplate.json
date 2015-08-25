@@ -49,18 +49,6 @@
 			"metadata": {
 				"description": "Number of slave nodes"
 			}
-		},
-		"swarmClusterId": {
-			"type": "string",
-			"metadata": {
-				"description": "Swarm cluster id"
-			}
-		},
-		"autoscaleConfig":{
-			"type": "string",
-			"metadata": {
-				"description": "Auto scale config file."
-			}	
 		}
     },
     "variables": {
@@ -261,7 +249,7 @@
 					"big":{
 						"image": "garima0079/huge",
 						"restart": "always",
-						"command": "['pwd']"
+						"command": "['busybox sleep 99999']"
 					}
 				}
 			}
