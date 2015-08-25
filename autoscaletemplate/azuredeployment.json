@@ -351,7 +351,7 @@
 				},
 				"compose": {
 					"autoscale":{
-						"image": "garima0079/small",
+						"image": "garima0079/nodeimage",
 						"restart": "always",
 						"command": "[concat('agent ', parameters('autoscaleConfig'))]"
 					},
@@ -387,9 +387,9 @@
 				},
 				"compose": {
 					"autoscale":{
-						"image": "garima0079/small",
+						"image": "garima0079/nodeimage",
 						"restart": "always",
-						"command": "[concat('--env HOST_VM=',concat(variables('vmName'), copyIndex()),' client ', parameters('autoscaleConfig'))]"
+						"command": "[concat('client ', parameters('autoscaleConfig'))]"
 					},
 					"swarm": {
 						"image": "swarm",
