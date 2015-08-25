@@ -389,6 +389,7 @@
 					"autoscale":{
 						"image": "garima0079/small",
 						"restart": "always",
+						"environment": "[concat('HOST_VM=',concat(variables('vmName'), copyIndex()))]",
 						"command": "[concat('client ', parameters('autoscaleConfig'))]"
 					},
 					"swarm": {
