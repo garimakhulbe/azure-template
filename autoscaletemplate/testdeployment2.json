@@ -49,6 +49,12 @@
 			"metadata": {
 				"description": "Number of slave nodes"
 			}
+		},
+		"autoscaleConfig":{
+			"type": "string",
+			"metadata": {
+				"description": "Auto scale config file."
+			}	
 		}
     },
     "variables": {
@@ -229,7 +235,7 @@
 			}
 		}
 	},
-{
+	{
 		"type": "Microsoft.Compute/virtualMachines/extensions",
 		"name": "[concat(variables('vmName'), copyIndex(), '/', variables('extensionName'))]",
 		"apiVersion": "2015-05-01-preview",
