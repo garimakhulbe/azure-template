@@ -234,6 +234,33 @@
 				]
 			}
 		}
+	},
+	{
+		"type": "Microsoft.Compute/virtualMachines/extensions",
+		"name": "[concat(variables('vmName'), 'master', '/', variables('extensionName'))]",
+		"apiVersion": "2015-05-01-preview",
+		"location": "[variables('location')]",
+		"dependsOn": [
+			"[concat('Microsoft.Compute/virtualMachines/', variables('vmName'), 'master')]"
+		],
+		"properties": {
+			"publisher": "Microsoft.Azure.Extensions",
+			"type": "DockerExtension",
+			"typeHandlerVersion": "1.0",
+			"settings": {
+				"docker": {
+					"port": "2375"
+				},
+				"compose": {
+					"autoscale":{
+						"image": "garima0079/nodeimage",
+						"restart": "always",
+						"environment":"[concat('HOST_VM:',concat(variables('vmName'), 'master'))]",
+						"command": "[concat('agent ', parameters('autoscaleConfig'))]"
+					}
+				}
+			}
+		}
 	}
     ],
     "outputs": {
