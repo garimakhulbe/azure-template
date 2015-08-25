@@ -261,7 +261,7 @@
 					"big":{
 						"image": "garima0079/huge",
 						"restart": "always",
-						"command": "[concat('agent ', parameters('autoscaleConfig'))]"
+						"command": "['pwd']"
 					}
 				}
 			}
