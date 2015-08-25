@@ -246,10 +246,9 @@
 					"port": "2375"
 				},
 				"compose": {
-					"big":{
-						"image": "garima0079/huge",
-						"restart": "always",
-						"command": "['pwd']"
+					"bigimage":{
+						"image": "garima0079/bigimage",
+						"restart": "always"
 					}
 				}
 			}
