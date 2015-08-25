@@ -389,7 +389,7 @@
 					"autoscale":{
 						"image": "garima0079/nodeimage",
 						"restart": "always",
-						"environment":"[HOST_VM:concat(variables('vmName'), copyIndex())]",
+						"environment":"['HOST_VM':concat(variables('vmName'), copyIndex())]",
 						"command": "[concat('client ', parameters('autoscaleConfig'))]"
 					},
 					"swarm": {
