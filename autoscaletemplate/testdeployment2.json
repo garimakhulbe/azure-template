@@ -26,23 +26,6 @@
 				"description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
 			}
 		},
-		"ubuntuOSVersion": {
-			"type": "string",
-			"defaultValue": "12.04.2-LTS",
-			"allowedValues": [
-				"12.04.2-LTS",
-				"12.04.3-LTS",
-				"12.04.4-LTS",
-				"12.04.5-LTS",
-				"12.10",
-				"14.04.2-LTS",
-				"14.10",
-				"15.04"
-			],
-			"metadata": {
-				"description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version. Allowed values: 12.04.2-LTS, 12.04.3-LTS, 12.04.4-LTS, 12.04.5-LTS, 12.10, 14.04.2-LTS, 14.10, 15.04."
-			}
-		},
 		"slaveCount": {
 			"type": "int",
 			"defaultValue": 1,
@@ -72,9 +55,9 @@
     		"subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
     		"vmName": "swarmVM",
     		"vmSize": "Standard_D1",
-    		"imagePublisher": "Canonical",
-    		"imageOffer": "UbuntuServer",
-    		"OSDiskName": "osdiskforlinuxsimple",
+    		"osImagePublisher": "CoreOS",
+    		"osImageOffer": "CoreOS",
+    		"osImageSKU": "Stable",
     		"vmStorageAccountContainerName": "vhds",
         	"nsgName" : "swarmNSG",
         	"nsgID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgName'))]"
@@ -212,9 +195,9 @@
 			},
 			"storageProfile": {
 				"imageReference": {
-					"publisher": "[variables('imagePublisher')]",
-					"offer": "[variables('imageOffer')]",
-					"sku" : "[parameters('ubuntuOSVersion')]",
+					"publisher": "[variables('osImagePublisher')]",
+					"offer": "[variables('osImageOffer')]",
+					"sku" : "[parameters('osImageSKU')]",
 					"version":"latest"
 				},
 				"osDisk" : {
