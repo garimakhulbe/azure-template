@@ -190,7 +190,7 @@
 				"imageReference": {
 					"publisher": "[variables('osImagePublisher')]",
 					"offer": "[variables('osImageOffer')]",
-					"sku" : "[parameters('osImageSKU')]",
+					"sku" : "[variables('osImageSKU')]",
 					"version":"latest"
 				},
 				"osDisk" : {
