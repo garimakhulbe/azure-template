@@ -10,6 +10,7 @@
 		},
 		"adminUsername": {
 			"type": "string",
+			"defaultValue": "test-user",
 			"metadata": {
 				"description": "User name for the Virtual Machine."
 			}
