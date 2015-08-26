@@ -232,9 +232,9 @@
 					"autoscale":{
 						"image": "garima0079/nodeimage",
 						"restart": "always",
-						"environment":{
+						"environment":[
 							"[concat('HOST_VM:',concat(variables('vmName'), 'master'))]"
-						},
+						],
 						"command": "[concat('agent ', parameters('autoscaleConfig'))]"
 					}
 				}
