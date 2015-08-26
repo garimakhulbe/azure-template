@@ -15,7 +15,7 @@
 			}
 		},
 		"sshPublicKey": {
-			"type": "securestring",
+			"type": "string",
 			"metadata": {
 				"description": "Password for the Virtual Machine."
 			}
