@@ -14,15 +14,6 @@
         "dnsNameForPublicIP": {
                 "value": "domainip-testintern343"
         },
-        "ubuntuOSVersion": {
-                "value": "14.04.2-LTS"
-        },
-        "slaveCount": {
-            "value": 1
-        },
-        "swarmClusterId": {
-            "value": "446ec82e19357a4068b0788120d3d4fd"
-        },
         "autoscaleConfig":{
             "value": "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/inputparameters.json"
         }
