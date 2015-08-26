@@ -51,6 +51,7 @@
     		"osImagePublisher": "CoreOS",
     		"osImageOffer": "CoreOS",
     		"osImageSKU": "Stable",
+    		"OSDiskName": "osdiskforlinuxsimple",
     		"vmStorageAccountContainerName": "vhds",
         	"nsgName" : "swarmNSG",
         	"nsgID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgName'))]"
