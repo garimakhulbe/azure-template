@@ -8,7 +8,7 @@
         "adminUsername": {
                 "value": "test-user"
         },
-        "adminPassword": {
+        "sshPublicKey": {
                 "value": "Abcd1234@"
         },
         "dnsNameForPublicIP": {
