@@ -26,13 +26,6 @@
 				"description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
 			}
 		},
-		"slaveCount": {
-			"type": "int",
-			"defaultValue": 1,
-			"metadata": {
-				"description": "Number of slave nodes"
-			}
-		},
 		"autoscaleConfig":{
 			"type": "string",
 			"metadata": {
