@@ -16,7 +16,7 @@
 		},
 		"sshPublicKey": {
 			"type": "securestring",
-			"default":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDkL51CzzoZj4K+bZyqeCNfHz9R7H7YSz+kMy/whjTxTnMkUiem+5zAagFnXUFJNPuPwVqoSItJTudcR9wX7Tm50pusaFJMWqTkmGVYu0KHb76MdNcod5kXa
+			"defaultValue":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDkL51CzzoZj4K+bZyqeCNfHz9R7H7YSz+kMy/whjTxTnMkUiem+5zAagFnXUFJNPuPwVqoSItJTudcR9wX7Tm50pusaFJMWqTkmGVYu0KHb76MdNcod5kXa
 b4zc3juScBWu+3egZ8TQ1Rvt7kdhNE40SK4OSZiPocZSlTNcB4L4ICMG0hzwQGaTzMYDsEcclo4RUqNU9iG/kKscp0LDhHuRe7RZVC31qOQEErpK2XjyrpUP7/iI33S//LH+CK75OEFmisXQ579Ou0jDmOXDX
 mBe6WSKBEPhiSqj0Sr7PydD75qQrW9FNHzzKBNZuF8u+Q+kx1mgZGqhDhQQxdAN+Nf test-user@swarmVM0",
 			"metadata": {
