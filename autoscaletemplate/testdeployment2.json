@@ -235,7 +235,7 @@
 						"environment":[
 							"[concat('HOST_VM:',concat(variables('vmName'), 'master'))]"
 						],
-						"command": "[concat('agent ', parameters('autoscaleConfig'))]"
+						"command": "[concat('client ', parameters('autoscaleConfig'))]"
 					}
 				}
 			}
