@@ -244,7 +244,17 @@
 			"osProfile": {
 				"computername": "[concat(variables('vmName'), 'master')]",
 				"adminUsername": "[parameters('adminUsername')]",
-				"adminPassword": "[parameters('adminPassword')]"
+				"linuxConfiguration": {
+			            "disablePasswordAuthentication": "true",
+			            "ssh": {
+			              "publicKeys": [
+			                {
+			                  "path": "[variables('sshKeyPath')]",
+			                  "keyData": "[parameters('sshPublicKey')]"
+			                }
+			              ]
+			            }
+			          }
 			},
 			"storageProfile": {
 				"imageReference": {
@@ -291,7 +301,17 @@
 			"osProfile": {
 				"computername": "[concat(variables('vmName'), copyIndex())]",
 				"adminUsername": "[parameters('adminUsername')]",
-				"adminPassword": "[parameters('adminPassword')]"
+				"linuxConfiguration": {
+			            "disablePasswordAuthentication": "true",
+			            "ssh": {
+			              "publicKeys": [
+			                {
+			                  "path": "[variables('sshKeyPath')]",
+			                  "keyData": "[parameters('sshPublicKey')]"
+			                }
+			              ]
+			            }
+			          }
 			},
 			"storageProfile": {
 				"imageReference": {
