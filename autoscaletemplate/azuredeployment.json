@@ -14,7 +14,7 @@
 				"description": "User name for the Virtual Machine."
 			}
 		},
-		"sshPublicKey": {
+		"adminPassword": {
 			"type": "string",
 			"metadata": {
 				"description": "Password for the Virtual Machine."
@@ -244,17 +244,7 @@
 			"osProfile": {
 				"computername": "[concat(variables('vmName'), 'master')]",
 				"adminUsername": "[parameters('adminUsername')]",
-				"linuxConfiguration": {
-			            "disablePasswordAuthentication": "true",
-			            "ssh": {
-			              "publicKeys": [
-			                {
-			                  "path": "[variables('sshKeyPath')]",
-			                  "keyData": "[parameters('sshPublicKey')]"
-			                }
-			              ]
-			            }
-			          }
+				"adminPassword": "[parameters('adminPassword')]"
 			},
 			"storageProfile": {
 				"imageReference": {
@@ -301,17 +291,7 @@
 			"osProfile": {
 				"computername": "[concat(variables('vmName'), copyIndex())]",
 				"adminUsername": "[parameters('adminUsername')]",
-				"linuxConfiguration": {
-			            "disablePasswordAuthentication": "true",
-			            "ssh": {
-			              "publicKeys": [
-			                {
-			                  "path": "[variables('sshKeyPath')]",
-			                  "keyData": "[parameters('sshPublicKey')]"
-			                }
-			              ]
-			            }
-			          }
+				"adminPassword": "[parameters('adminPassword')]"
 			},
 			"storageProfile": {
 				"imageReference": {
