@@ -200,7 +200,7 @@
 		"properties": {
 			"ipConfigurations": [
 				{
-					"name": "ipconfig1",
+					"name": "ipconfigSwarmMaster",
 					"properties": {
 						"privateIPAllocationMethod": "Dynamic",
 						"publicIPAddress": {
@@ -230,7 +230,7 @@
 		"properties": {
 			"ipConfigurations": [
 				{
-					"name": "ipconfig1",
+					"name": "ipconfigSwarmSlave",
 					"properties": {
 						"privateIPAllocationMethod": "Dynamic",
 						"publicIPAddress": {
@@ -270,7 +270,7 @@
 					"version":"latest"
 				},
 				"osDisk" : {
-					"name": "osdisk",
+					"name": "osdisk-master",
 					"vhd": {
 						"uri": "[concat('http://', parameters('newStorageAccountName'), '.blob.core.windows.net/', variables('vmStorageAccountContainerName'), '/', variables('OSDiskName'), 'master-osdisk.vhd')]"
 					},
@@ -317,7 +317,7 @@
 					"version":"latest"
 				},
 				"osDisk" : {
-					"name": "osdisk",
+					"name": "osdisk-slave",
 					"vhd": {
 						"uri": "[concat('http://', parameters('newStorageAccountName'), '.blob.core.windows.net/', variables('vmStorageAccountContainerName'), '/', variables('OSDiskName'), copyIndex(), '-osdisk.vhd')]"
 					},
