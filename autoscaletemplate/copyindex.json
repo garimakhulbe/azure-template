@@ -94,7 +94,7 @@
 	{
 		"apiVersion": "2015-05-01-preview",
 		"type": "Microsoft.Network/networkInterfaces",
-		"name": "[concat(variables('nicName'),copyIndex())]",
+		"name": "[concat(variables('nicName'),copyIndex(parameters('slaveCount')))]",
 		"location": "[variables('location')]",
 		"copy": {
 			"name": "nicLoop",
@@ -139,7 +139,7 @@
 				"vmSize": "[variables('vmSize')]"
 			},
 			"osProfile": {
-				"computername": "[concat(variables('vmName'), copyIndex())]",
+				"computername": "[concat(variables('vmName'), copyIndex(parameters('slaveCount')))]",
 				"adminUsername": "[parameters('adminUsername')]",
 				"adminPassword": "[parameters('adminPassword')]"
 			},
