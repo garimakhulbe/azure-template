@@ -28,7 +28,6 @@
 		},
 		"slaveCount": {
 			"type": "int",
-			"defaultValue": 1,
 			"metadata": {
 				"description": "Number of slave nodes"
 			}
@@ -43,6 +42,12 @@
 			"type": "string",
 			"metadata": {
 				"description": "Auto scale config file."
+			}	
+		},
+		"NodeCount":{
+			"type": "int",
+			"metadata": {
+				"description": "Auto scale node count."
 			}	
 		}
     },
@@ -77,7 +82,7 @@
 		"location": "[variables('location')]",
 		"copy": {
 			"name": "pubIpLoop",
-			"count": "[parameters('slaveCount')]"
+			"count": "[parameters('NodeCount')]"
 		},
 		"properties": {
 			"publicIPAllocationMethod": "[variables('publicIPAddressType')]",
@@ -93,7 +98,7 @@
 		"location": "[variables('location')]",
 		"copy": {
 			"name": "nicLoop",
-			"count": "[parameters('slaveCount')]"
+			"count": "[parameters('NodeCount')]"
 		},
 		"dependsOn": [
 			"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), copyIndex(parameters('slaveCount')))]",
@@ -123,7 +128,7 @@
 		"location": "[variables('location')]",
 		"copy": {
 			"name": "vmLoop",
-			"count": "[parameters('slaveCount')]"
+			"count": "[parameters('NodeCount')]"
 		},
 		"dependsOn": [
 			"[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountName'))]",
@@ -148,7 +153,7 @@
 				"osDisk" : {
 					"name": "osdisk-slave",
 					"vhd": {
-						"uri": "[concat('http://', parameters('newStorageAccountName'), '.blob.core.windows.net/', variables('vmStorageAccountContainerName'), '/', variables('OSDiskName'), copyIndex(), '-osdisk.vhd')]"
+						"uri": "[concat('http://', parameters('newStorageAccountName'), '.blob.core.windows.net/', variables('vmStorageAccountContainerName'), '/', variables('OSDiskName'), copyIndex(parameters('slaveCount')), '-osdisk.vhd')]"
 					},
 					"caching": "ReadWrite",
 					"createOption": "FromImage"
@@ -170,7 +175,7 @@
 		"location": "[variables('location')]",
 		"copy": {
 			"name": "extLoop",
-			"count": "[parameters('slaveCount')]"
+			"count": "[parameters('NodeCount')]"
 		},
 		"dependsOn": [
 			"[concat('Microsoft.Compute/virtualMachines/', variables('vmName'), copyIndex(parameters('slaveCount')))]"
