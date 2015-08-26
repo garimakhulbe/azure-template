@@ -77,8 +77,9 @@
 		"subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
 		"vmName": "swarmVM",
 		"vmSize": "Standard_D1",
-		"imagePublisher": "Canonical",
-		"imageOffer": "UbuntuServer",
+		"osImagePublisher": "CoreOS",
+    		"osImageOffer": "CoreOS",
+    		"osImageSKU": "Stable",
 		"OSDiskName": "osdiskforlinuxsimple",
 		"vmStorageAccountContainerName": "vhds",
             	"nsgName" : "swarmNSG",
@@ -263,9 +264,9 @@
 			},
 			"storageProfile": {
 				"imageReference": {
-					"publisher": "[variables('imagePublisher')]",
-					"offer": "[variables('imageOffer')]",
-					"sku" : "[parameters('ubuntuOSVersion')]",
+					"publisher": "[variables('osIimagePublisher')]",
+					"offer": "[variables('osImageOffer')]",
+					"sku" : "[variables('osImageSKU')]",
 					"version":"latest"
 				},
 				"osDisk" : {
@@ -310,9 +311,9 @@
 			},
 			"storageProfile": {
 				"imageReference": {
-					"publisher": "[variables('imagePublisher')]",
-					"offer": "[variables('imageOffer')]",
-					"sku" : "[parameters('ubuntuOSVersion')]",
+					"publisher": "[variables('osImagePublisher')]",
+					"offer": "[variables('osImageOffer')]",
+					"sku" : "[variables('osImageSKU')]",
 					"version":"latest"
 				},
 				"osDisk" : {
