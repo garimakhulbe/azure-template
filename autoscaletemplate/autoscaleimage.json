@@ -339,6 +339,12 @@
 						"image": "garima0079/nodeimage",
 						"restart": "always",
 						"command": "[concat('agent ', parameters('autoscaleConfig'))]"
+					},
+					"swarm": {
+						"image": "swarm",
+						"restart": "always",
+						"ports": ["5555:2375"],
+						"command": "[concat('manage token://',parameters('swarmClusterId'))]"
 					}
 				}
 			}
