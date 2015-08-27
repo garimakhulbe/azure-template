@@ -15,7 +15,7 @@
 			}
 		},
 		"adminPassword": {
-			"type": "securestring",
+			"type": "string",
 			"metadata": {
 				"description": "Password for the Virtual Machine."
 			}
@@ -24,22 +24,6 @@
 			"type": "string",
 			"metadata": {
 				"description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
-			}
-		},
-		"ubuntuOSVersion": {
-			"type": "string",
-			"allowedValues": [
-				"12.04.2-LTS",
-				"12.04.3-LTS",
-				"12.04.4-LTS",
-				"12.04.5-LTS",
-				"12.10",
-				"14.04.2-LTS",
-				"14.10",
-				"15.04"
-			],
-			"metadata": {
-				"description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version. Allowed values: 12.04.2-LTS, 12.04.3-LTS, 12.04.4-LTS, 12.04.5-LTS, 12.10, 14.04.2-LTS, 14.10, 15.04."
 			}
 		},
 		"slaveCount": {
@@ -54,10 +38,16 @@
 			"metadata": {
 				"description": "Swarm cluster id"
 			}
+		},
+		"autoscaleConfig":{
+			"type": "string",
+			"metadata": {
+				"description": "Auto scale config file."
+			}	
 		}
     },
     "variables": {
-    		"location": "West US",
+    		"location": "East US",
     		"extensionName": "DockerExtension",
     		"storageAccountType": "Standard_LRS",
     		"publicIPAddressName": "swarmPublicIP",
@@ -71,8 +61,9 @@
 		"subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
 		"vmName": "swarmVM",
 		"vmSize": "Standard_D1",
-		"imagePublisher": "Canonical",
-		"imageOffer": "UbuntuServer",
+		"osImagePublisher": "CoreOS",
+    		"osImageOffer": "CoreOS",
+    		"osImageSKU": "Stable",
 		"OSDiskName": "osdiskforlinuxsimple",
 		"vmStorageAccountContainerName": "vhds",
             	"nsgName" : "swarmNSG",
@@ -193,7 +184,7 @@
 		"properties": {
 			"ipConfigurations": [
 				{
-					"name": "ipconfig1",
+					"name": "ipconfigSwarmMaster",
 					"properties": {
 						"privateIPAllocationMethod": "Dynamic",
 						"publicIPAddress": {
@@ -223,7 +214,7 @@
 		"properties": {
 			"ipConfigurations": [
 				{
-					"name": "ipconfig1",
+					"name": "ipconfigSwarmSlave",
 					"properties": {
 						"privateIPAllocationMethod": "Dynamic",
 						"publicIPAddress": {
@@ -257,13 +248,13 @@
 			},
 			"storageProfile": {
 				"imageReference": {
-					"publisher": "[variables('imagePublisher')]",
-					"offer": "[variables('imageOffer')]",
-					"sku" : "[parameters('ubuntuOSVersion')]",
+					"publisher": "[variables('osImagePublisher')]",
+					"offer": "[variables('osImageOffer')]",
+					"sku" : "[variables('osImageSKU')]",
 					"version":"latest"
 				},
 				"osDisk" : {
-					"name": "osdisk",
+					"name": "osdisk-master",
 					"vhd": {
 						"uri": "[concat('http://', parameters('newStorageAccountName'), '.blob.core.windows.net/', variables('vmStorageAccountContainerName'), '/', variables('OSDiskName'), 'master-osdisk.vhd')]"
 					},
@@ -304,13 +295,13 @@
 			},
 			"storageProfile": {
 				"imageReference": {
-					"publisher": "[variables('imagePublisher')]",
-					"offer": "[variables('imageOffer')]",
-					"sku" : "[parameters('ubuntuOSVersion')]",
+					"publisher": "[variables('osImagePublisher')]",
+					"offer": "[variables('osImageOffer')]",
+					"sku" : "[variables('osImageSKU')]",
 					"version":"latest"
 				},
 				"osDisk" : {
-					"name": "osdisk",
+					"name": "osdisk-slave",
 					"vhd": {
 						"uri": "[concat('http://', parameters('newStorageAccountName'), '.blob.core.windows.net/', variables('vmStorageAccountContainerName'), '/', variables('OSDiskName'), copyIndex(), '-osdisk.vhd')]"
 					},
@@ -344,11 +335,10 @@
 					"port": "2375"
 				},
 				"compose": {
-					"swarm": {
-						"image": "swarm",
+					"autoscale":{
+						"image": "garima0079/nodeimage",
 						"restart": "always",
-						"ports": ["5555:2375"],
-						"command": "[concat('manage token://',parameters('swarmClusterId'))]"
+						"command": "[concat('agent ', parameters('autoscaleConfig'))]"
 					}
 				}
 			}
@@ -375,10 +365,11 @@
 					"port": "2375"
 				},
 				"compose": {
-					"swarm": {
-						"image": "swarm",
+					"autoscale":{
+						"image": "garima0079/nodeimage",
 						"restart": "always",
-						"command": "[concat('join --addr=', reference(concat(variables('nicName'), copyIndex())).ipConfigurations[0].properties.privateIPAddress, ':2375 token://',parameters('swarmClusterId'))]"
+						"environment":[ "[concat('HOST_VM=',concat(variables('vmName'), copyIndex()))]"],
+						"command": "[concat('client ', parameters('autoscaleConfig'))]"
 					}
 				}
 			}
