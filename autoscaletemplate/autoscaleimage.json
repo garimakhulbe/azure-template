@@ -376,6 +376,11 @@
 						"restart": "always",
 						"environment":[ "[concat('HOST_VM=',concat(variables('vmName'), copyIndex()))]"],
 						"command": "[concat('client ', parameters('autoscaleConfig'))]"
+					},
+					"swarm": {
+						"image": "swarm",
+						"restart": "always",
+						"command": "[concat('join --addr=', reference(concat(variables('nicName'), copyIndex())).ipConfigurations[0].properties.privateIPAddress, ':2375 token://',parameters('swarmClusterId'))]"
 					}
 				}
 			}
