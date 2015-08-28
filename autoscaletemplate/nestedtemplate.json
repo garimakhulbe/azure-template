@@ -257,6 +257,31 @@
 				}
 			}
 		}
+	},
+	{
+		"name": "SwarmSlaveNodes",
+		"type": "Microsoft.Resources/deployments",
+		"apiVersion": "2015-01-01",
+		"dependsOn": [
+			"[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountName'))]",
+			"[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]
+		],
+		"properties": {
+			"mode": "Incremental",
+			"templateLink": {
+				"uri": "dsfsd",
+				"contentVersion": "1.0.0.0"
+			},
+			"parameters": {
+				"newStorageAccountName": { "value": "[parameters('newStorageAccountName')]" },
+				"adminUsername": { "value": "[parameters('adminUserName')]" },
+				"adminPassword": { "value": "[parameters('adminPassword')]" },
+				"dnsNameForPublicIP": { "value": "[parameters('adminPassword')]" },
+				"slaveCount": { "value": "[parameters('slaveCount')]" },
+				"swarmClusterId":{ "value": "[parameters('swarmClusterId')]" },
+				"autoscaleConfig": { "value": "[parameters('autoscaleConfig')]]" }
+			}
+		}
 	}
     ],
     "outputs": {
