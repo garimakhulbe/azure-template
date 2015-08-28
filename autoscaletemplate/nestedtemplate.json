@@ -276,7 +276,7 @@
 				"newStorageAccountName": { "value": "[parameters('newStorageAccountName')]" },
 				"adminUsername": { "value": "[parameters('adminUserName')]" },
 				"adminPassword": { "value": "[parameters('adminPassword')]" },
-				"dnsNameForPublicIP": { "value": "[parameters('adminPassword')]" },
+				"dnsNameForPublicIP": { "value": "[parameters('dnsNameForPublicIP')]" },
 				"slaveCount": { "value": "[parameters('slaveCount')]" },
 				"swarmClusterId":{ "value": "[parameters('swarmClusterId')]" },
 				"autoscaleConfig": { "value": "[parameters('autoscaleConfig')]" }
