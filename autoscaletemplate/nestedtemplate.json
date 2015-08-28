@@ -259,27 +259,25 @@
 		}
 	},
 	{
-		"name": "SwarmSlaveNodes",
+		"name": "ConsulCluster",
 		"type": "Microsoft.Resources/deployments",
 		"apiVersion": "2015-01-01",
 		"dependsOn": [
-			"[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountName'))]",
-			"[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]
+			"[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountName'))]"
 		],
 		"properties": {
 			"mode": "Incremental",
 			"templateLink": {
-				"uri": "dsfsd",
+				"uri": "https://raw.githubusercontent.com/gabrielhartmann/azure-quickstart-templates/swarm/consul/azuredeploy.json",
 				"contentVersion": "1.0.0.0"
 			},
 			"parameters": {
 				"newStorageAccountName": { "value": "[parameters('newStorageAccountName')]" },
 				"adminUsername": { "value": "[parameters('adminUserName')]" },
 				"adminPassword": { "value": "[parameters('adminPassword')]" },
-				"dnsNameForPublicIP": { "value": "[parameters('adminPassword')]" },
-				"slaveCount": { "value": "[parameters('slaveCount')]" },
-				"swarmClusterId":{ "value": "[parameters('swarmClusterId')]" },
-				"autoscaleConfig": { "value": "[parameters('autoscaleConfig')]" }
+				"dnsNameForPublicIP": { "value": "consul" },
+				"ubuntuOSVersion": { "value": "[parameters('ubuntuOSVersion')]" },
+				"slaveCount": {"value": 2}
 			}
 		}
 	}
