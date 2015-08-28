@@ -62,7 +62,7 @@
 		"subnetName": "subnet",
 		"addressPrefix": "10.0.0.0/16",
 		"subnetPrefix": "10.0.0.0/24",
-    		"vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
+    		"vnetID": "[resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
 		"subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
 		"vmName": "swarmVM",
 		"vmSize": "Standard_D1",
@@ -72,7 +72,7 @@
 		"OSDiskName": "osdiskforlinuxsimple",
 		"vmStorageAccountContainerName": "vhds",
             	"nsgName" : "swarmNSG",
-            	"nsgID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgName'))]"
+            	"nsgID": "[resourceId(resourceGroup().name,'Microsoft.Network/networkSecurityGroups',variables('nsgName'))]"
     },
     "resources":[
 	{
@@ -102,7 +102,7 @@
 		},
 		"dependsOn": [
 			"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), copyIndex(parameters('slaveCount')))]",
-			"[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"
+			"[resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"
 		],
 		"properties": {
 			"ipConfigurations": [
@@ -131,7 +131,7 @@
 			"count": "[parameters('NodeCount')]"
 		},
 		"dependsOn": [
-			"[resourceId('Microsoft.Storage/storageAccounts', parameters('newStorageAccountName'))]",
+			"[resourceId(resourceGroup().name,'Microsoft.Storage/storageAccounts', parameters('newStorageAccountName'))]",
 			"[concat('Microsoft.Network/networkInterfaces/', variables('nicName'), copyIndex(parameters('slaveCount')))]"
 		],
 		"properties": {
