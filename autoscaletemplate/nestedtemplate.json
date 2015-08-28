@@ -282,7 +282,7 @@
 					"autoscaleConfig": { "value": "[parameters('autoscaleConfig')]]" }
 				}
 			}
-		},
+		}
     ],
     "outputs": {
 	"publicIP": {
