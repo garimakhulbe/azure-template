@@ -170,7 +170,7 @@
 			"count": "[parameters('slaveCount')]"
 		},
 		"dependsOn": [
-			"[concat('Microsoft.Compute/virtualMachines/', variables('vmName'), copyIndex(1)]"
+			"[concat('Microsoft.Compute/virtualMachines/', variables('vmName'), copyIndex(1))]"
 		],
 		"properties": {
 			"publisher": "Microsoft.Azure.Extensions",
