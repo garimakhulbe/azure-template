@@ -43,12 +43,6 @@
 			"metadata": {
 				"description": "Auto scale config file."
 			}	
-		},
-		"NodeCount":{
-			"type": "int",
-			"metadata": {
-				"description": "Auto scale node count."
-			}	
 		}
     },
     "variables": {
