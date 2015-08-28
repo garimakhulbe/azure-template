@@ -78,30 +78,30 @@
 	{
 		"apiVersion": "2015-05-01-preview",
 		"type": "Microsoft.Network/publicIPAddresses",
-		"name": "[concat(variables('publicIPAddressName'), copyIndex(parameters('slaveCount')))]",
+		"name": "[concat(variables('publicIPAddressName'), copyIndex())]",
 		"location": "[variables('location')]",
 		"copy": {
 			"name": "pubIpLoop",
-			"count": "[parameters('NodeCount')]"
+			"count": "[parameters('slaveCount')]"
 		},
 		"properties": {
 			"publicIPAllocationMethod": "[variables('publicIPAddressType')]",
 			"dnsSettings": {
-				"domainNameLabel": "[concat(parameters('dnsNameForPublicIP'), copyIndex(parameters('slaveCount')))]"
+				"domainNameLabel": "[concat(parameters('dnsNameForPublicIP'), copyIndex())]"
 			}
 		}
 	},
 	{
 		"apiVersion": "2015-05-01-preview",
 		"type": "Microsoft.Network/networkInterfaces",
-		"name": "[concat(variables('nicName'),copyIndex(parameters('slaveCount')))]",
+		"name": "[concat(variables('nicName'),copyIndex())]",
 		"location": "[variables('location')]",
 		"copy": {
 			"name": "nicLoop",
-			"count": "[parameters('NodeCount')]"
+			"count": "[parameters('slaveCount')]"
 		},
 		"dependsOn": [
-			"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), copyIndex(parameters('slaveCount')))]"
+			"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), copyIndex())]"
 		],
 		"properties": {
 			"ipConfigurations": [
@@ -110,7 +110,7 @@
 					"properties": {
 						"privateIPAllocationMethod": "Dynamic",
 						"publicIPAddress": {
-							"id": "[resourceId('Microsoft.Network/publicIPAddresses',concat(variables('publicIPAddressName'), copyindex(parameters('slaveCount'))))]"
+							"id": "[resourceId('Microsoft.Network/publicIPAddresses',concat(variables('publicIPAddressName'), copyindex()))]"
 						},
 						"subnet": {
 							"id": "[variables('subnetRef')]"
@@ -123,21 +123,21 @@
 	{
 		"apiVersion": "2015-05-01-preview",
 		"type": "Microsoft.Compute/virtualMachines",
-		"name": "[concat(variables('vmName'), copyIndex(parameters('slaveCount')))]",
+		"name": "[concat(variables('vmName'), copyIndex())]",
 		"location": "[variables('location')]",
 		"copy": {
 			"name": "vmLoop",
-			"count": "[parameters('NodeCount')]"
+			"count": "[parameters('slaveCount')]"
 		},
 		"dependsOn": [
-			"[concat('Microsoft.Network/networkInterfaces/', variables('nicName'), copyIndex(parameters('slaveCount')))]"
+			"[concat('Microsoft.Network/networkInterfaces/', variables('nicName'), copyIndex())]"
 		],
 		"properties": {
 			"hardwareProfile": {
 				"vmSize": "[variables('vmSize')]"
 			},
 			"osProfile": {
-				"computername": "[concat(variables('vmName'), copyIndex(parameters('slaveCount')))]",
+				"computername": "[concat(variables('vmName'), copyIndex()]",
 				"adminUsername": "[parameters('adminUsername')]",
 				"adminPassword": "[parameters('adminPassword')]"
 			},
@@ -151,7 +151,7 @@
 				"osDisk" : {
 					"name": "osdisk-slave",
 					"vhd": {
-						"uri": "[concat('http://', parameters('newStorageAccountName'), '.blob.core.windows.net/', variables('vmStorageAccountContainerName'), '/', variables('OSDiskName'), copyIndex(parameters('slaveCount')), '-osdisk.vhd')]"
+						"uri": "[concat('http://', parameters('newStorageAccountName'), '.blob.core.windows.net/', variables('vmStorageAccountContainerName'), '/', variables('OSDiskName'), copyIndex(), '-osdisk.vhd')]"
 					},
 					"caching": "ReadWrite",
 					"createOption": "FromImage"
@@ -168,15 +168,15 @@
 	},
 	{
 		"type": "Microsoft.Compute/virtualMachines/extensions",
-		"name": "[concat(variables('vmName'), copyIndex(parameters('slaveCount')), '/', variables('extensionName'))]",
+		"name": "[concat(variables('vmName'), copyIndex(), '/', variables('extensionName'))]",
 		"apiVersion": "2015-05-01-preview",
 		"location": "[variables('location')]",
 		"copy": {
 			"name": "extLoop",
-			"count": "[parameters('NodeCount')]"
+			"count": "[parameters('slaveCount')]"
 		},
 		"dependsOn": [
-			"[concat('Microsoft.Compute/virtualMachines/', variables('vmName'), copyIndex(parameters('slaveCount')))]"
+			"[concat('Microsoft.Compute/virtualMachines/', variables('vmName'), copyIndex())]"
 		],
 		"properties": {
 			"publisher": "Microsoft.Azure.Extensions",
@@ -190,13 +190,13 @@
 					"autoscale":{
 						"image": "garima0079/nodeimage",
 						"restart": "always",
-						"environment":[ "[concat('HOST_VM=',concat(variables('vmName'), copyIndex(parameters('slaveCount'))))]"],
+						"environment":[ "[concat('HOST_VM=',concat(variables('vmName'), copyIndex()))]"],
 						"command": "[concat('client ', parameters('autoscaleConfig'))]"
 					},
 					"swarm": {
 						"image": "swarm",
 						"restart": "always",
-						"command": "[concat('join --addr=', reference(concat(variables('nicName'), copyIndex(parameters('slaveCount')))).ipConfigurations[0].properties.privateIPAddress, ':2375 token://',parameters('swarmClusterId'))]"
+						"command": "[concat('join --addr=', reference(concat(variables('nicName'), copyIndex())).ipConfigurations[0].properties.privateIPAddress, ':2375 token://',parameters('swarmClusterId'))]"
 					}
 				}
 			}
