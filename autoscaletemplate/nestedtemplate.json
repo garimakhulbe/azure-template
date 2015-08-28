@@ -279,7 +279,7 @@
 				"dnsNameForPublicIP": { "value": "[parameters('adminPassword')]" },
 				"slaveCount": { "value": "[parameters('slaveCount')]" },
 				"swarmClusterId":{ "value": "[parameters('swarmClusterId')]" },
-				"autoscaleConfig": { "value": "[parameters('autoscaleConfig')]]" }
+				"autoscaleConfig": { "value": "[parameters('autoscaleConfig')]" }
 			}
 		}
 	}
