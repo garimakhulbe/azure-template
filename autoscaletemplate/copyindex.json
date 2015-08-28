@@ -102,7 +102,7 @@
 		},
 		"dependsOn": [
 			"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), copyIndex(parameters('slaveCount')))]",
-			"[resourceId('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
+			"[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"
 		],
 		"properties": {
 			"ipConfigurations": [
@@ -131,7 +131,7 @@
 			"count": "[parameters('NodeCount')]"
 		},
 		"dependsOn": [
-			"[resourceId('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountName'))]",
+			"[resourceId('Microsoft.Storage/storageAccounts', parameters('newStorageAccountName'))]",
 			"[concat('Microsoft.Network/networkInterfaces/', variables('nicName'), copyIndex(parameters('slaveCount')))]"
 		],
 		"properties": {
