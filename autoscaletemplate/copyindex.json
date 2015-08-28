@@ -72,7 +72,7 @@
 	{
 		"apiVersion": "2015-05-01-preview",
 		"type": "Microsoft.Network/publicIPAddresses",
-		"name": "[concat(variables('publicIPAddressName'), copyIndex(3))]",
+		"name": "[concat(variables('publicIPAddressName'), copyIndex(1))]",
 		"location": "[variables('location')]",
 		"copy": {
 			"name": "pubIpLoop",
@@ -81,21 +81,21 @@
 		"properties": {
 			"publicIPAllocationMethod": "[variables('publicIPAddressType')]",
 			"dnsSettings": {
-				"domainNameLabel": "[concat(parameters('dnsNameForPublicIP'), copyIndex(3))]"
+				"domainNameLabel": "[concat(parameters('dnsNameForPublicIP'), copyIndex(1))]"
 			}
 		}
 	},
 	{
 		"apiVersion": "2015-05-01-preview",
 		"type": "Microsoft.Network/networkInterfaces",
-		"name": "[concat(variables('nicName'),copyIndex(3))]",
+		"name": "[concat(variables('nicName'),copyIndex(1))]",
 		"location": "[variables('location')]",
 		"copy": {
 			"name": "nicLoop",
 			"count": "[parameters('slaveCount')]"
 		},
 		"dependsOn": [
-			"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), copyIndex(3))]"
+			"[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'), copyIndex(1))]"
 		],
 		"properties": {
 			"ipConfigurations": [
@@ -104,7 +104,7 @@
 					"properties": {
 						"privateIPAllocationMethod": "Dynamic",
 						"publicIPAddress": {
-							"id": "[resourceId('Microsoft.Network/publicIPAddresses',concat(variables('publicIPAddressName'), copyIndex(3)))]"
+							"id": "[resourceId('Microsoft.Network/publicIPAddresses',concat(variables('publicIPAddressName'), copyIndex(1)))]"
 						},
 						"subnet": {
 							"id": "[variables('subnetRef')]"
@@ -117,21 +117,21 @@
 	{
 		"apiVersion": "2015-05-01-preview",
 		"type": "Microsoft.Compute/virtualMachines",
-		"name": "[concat(variables('vmName'), copyIndex(3))]",
+		"name": "[concat(variables('vmName'), copyIndex(1))]",
 		"location": "[variables('location')]",
 		"copy": {
 			"name": "vmLoop",
 			"count": "[parameters('slaveCount')]"
 		},
 		"dependsOn": [
-			"[concat('Microsoft.Network/networkInterfaces/', variables('nicName'), copyIndex(3))]"
+			"[concat('Microsoft.Network/networkInterfaces/', variables('nicName'), copyIndex(1))]"
 		],
 		"properties": {
 			"hardwareProfile": {
 				"vmSize": "[variables('vmSize')]"
 			},
 			"osProfile": {
-				"computername": "[concat(variables('vmName'), copyIndex(3))]",
+				"computername": "[concat(variables('vmName'), copyIndex(1))]",
 				"adminUsername": "[parameters('adminUsername')]",
 				"adminPassword": "[parameters('adminPassword')]"
 			},
@@ -145,7 +145,7 @@
 				"osDisk" : {
 					"name": "osdisk-slave",
 					"vhd": {
-						"uri": "[concat('http://', parameters('newStorageAccountName'), '.blob.core.windows.net/', variables('vmStorageAccountContainerName'), '/', variables('OSDiskName'), copyIndex(3), '-osdisk.vhd')]"
+						"uri": "[concat('http://', parameters('newStorageAccountName'), '.blob.core.windows.net/', variables('vmStorageAccountContainerName'), '/', variables('OSDiskName'), copyIndex(1), '-osdisk.vhd')]"
 					},
 					"caching": "ReadWrite",
 					"createOption": "FromImage"
@@ -154,7 +154,7 @@
 			"networkProfile": {
 				"networkInterfaces": [
 					{
-						"id": "[resourceId('Microsoft.Network/networkInterfaces',concat(variables('nicName'), copyIndex(3)))]"
+						"id": "[resourceId('Microsoft.Network/networkInterfaces',concat(variables('nicName'), copyIndex(1)))]"
 					}
 				]
 			}
@@ -162,7 +162,7 @@
 	},
 	{
 		"type": "Microsoft.Compute/virtualMachines/extensions",
-		"name": "[concat(variables('vmName'), copyIndex(3), '/', variables('extensionName'))]",
+		"name": "[concat(variables('vmName'), copyIndex(1), '/', variables('extensionName'))]",
 		"apiVersion": "2015-05-01-preview",
 		"location": "[variables('location')]",
 		"copy": {
@@ -170,7 +170,7 @@
 			"count": "[parameters('slaveCount')]"
 		},
 		"dependsOn": [
-			"[concat('Microsoft.Compute/virtualMachines/', variables('vmName'), copyIndex(3))]"
+			"[concat('Microsoft.Compute/virtualMachines/', variables('vmName'), copyIndex(1))]"
 		],
 		"properties": {
 			"publisher": "Microsoft.Azure.Extensions",
@@ -184,13 +184,13 @@
 					"autoscale":{
 						"image": "garima0079/nodeimage",
 						"restart": "always",
-						"environment":[ "[concat('HOST_VM=',concat(variables('vmName'), copyIndex(3)))]"],
+						"environment":[ "[concat('HOST_VM=',concat(variables('vmName'), copyIndex(1)))]"],
 						"command": "[concat('client ', parameters('autoscaleConfig'))]"
 					},
 					"swarm": {
 						"image": "swarm",
 						"restart": "always",
-						"command": "[concat('join --addr=', reference(concat(variables('nicName'), copyIndex(3))).ipConfigurations[0].properties.privateIPAddress, ':2375 token://',parameters('swarmClusterId'))]"
+						"command": "[concat('join --addr=', reference(concat(variables('nicName'), copyIndex(1))).ipConfigurations[0].properties.privateIPAddress, ':2375 token://',parameters('swarmClusterId'))]"
 					}
 				}
 			}
