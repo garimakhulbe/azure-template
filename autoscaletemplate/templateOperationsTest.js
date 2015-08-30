@@ -5,95 +5,131 @@ var fs = require("fs"),
 
 
 
-var templateUri = 'https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/azuredeployment.json';
+var templateUri = 'https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/nestedtemplate.json';
 var parameterUri = 'https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/deploymentparameters.json';
 
 var deploymentTemplate = 'deploymentTemplate.json';
 var fileDir = 'C:\\Users\\t-gakhu\\files';
 var self;
+var template = {};
 //var log = logger.LOG;
 
-function TemplateOperations(templateUri, parameterUri) {
-    if (templateUri === null || templateUri === undefined) {
-        throw new Error('TEMPLATEURI CANNOT BE NULL.');
-    }
-    
-    if (parameterUri === null || parameterUri === undefined) {
-        throw new Error('PARAMETERURI CANNOT BE NULL.');
-    }
-    this.templateUri = templateUri;
-    this.parameterUri = parameterUri;
+function TemplateOperations() {
     this.deploymentTemplate = path.normalize(fileDir + '\\' + deploymentTemplate);
 };
 
+
+function getResourceManagementClient(subscriptionId, token) {
+    var resourceManagementClient = resourceManagement.createResourceManagementClient(new common.TokenCloudCredentials({
+        subscriptionId: subscriptionId,
+        token: token
+    }));
+    
+    return resourceManagementClient;
+}
 
 
 TemplateOperations.prototype.getDeploymentTemplate = function (callback) {
     self = this;
     
-    try {
-        if (!fs.existsSync(self.deploymentTemplate)) {
-            
-            downloadJson(self.templateUri, 'template', function (err, templateFilePath) {
-                if (err) {
-                    return callback(err.message, null);
-                }
-                
-                downloadJson(self.parameterUri, 'parameter', function (err, parameterFilePath) {
-                    if (err) {
-                        return callback(err.message, null);
-                    }
-                    
-                    try {
-                        //console.log(parameterFilePath)
-                        var jsonTemplateObj = JSON.parse(fs.readFileSync(templateFilePath, 'utf8'));
-                        var jsonParameterObj = JSON.parse(fs.readFileSync(parameterFilePath, 'utf8'));
-                        
-                        var temp = JSON.parse(JSON.stringify(jsonParameterObj, null, 4));
-                       
-                        var resources = [];
-                        
-                        console.log(jsonTemplateObj.resources.length);
-                        for (var i = 0; i < jsonTemplateObj.resources.length; i++) {
-                            if (jsonTemplateObj.resources[i].name.toLowerCase().indexOf("copyindex") > -1) {
-                                //console.log(jsonTemplateObj.resources[i].name);
-                                resources.push(jsonTemplateObj.resources[i]);
-                            }
-                        }
+    var rg = resourcegroup;
+    var armtClient = getResourceManagementClient(subscriptionId, token); // resourceManagementClient;
+    
+    armtClient.deploymentOperations.get(rg, "SwarmSlaveNodesDeployment", function (err, result) {
+        if (err) {
+            return callback(err.message, null);
+        }
 
-                        resources = JSON.parse(JSON.stringify(resources, null, 4).replace(/copyIndex\([0-9]*\)/gi, 'copyIndex(INDEX)'));
-                        for (var i = 0; i < resources.length; i++) {
-                            resources[i]
-                        }                 
-                        temp.resources = resources;
-                        
-                        var armTemplate = {
-                            "properties": {
-                                "template": temp,
-                                "mode": "Incremental",
-                                "parameters": jsonParameterObj.parameters
-                            }
-                        }
-                        
-                        console.log('ARM'+armTemplate);
-                        
-                        fs.writeFileSync(self.deploymentTemplate, JSON.stringify(armTemplate, null, 4));
-                        var template = JSON.parse(fs.readFileSync(self.deploymentTemplate, 'utf8'));
-                        callback(null, template);
-                    } catch (e) {
-                        callback(e, null);
-                    }
+        result
+    });
+
+
+    //try {
+    //    //if (!fs.existsSync(self.deploymentTemplate)) {
+        
+    //    downloadJson(self.templateUri, 'template', function (err, templateFilePath) {
+    //        if (err) {
+    //            return callback(err.message, null);
+    //        }
+            
+            
+    //        try {
+    //            //console.log(parameterFilePath)
+    //            var jsonTemplateObj = JSON.parse(fs.readFileSync(templateFilePath, 'utf8'));
                 
-                });
-            });
-        }
-        else {
-            var template = JSON.parse(fs.readFileSync(self.deploymentTemplate, 'utf8'));
-            callback(null, template);
-        }
-    } catch (e) {
-        callback(e, null);
-    }
+    //            //console.log(jsonTemplateObj);
+                
+                
+                
+    //            for (var i = 0; i < jsonTemplateObj.resources.length; i++) {
+    //                if ((jsonTemplateObj.resources[i].type.toLowerCase().indexOf("deployments") > -1)) {
+    //                    template.properties = jsonTemplateObj.resources[i].properties;
+    //                    break;
+    //                }
+    //            }
+                
+    //            downloadJson(template.properties.templateLink.uri, 'deployment', function (err, templatePath) {
+    //                if (err) {
+    //                    return callback(err.message, null);
+    //                }
+
+    //                var jsonDeployemntTemplateObj = JSON.parse(fs.readFileSync(templatePath, 'utf8'));
+    //                console.log(jsonDeployemntTemplateObj);
+    //                jsonDeployemntTemplateObj = JSON.parse(JSON.stringify(jsonDeployemntTemplateObj, null, 4).replace(/copyIndex\([0-9]*\)/gi, 'copyIndex(INDEX)'));
+                    
+    //                template.properties.templateLink = null;
+    //                template.properties.template = jsonDeployemntTemplateObj;
+                   
+    //                fs.writeFileSync(self.deploymentTemplate, JSON.stringify(template, null, 4));
+    //                console.log(template);
+    //            });
+
+                                                     
+    //                //var temp = JSON.parse(JSON.stringify(jsonTemplateObj, null, 4));
+                    
+    //                //var resources = [];
+                    
+    //                //console.log(jsonTemplateObj.resources.length);
+    //                //for (var i = 0; i < jsonTemplateObj.resources.length; i++) {
+    //                //    if (jsonTemplateObj.resources[i].name.toLowerCase().indexOf("copyindex") > -1) {
+    //                //        //console.log(jsonTemplateObj.resources[i].name);
+    //                //        resources.push(jsonTemplateObj.resources[i]);
+    //                //    }
+    //                //}
+                    
+    //                //resources = JSON.parse(JSON.stringify(resources, null, 4).replace(/copyIndex\([0-9]*\)/gi, 'copyIndex(INDEX)'));
+    //                //for (var i = 0; i < resources.length; i++) {
+    //                //    resources[i]
+    //                //}
+    //                //temp.resources = resources;
+                    
+    //                //var armTemplate = {
+    //                //    "properties": {
+    //                //        "template": temp,
+    //                //        "mode": "Incremental",
+    //                //        "parameters": jsonParameterObj.parameters
+    //                //    }
+    //                //}
+                    
+    //                //console.log('ARM' + armTemplate);
+                    
+    //                //fs.writeFileSync(self.deploymentTemplate, JSON.stringify(armTemplate, null, 4));
+    //                //var template = JSON.parse(fs.readFileSync(self.deploymentTemplate, 'utf8'));
+    //                //callback(null, template);
+    //        } catch (e) {
+    //            callback(e, null);
+    //        }
+                
+    //    });
+
+    //    //}
+    //    //else {
+    //    //    var template = JSON.parse(fs.readFileSync(self.deploymentTemplate, 'utf8'));
+    //    //    callback(null, template);
+    //    //}
+    //} catch (e) {
+    //    callback(e, null);
+    //}
 }
 
 function downloadJson(url, file, callback) {
@@ -114,7 +150,7 @@ function downloadJson(url, file, callback) {
             }
             
             try {
-                var name = fileDir + '//' + file + '.json';
+                var name = fileDir + '\\' + file + '.json';
                 //console.log('name' + name);
                 fs.writeFileSync(name, body);
                 callback(null, name);
@@ -135,9 +171,8 @@ function downloadJson(url, file, callback) {
 
 
 
-var t = new TemplateOperations(templateUri, parameterUri);
+var t = new TemplateOperations(templateUri);
 t.getDeploymentTemplate(function (err, template) {
-    //console.log(template);
     console.log('ERR'+err);
 });
 
