@@ -10,9 +10,7 @@
 		},
 		"Autoscale":{
 			"enabled": "true",
-			"ResourceGroup": "TestRGIntern1",
-			"DeploymentTemplateURI":"https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/copyindex.json",
-			"DeplymentParameterFileURI" : "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/deploymentparameters.json",
+			"ResourceGroup": "TestRGIntern2",
 			"NodeCount": 1,
 			"ThresholdPercentage": {
 				"Upper" : "80",
