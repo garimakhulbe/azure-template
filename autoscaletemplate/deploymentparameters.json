@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "newStorageAccountName": {
-                "value": "garstoragetestswarm21"
+                "value": "garstoragetestswarm3"
         },
         "adminUsername": {
                 "value": "test-user"
@@ -12,13 +12,13 @@
                 "value": "Abcd1234@"
         },
         "dnsNameForPublicIP": {
-                "value": "domainip-testinternswarm21"
+                "value": "domainip-testinternswarm3"
         },
         "slaveCount": {
             "value": 1
         },
         "swarmClusterId": {
-            "value": "05c29bbb486aea8f9b19b97590418b5a"
+            "value": "a08e89f9a13f7514fad7226e002d7938"
         },
         "autoscaleConfig":{
             "value": "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/inputparameters.json"
