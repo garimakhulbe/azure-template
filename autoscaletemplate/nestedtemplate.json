@@ -131,7 +131,7 @@
 						"description": "Docker swarm endpoint",
 						"protocol": "Tcp",
 						"sourcePortRange": "*",
-						"destinationPortRange": "5555",
+						"destinationPortRange": "2376",
 						"sourceAddressPrefix": "*",
 						"destinationAddressPrefix": "*",
 						"access": "Allow",
@@ -249,9 +249,9 @@
 						"command": "[concat('agent ', parameters('autoscaleConfig'))]"
 					},
 					"swarm": {
-						"image": "garima0079/swarmimage",
+						"image": "garima0079/swarm",
 						"restart": "always",
-						"ports": ["5555:2375"],
+						"ports": ["2376:2375"],
 						"command": "[concat('manage token://',parameters('swarmClusterId'))]"
 					}
 				}
