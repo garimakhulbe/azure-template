@@ -249,7 +249,7 @@
 						"command": "[concat('agent ', parameters('autoscaleConfig'))]"
 					},
 					"swarm": {
-						"image": "swarm",
+						"image": "garima0079/swarmimage",
 						"restart": "always",
 						"ports": ["5555:2375"],
 						"command": "[concat('manage token://',parameters('swarmClusterId'))]"
