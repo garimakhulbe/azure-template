@@ -252,7 +252,7 @@
 						"image": "garima0079/swarm",
 						"restart": "always",
 						"ports": ["2376:2375"],
-						"command": "[concat('manage --debug token://',parameters('swarmClusterId'))]"
+						"command": "[concat('--debug manage token://',parameters('swarmClusterId'))]"
 					}
 				}
 			}
