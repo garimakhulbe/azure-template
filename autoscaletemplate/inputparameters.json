@@ -10,7 +10,7 @@
 		},
 		"Autoscale":{
 			"enabled": "true",
-			"ResourceGroup": "TestRGIntern1",
+			"ResourceGroup": "TestRGIntern3",
 			"NodeCount": 2,
 			"ThresholdPercentage": {
 				"Upper" : "80",
