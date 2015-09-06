@@ -188,7 +188,7 @@
 						"command": "[concat('client ', parameters('autoscaleConfig'))]"
 					},
 					"swarm": {
-						"image": "garima0079/swarm1",
+						"image": "garima0079/swarm",
 						"restart": "always",
 						"command": "[concat('join --addr=', reference(concat(variables('nicName'), copyIndex())).ipConfigurations[0].properties.privateIPAddress, ':2375 token://',parameters('swarmClusterId'))]"
 					}
