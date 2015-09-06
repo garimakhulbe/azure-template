@@ -5,12 +5,12 @@
 			"ClientId":"619523f4-e9b7-4234-adae-a868b1ce6870",
 			"ClientSecret": "Abcd1234@",
 			"SubscriptionId": "5f20c827-31e2-4f17-9127-da8968795689",
-			"StorageAccountName": "garstorageinternaccount",
-			"StorageAccessKey": "jsIETnpnMyWNMcrA5XPDcULzesBcphMnKWuYVqoEUXIWXL4hqLqXVdgDlxK1X769W/3BOzVBZf6H/ZsPWd3BVQ=="
+			"StorageAccountName": "testintern1",
+			"StorageAccessKey": "kP7x8aik+q8lhC5EohAyk26/oL76M2G37GLIUASHYl5ib0AppwF8qlGFra11PHaBVOhXnvlojnlKpc/VmtNGPw=="
 		},
 		"Autoscale":{
 			"enabled": "true",
-			"ResourceGroup": "TestRGIntern2",
+			"ResourceGroup": "TestRGIntern1",
 			"NodeCount": 1,
 			"ThresholdPercentage": {
 				"Upper" : "80",
