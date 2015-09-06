@@ -5,12 +5,12 @@
 			"ClientId":"619523f4-e9b7-4234-adae-a868b1ce6870",
 			"ClientSecret": "Abcd1234@",
 			"SubscriptionId": "5f20c827-31e2-4f17-9127-da8968795689",
-			"StorageAccountName": "testintern3",
-			"StorageAccessKey": "1N6sxy7r/ROapMAlrg6hlEvrx0KtbZiaMfDdOTbrdpOrWGTkV51+OsD+w7pHFyQXB6y2VxhvNsXmE8m+Dhz8QA=="
+			"StorageAccountName": "testintern4",
+			"StorageAccessKey": "8I0AR7w+34D+jmUB6XRMM6Rv3E1VDwN97Jpck435ck7d8TW3AlzoUFzUAxfupW2UCQcEa8gdOwPnV5MZQlMJGw=="
 		},
 		"Autoscale":{
 			"enabled": "true",
-			"ResourceGroup": "TestRGIntern3",
+			"ResourceGroup": "TestRGIntern4",
 			"NodeCount": 1,
 			"ThresholdPercentage": {
 				"Upper" : "80",
