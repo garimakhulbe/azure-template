@@ -39,12 +39,63 @@
 				"description": "Swarm cluster id"
 			}
 		},
+		"nodeCount":{
+			"type": "Int",
+			"defaultValue" : 1,
+			"metadata": {
+				"description": "Node count for autoscale"
+			}
+		},
+		"upperThresholdForCPUUsage":{
+			"type": "Int",
+			"defaultValue" : 80,
+			"metadata": {
+				"description": "Upper threshold of the CPU usage for autoscaling"
+			}
+		},
+		"clientId":{
+			"type": "string",
+			"metadata": {
+				"description": "Client Id"
+			}
+		},
+		"clientSecret":{
+			"type": "string",
+			"metadata": {
+				"description": "Client secret"
+			}
+		},
+		"subscriptionId":{
+			"type": "string",
+			"metadata": {
+				"description": "Subscription id"
+			}
+		},
+		"tenantId":{
+			"type": "string",
+			"metadata": {
+				"description": "Tenant id"
+			}
+		},
+		"stroageAccount":{
+			"type": "string",
+			"metadata": {
+				"description": "Storage Account to store CPU usage"
+			}
+		},
+		"stroageKey":{
+			"type": "string",
+			"metadata": {
+				"description": "Storage key to access storage account"
+			}
+		},
 		"autoscaleConfig":{
 			"type": "string",
 			"metadata": {
-				"description": "Auto scale config file."
-			}	
+				"description": "Autoscale config file"
+			}
 		}
+		
     },
     "variables": {
     		"location": "East US",
@@ -246,6 +297,12 @@
 					"autoscale":{
 						"image": "garima0079/autoscale",
 						"restart": "always",
+						"environment":[ 
+							"[concat('SUBSCRIPTION_ID=',parameters('subscriptionId))]",
+							"[concat('CLIENT_ID=',parameters('clientId))]",
+							"[concat('CLIENT_SECRET=',parameters('clientSecret))]",
+							"[concat('TENANT_ID=',parameters('tenantId'))]"
+						],
 						"command": "[concat('agent ', parameters('autoscaleConfig'))]"
 					},
 					"swarm": {
@@ -279,7 +336,9 @@
 				"dnsNameForPublicIP": { "value": "[parameters('dnsNameForPublicIP')]" },
 				"slaveCount": { "value": "[parameters('slaveCount')]" },
 				"swarmClusterId":{ "value": "[parameters('swarmClusterId')]" },
-				"autoscaleConfig": { "value": "[parameters('autoscaleConfig')]" }
+				"autoscaleConfig": { "value": "[parameters('autoscaleConfig')]" },
+				"nodeCount": {"value": "[parameters('nodeCount')]]",
+				
 			}
 		}
 	}
