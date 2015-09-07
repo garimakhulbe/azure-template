@@ -77,13 +77,13 @@
 				"description": "Tenant id"
 			}
 		},
-		"stroageAccount":{
+		"storageAccount":{
 			"type": "string",
 			"metadata": {
 				"description": "Storage Account to store CPU usage"
 			}
 		},
-		"stroageKey":{
+		"storageKey":{
 			"type": "string",
 			"metadata": {
 				"description": "Storage key to access storage account"
@@ -332,9 +332,9 @@
 				"nodeCount": { "value": "[parameters('nodeCount')]" },
 				"swarmClusterId":{ "value": "[parameters('swarmClusterId')]" },
 				"autoscaleConfig": { "value": "[parameters('autoscaleConfig')]" },
-				"nodeCount": {"value": "[parameters('upperThresholdForCPUUsage')]]" },
-				"nodeCount": {"value": "[parameters('storageAccount')]]" },
-				"nodeCount": {"value": "[parameters('storageKey')]]" }
+				"upperThresholdForCPUUsage": {"value": "[parameters('upperThresholdForCPUUsage')]]" },
+				"storageAccount": {"value": "[parameters('storageAccount')]]" },
+				"storageKey": {"value": "[parameters('storageKey')]]" }
 			}
 		}
 	}
