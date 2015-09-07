@@ -6,7 +6,7 @@
 			"ClientSecret": "Abcd1234@",
 			"SubscriptionId": "5f20c827-31e2-4f17-9127-da8968795689",
 			"StorageAccountName": "testintern5",
-			"StorageAccessKey": "8I0AR7w+34D+jmUB6XRMM6Rv3E1VDwN97Jpck435ck7d8TW3AlzoUFzUAxfupW2UCQcEa8gdOwPnV5MZQlMJGw=="
+			"StorageAccessKey": "OfYZjvjUBhrPtLV6RQiJBCZPtwCDsPUvVBb7DTvWRPj80ES7KV0j487maaza9tQhw58na9aWk0/AbcgRnQAgoA=="
 		},
 		"Autoscale":{
 			"enabled": "true",
