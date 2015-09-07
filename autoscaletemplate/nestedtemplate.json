@@ -298,10 +298,7 @@
 						"image": "garima0079/autoscale",
 						"restart": "always",
 						"environment":[ 
-							"[concat('SUBSCRIPTION_ID=',parameters('subscriptionId))],
-							"[concat('CLIENT_ID=',parameters('clientId))],
-							"[concat('CLIENT_SECRET=',parameters('clientSecret))],
-							"[concat('TENANT_ID=',parameters('tenantId'))]"
+							"[concat('SUBSCRIPTION_ID=',parameters('subscriptionId))], [concat('CLIENT_ID=',parameters('clientId))],[concat('CLIENT_SECRET=',parameters('clientSecret))],[concat('TENANT_ID=',parameters('tenantId'))]"
 						],
 						"command": "[concat('agent ', parameters('autoscaleConfig'))]"
 					},
