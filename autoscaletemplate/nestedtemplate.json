@@ -335,6 +335,7 @@
 				"adminPassword": { "value": "[parameters('adminPassword')]" },
 				"dnsNameForPublicIP": { "value": "[parameters('dnsNameForPublicIP')]" },
 				"slaveCount": { "value": "[parameters('slaveCount')]" },
+				"nodeCount": { "value": "[parameters('nodeCount')]" },
 				"swarmClusterId":{ "value": "[parameters('swarmClusterId')]" },
 				"autoscaleConfig": { "value": "[parameters('autoscaleConfig')]" },
 				"nodeCount": {"value": "[parameters('upperThresholdForCPUUsage')]]" },
