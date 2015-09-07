@@ -333,8 +333,8 @@
 				"swarmClusterId":{ "value": "[parameters('swarmClusterId')]" },
 				"autoscaleConfig": { "value": "[parameters('autoscaleConfig')]" },
 				"nodeCount": {"value": "[parameters('upperThresholdForCPUUsage')]]" },
-				"nodeCount": {"value": "[parameters('stroageAccount')]]" },
-				"nodeCount": {"value": "[parameters('stroageKey')]]" }
+				"nodeCount": {"value": "[parameters('storageAccount')]]" },
+				"nodeCount": {"value": "[parameters('storageKey')]]" }
 			}
 		}
 	}
