@@ -95,13 +95,6 @@
 			"metadata": {
 				"description": "Storage key to access storage account"
 			}
-		},
-		"autoscaleConfig":{
-			"type": "string",
-			"defaultValue" : "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/inputparameters.json",
-			"metadata": {
-				"description": "Autoscale config file"
-			}
 		}
 		
     },
@@ -346,7 +339,6 @@
 				"slaveCount": { "value": "[parameters('slaveCount')]" },
 				"nodeCount": { "value": "[parameters('nodeCount')]" },
 				"swarmClusterId":{ "value": "[parameters('swarmClusterId')]" },
-				"autoscaleConfig": { "value": "[parameters('autoscaleConfig')]" },
 				"upperThresholdForCPUUsage": {"value": "[parameters('upperThresholdForCPUUsage')]" },
 				"storageAccount": {"value": "[parameters('storageAccount')]" },
 				"storageKey": {"value": "[parameters('storageKey')]" }
