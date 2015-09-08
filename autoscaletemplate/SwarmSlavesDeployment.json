@@ -155,9 +155,13 @@
         },
         {
             "type":"Microsoft.Compute/virtualMachines/extensions",
-            "name":"[concat(variables('vmNameSlave'), '/DockerExtension')]",
+            "name":"[concat(variables('vmNameSlave'),copyIndex(), '/DockerExtension')]",
             "apiVersion":"2015-05-01-preview",
             "location":"[resourceGroup().location]",
+            "copy": {
+    			"name": "extLoop",
+    			"count": "[parameters('slaveCount')]"
+		    },
             "dependsOn":[
                 "[concat('Microsoft.Compute/virtualMachines/', variables('vmNameSlave'), copyIndex())]"
             ],
