@@ -17,6 +17,7 @@
 		},
 		"adminPassword": {
 			"type": "string",
+			"defaultValue" : "Abcd1234@",
 			"metadata": {
 				"description": "Password for the Virtual Machine."
 			}
@@ -83,6 +84,7 @@
 		},
 		"storageAccount":{
 			"type": "string",
+			"defaultValue" : "testintern5",
 			"metadata": {
 				"description": "Storage Account to store CPU usage"
 			}
@@ -96,7 +98,7 @@
 		},
 		"autoscaleConfig":{
 			"type": "string",
-			"defaultVale" : "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/inputparameters.json",
+			"defaultValue" : "https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/inputparameters.json",
 			"metadata": {
 				"description": "Autoscale config file"
 			}
