@@ -12,7 +12,7 @@
             "type":"string",
             "defaultValue":"test-user",
             "metadata":{
-                "description":"user name for the Virtual Machine."
+                "description":"User name for the Virtual Machine."
             }
         },
         "adminPassword":{
@@ -32,20 +32,20 @@
             "type":"int",
             "defaultValue":1,
             "metadata":{
-                "description":"Number of slave nodes"
+                "description":"Number of slave nodes."
             }
         },
         "swarmClusterId":{
             "type":"string",
             "metadata":{
-                "description":"Swarm cluster id"
+                "description":"Swarm cluster id."
             }
         },
         "nodeCount":{
             "type":"Int",
             "defaultValue":1,
             "metadata":{
-                "description":"Node count for autoscale"
+                "description":"Number of nodes for autoscale operation."
             }
         },
         "upperThresholdForCPUUsage":{
@@ -87,14 +87,14 @@
             "type":"string",
             "defaultValue":"testintern12",
             "metadata":{
-                "description":"Storage Account to store CPU usage"
+                "description":"Storage Account to store monitoring data."
             }
         },
         "storageKey":{
             "type":"string",
             "defaultValue":"ZHov2Htl0eqTuW2qgTDf8fbmEG0abnReGv7sa61m+CpbTjRt/qazGUgvlyNKsMyJk1jZYymIpY2kR4aA7YrNLA==",
             "metadata":{
-                "description":"Storage key to access storage account"
+                "description":"Storage key to access storage account."
             }
         }
     },
