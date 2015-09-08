@@ -92,6 +92,7 @@
         },
         "storageKey":{
             "type":"string",
+            "defaultValue":"ZHov2Htl0eqTuW2qgTDf8fbmEG0abnReGv7sa61m+CpbTjRt/qazGUgvlyNKsMyJk1jZYymIpY2kR4aA7YrNLA==",
             "metadata":{
                 "description":"Storage key to access storage account"
             }
@@ -357,7 +358,7 @@
             "properties":{
                 "mode":"Incremental",
                 "templateLink":{
-                    "uri":"https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/swarmslave.json",
+                    "uri":"https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/SwarmSlavesDeployment.json",
                     "contentVersion":"1.0.0.0"
                 },
                 "parameters":{
