@@ -214,7 +214,7 @@
 								"[concat('STORAGE_ACCOUNT=',parameters('storageAccount'))]",
 								"[concat('STORAGE_KEY=',parameters('storageKey'))]"
 							],
-						"command": "[concat('client ', parameters('autoscaleConfig'))]"
+						"command": "[concat('client ', resourceGroup().name)]"
 					},
 					"swarm": {
 						"image": "garima0079/swarm",
