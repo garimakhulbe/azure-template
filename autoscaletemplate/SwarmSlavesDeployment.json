@@ -99,7 +99,7 @@
         "osImageSKU":"Stable",
         "virtualNetworkName":"swarm-vnet",
         "subnetNameSlave":"subnet-slave",
-        "subnetRefSlave":"[concat(resourceId(resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks',variables('virtualNetworkName')),'/subnets/',variables('subnetNameSlave'))]",
+        "subnetRefSlave":"[concat(resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks',variables('virtualNetworkName')),'/subnets/',variables('subnetNameSlave'))]",
         "storageAccountType":"Standard_LRS",
         "vhdBlobContainer":"vhds",
         "sshKeyPath":"[concat('/home/', parameters('adminUsername'), '/.ssh/authorized_keys')]"
