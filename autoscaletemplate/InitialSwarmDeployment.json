@@ -94,6 +94,13 @@
             "metadata":{
                 "description":"Storage key to access storage account."
             }
+        },
+        "sshPublicKey": {
+              "type": "securestring",
+              "defaultValue":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzCs12ykWaGBaCS3QOqBxWRvVURphuc+kdLbbj5u+E4Z8pZUGJYrePiyOhLKkyFKqb3MMRAjJKf61SxO9/HKRsyhLgi3vrOqMJhZuCbd1q+D5ZGfWOKFnzeRaDHP0VFnEyddrIpo0p4teYa8Bc88yOW5jccYiAcLAhc9elZ6kMglwtxkP4fNzlQGaxiqrVKsknGzkEs0D7rORAc58PB2CqQNaCJywFrm6nHaO/ACT2PaTUX9hJUoRbYaJBzUqUCgdlLZYg6j9JBm9b9HPR9+sEISF4ydO7TyyuA2G58/16Kxa9qQMnvDCebVg0vRRjezVXyPWwDQBjzwMOHIMrCRev test-user@swarmVM0",
+              "metadata": {
+                "description": "SSH public key for the Virtual Machines."
+            }
         }
     },
     "variables":{
@@ -281,7 +288,17 @@
                 "osProfile":{
                     "computername":"[variables('vmNameMaster')]",
                     "adminUsername":"[parameters('adminUsername')]",
-                    "adminPassword":"[parameters('adminPassword')]"
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": "true",
+                        "ssh": {
+                          "publicKeys": [
+                            {
+                              "path": "[variables('sshKeyPath')]",
+                              "keyData": "[parameters('sshPublicKey')]"
+                            }
+                          ]
+                        }
+                    }
                 },
                 "storageProfile":{
                     "imageReference":{
