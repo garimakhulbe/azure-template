@@ -99,8 +99,6 @@
         "osImageSKU":"Stable",
         "virtualNetworkName":"swarm-vnet",
         "subnetNameSlave":"subnet-slave",
-        "addressPrefixSlave":"192.168.0.0/16",
-        "subnetPrefixSlave":"192.168.0.0/24",
         "subnetRefSlave":"[concat(resourceId(resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks',variables('virtualNetworkName')),'/subnets/',variables('subnetNameSlave'))]",
         "storageAccountType":"Standard_LRS",
         "vhdBlobContainer":"vhds",
