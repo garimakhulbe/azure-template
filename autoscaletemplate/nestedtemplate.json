@@ -297,6 +297,13 @@
 					"autoscale":{
 						"image": "garima0079/autoscale",
 						"restart": "always",
+						"environment":[ "[concat('TENANT=',parameters('tenantId'))]",
+								"[concat('SUBSCRIPTION=',parameters('subscriptionId'))]",
+								"[concat('CLIENT_ID=',parameters('clientId'))]",
+								"[concat('CLIENT_SECRET=',parameters('CLIENTSECRET'))]",
+								"[concat('STORAGE_ACCOUNT=',parameters('CLIENTSECRET'))]",
+								"[concat('STORAGE_KEY=',parameters('STORAGE_KEY'))]"
+								],
 						"command": "[concat('agent ', parameters('autoscaleConfig'))]"
 					},
 					"swarm": {
