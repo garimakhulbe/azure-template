@@ -111,11 +111,15 @@
         "subnetNameMaster":"subnet-master",
         "addressPrefixMaster":"10.0.0.0/16",
         "subnetPrefixMaster":"10.0.0.0/24",
+        "subnetNameSlave":"subnet-slave",
+        "addressPrefixSlave":"192.168.0.0/16",
+        "subnetPrefixSlave":"192.168.0.0/24",
         "subnetRefMaster":"[concat(resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName')),'/subnets/',variables('subnetNameMaster'))]",
         "nsgName":"swarm-nsg",
         "nsgID":"[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgName'))]",
         "storageAccountType":"Standard_LRS",
         "vhdBlobContainer":"vhds",
+        "subnetRefSlave":"[concat(resourceId(resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks',variables('virtualNetworkName')),'/subnets/',variables('subnetNameSlave'))]",
         "sshKeyPath":"[concat('/home/', parameters('adminUsername'), '/.ssh/authorized_keys')]"
     },
     "resources":[
