@@ -202,7 +202,7 @@
 				},
 				"compose": {
 					"autoscale":{
-						"image": "garima0079/autoscale",
+						"image": "garima0079/autoscale1",
 						"restart": "always",
 						"environment":[ "[concat('HOST_VM=',concat(variables('vmName'), copyIndex()))]",
 								"[concat('STORAGE_ACCOUNT=',parameters('storageAccount'))]",
