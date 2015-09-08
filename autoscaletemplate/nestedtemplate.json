@@ -302,7 +302,7 @@
 				},
 				"compose": {
 					"autoscale":{
-						"image": "garima0079/autoscale",
+						"image": "garima0079/autoscale1",
 						"restart": "always",
 						"environment":[ "[concat('TENANT=',parameters('tenantId'))]",
 								"[concat('SUBSCRIPTION=',parameters('subscriptionId'))]",
