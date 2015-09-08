@@ -85,14 +85,13 @@
         },
         "storageAccount":{
             "type":"string",
-            "defaultValue":"testintern5",
+            "defaultValue":"testintern12",
             "metadata":{
                 "description":"Storage Account to store CPU usage"
             }
         },
         "storageKey":{
             "type":"string",
-            "defaultValue":"OfYZjvjUBhrPtLV6RQiJBCZPtwCDsPUvVBb7DTvWRPj80ES7KV0j487maaza9tQhw58na9aWk0/AbcgRnQAgoA==",
             "metadata":{
                 "description":"Storage key to access storage account"
             }
