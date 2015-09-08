@@ -210,7 +210,10 @@
 					"autoscale":{
 						"image": "garima0079/autoscale",
 						"restart": "always",
-						"environment":[ "[concat('HOST_VM=',concat(variables('vmName'), copyIndex()))]"],
+						"environment":[ "[concat('HOST_VM=',concat(variables('vmName'), copyIndex()))]",
+								"[concat('STORAGE_ACCOUNT=',parameters('storageAccount'))]",
+								"[concat('STORAGE_KEY=',parameters('storageKey'))]"
+							],
 						"command": "[concat('client ', parameters('autoscaleConfig'))]"
 					},
 					"swarm": {
