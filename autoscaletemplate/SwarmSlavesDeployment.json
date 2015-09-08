@@ -10,14 +10,12 @@
         },
         "adminUsername":{
             "type":"string",
-            "defaultValue":"test-user",
             "metadata":{
                 "description":"user name for the Virtual Machine."
             }
         },
         "adminPassword":{
             "type":"string",
-            "defaultValue":"Abcd1234@",
             "metadata":{
                 "description":"Password for the Virtual Machine."
             }
@@ -81,7 +79,6 @@
         },
         "storageAccount":{
             "type":"string",
-            "defaultValue":"testintern5",
             "metadata":{
                 "description":"Storage Account to store CPU usage"
             }
