@@ -307,9 +307,9 @@
 						"environment":[ "[concat('TENANT=',parameters('tenantId'))]",
 								"[concat('SUBSCRIPTION=',parameters('subscriptionId'))]",
 								"[concat('CLIENT_ID=',parameters('clientId'))]",
-								"[concat('CLIENT_SECRET=',parameters('CLIENTSECRET'))]",
-								"[concat('STORAGE_ACCOUNT=',parameters('CLIENTSECRET'))]",
-								"[concat('STORAGE_KEY=',parameters('STORAGE_KEY'))]"
+								"[concat('CLIENT_SECRET=',parameters('clientSecret'))]",
+								"[concat('STORAGE_ACCOUNT=',parameters('storageAccount'))]",
+								"[concat('STORAGE_KEY=',parameters('storageKey'))]"
 								],
 						"command": "[concat('agent ', parameters('autoscaleConfig'))]"
 					},
