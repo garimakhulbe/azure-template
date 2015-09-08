@@ -53,30 +53,6 @@
                 "description":"Upper threshold of the CPU usage for autoscaling"
             }
         },
-        "clientId":{
-            "type":"string",
-            "metadata":{
-                "description":"Client Id"
-            }
-        },
-        "clientSecret":{
-            "type":"string",
-            "metadata":{
-                "description":"Client secret"
-            }
-        },
-        "subscriptionId":{
-            "type":"string",
-            "metadata":{
-                "description":"Subscription id"
-            }
-        },
-        "tenantId":{
-            "type":"string",
-            "metadata":{
-                "description":"Tenant id"
-            }
-        },
         "storageAccount":{
             "type":"string",
             "metadata":{
