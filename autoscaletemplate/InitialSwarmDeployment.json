@@ -102,6 +102,7 @@
         "vmNameMaster":"swarm-master-",
         "vmSizeMaster":"Standard_A0",
         "availabilitySetMaster":"swarm-master-set",
+        "availabilitySetSlaves":"swarm-nodes-set",
         "osImagePublisher":"CoreOS",
         "osImageOffer":"CoreOS",
         "osImageSKU":"Stable",
