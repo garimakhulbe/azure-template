@@ -10,6 +10,7 @@
 		},
 		"adminUsername": {
 			"type": "string",
+			"defaultValue" : "test-user",
 			"metadata": {
 				"description": "User name for the Virtual Machine."
 			}
@@ -55,18 +56,21 @@
 		},
 		"clientId":{
 			"type": "string",
+			"defaultValue" : "619523f4-e9b7-4234-adae-a868b1ce6870",
 			"metadata": {
 				"description": "Client Id"
 			}
 		},
 		"clientSecret":{
 			"type": "string",
+			"defaultValue" : "Abcd1234@",
 			"metadata": {
 				"description": "Client secret"
 			}
 		},
 		"subscriptionId":{
 			"type": "string",
+			"defaultValue" : "5f20c827-31e2-4f17-9127-da8968795689",
 			"metadata": {
 				"description": "Subscription id"
 			}
