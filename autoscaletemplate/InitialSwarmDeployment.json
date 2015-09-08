@@ -119,7 +119,7 @@
         "nsgID":"[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgName'))]",
         "storageAccountType":"Standard_LRS",
         "vhdBlobContainer":"vhds",
-        "subnetRefSlave":"[concat(resourceId(resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks',variables('virtualNetworkName')),'/subnets/',variables('subnetNameSlave'))]",
+        "subnetRefSlave":"[concat(resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks',variables('virtualNetworkName')),'/subnets/',variables('subnetNameSlave'))]",
         "sshKeyPath":"[concat('/home/', parameters('adminUsername'), '/.ssh/authorized_keys')]"
     },
     "resources":[
