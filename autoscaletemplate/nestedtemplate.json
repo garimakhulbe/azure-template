@@ -311,7 +311,7 @@
 								"[concat('STORAGE_ACCOUNT=',parameters('storageAccount'))]",
 								"[concat('STORAGE_KEY=',parameters('storageKey'))]"
 								],
-						"command": "[concat('agent ', parameters('autoscaleConfig'))]"
+						"command": "['agent TestRGIntern7']"
 					},
 					"swarm": {
 						"image": "garima0079/swarm",
