@@ -63,12 +63,6 @@
 			"metadata": {
 				"description": "Storage key to access storage account"
 			}
-		},
-		"autoscaleConfig":{
-			"type": "string",
-			"metadata": {
-				"description": "Auto scale config file."
-			}	
 		}
     },
     "variables": {
