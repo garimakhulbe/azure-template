@@ -245,8 +245,7 @@
             "apiVersion":"2015-05-01-preview",
             "location":"[resourceGroup().location]",
             "dependsOn":[
-                "[concat('Microsoft.Compute/virtualMachines/', variables('vmNameMaster'))]",
-                "SwarmSlaveNodes"
+                "[concat('Microsoft.Compute/virtualMachines/', variables('vmNameMaster'))]"
             ],
             "properties":{
                     "publisher": "Microsoft.OSTCExtensions",
@@ -255,42 +254,6 @@
     		        "settings": {
     		            "commandToExecute": "[parameters('command')]"
     		        }
-            }
-        },
-        {
-            "name":"SwarmSlaveNodes",
-            "type":"Microsoft.Resources/deployments",
-            "apiVersion":"2015-01-01",
-            "dependsOn":[
-                "[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountName'))]",
-                "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
-            ],
-            "properties":{
-                "mode":"Incremental",
-                "templateLink":{
-                    "uri":"https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/customscriptSlave.json",
-                    "contentVersion":"1.0.0.0"
-                },
-                "parameters":{
-                    "newStorageAccountName":{
-                        "value":"[parameters('newStorageAccountName')]"
-                    },
-                    "adminUsername":{
-                        "value":"[parameters('adminUserName')]"
-                    },
-                    "adminPassword":{
-                        "value":"[parameters('adminPassword')]"
-                    },
-                    "dnsNameForPublicIP":{
-                        "value":"[parameters('dnsNameForPublicIP')]"
-                    },
-                    "slaveCount":{
-                        "value":"[parameters('slaveCount')]"
-                    },
-                    "command":{
-                        "value":"[parameters('command')]"
-                    }
-                }
             }
         }
     ],
