@@ -56,7 +56,7 @@
     		"subnetName": "subnet",
     		"addressPrefix": "10.0.0.0/16",
     		"subnetPrefix": "10.0.0.0/24",
-    		"vnetID": "[resourceId(resourcegroup.name(),'Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
+    		"vnetID": "[resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
     		"subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
     		"vmName": "swarmVM",
     		"vmSize": "Standard_D1",
@@ -65,7 +65,7 @@
     		"OSDiskName": "osdiskforlinuxsimple",
     		"vmStorageAccountContainerName": "vhds",
         	"nsgName" : "swarmNSG",
-        	"nsgID": "[resourceId(resourcegroup.name(),'Microsoft.Network/networkSecurityGroups',variables('nsgName'))]"
+        	"nsgID": "[resourceId(resourceGroup().name,'Microsoft.Network/networkSecurityGroups',variables('nsgName'))]"
     },
     "resources": [
 	{
