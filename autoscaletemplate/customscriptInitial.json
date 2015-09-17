@@ -33,6 +33,12 @@
             "metadata":{
                 "description":"Number of slave nodes."
             }
+        },
+        "command":{
+            "type":"String",
+            "metadata":{
+                "description":"Command."
+            }
         }
     },
     "variables":{
