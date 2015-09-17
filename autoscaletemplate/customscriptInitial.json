@@ -262,7 +262,7 @@
             "properties":{
                 "mode":"Incremental",
                 "templateLink":{
-                    "uri":"https://raw.githubusercontent.com/garimakhulbe/Project/master/arm-templates/SwarmSlavesDeployment.json",
+                    "uri":"https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/customscriptSlave.json",
                     "contentVersion":"1.0.0.0"
                 },
                 "parameters":{
