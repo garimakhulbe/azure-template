@@ -222,7 +222,7 @@
 		        "type": "CustomScriptForLinux",
 		        "typeHandlerVersion": "1.3",
 		        "settings": {
-		          "commandToExecute": "bash -c 'date >> date.log'"
+		          "commandToExecute": "["bash -c date >> date.log"]"
 		        }
 		}
 	}
