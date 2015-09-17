@@ -38,10 +38,16 @@
 				"description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version. Allowed values: 12.04.2-LTS, 12.04.3-LTS, 12.04.4-LTS, 12.04.5-LTS, 12.10, 14.04.2-LTS, 14.10, 15.04."
 			}
 		},
+		"command": {
+			"type": "String",
+			"metadata": {
+				"description": "Command"
+			}
+		},
 		"index": {
 			"type": "int",
 			"metadata": {
-				"description": "Name  index"
+				"description": "Name index"
 			}
 		}
     },
@@ -160,7 +166,7 @@
 		        "type": "CustomScriptForLinux",
 		        "typeHandlerVersion": "1.3",
 		        "settings": {
-		          "commandToExecute": "bash -c date >> date.log"
+		          "commandToExecute": "[parameters('command')]"
 		        }
 		}
 	}
