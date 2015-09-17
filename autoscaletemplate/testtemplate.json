@@ -41,7 +41,7 @@
 		"index": {
 			"type": "int",
 			"metadata": {
-				"description": "Name index"
+				"description": "Name  index"
 			}
 		}
     },
