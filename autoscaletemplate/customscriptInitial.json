@@ -27,22 +27,21 @@
                 "description":"Unique DNS Name for the Public IP used to accessthe Virtual Machine."
             }
         },
-        "slaveCount":{
-            "type":"int",
-            "defaultValue":1,
-            "metadata":{
-                "description":"Number of slave nodes."
-            }
-        },
         "command":{
             "type":"String",
             "metadata":{
                 "description":"Command."
             }
+        },
+		 "nodename":{
+            "type":"String",
+            "metadata":{
+                "description":"node name."
+            }
         }
     },
     "variables":{
-        "vmNameMaster":"swarm-master",
+        "vmNameMaster":"[parameters('nodename')]",
         "vmSizeMaster":"Standard_A0",
         "availabilitySetMaster":"swarm-master-set",
         "availabilitySetSlaves":"swarm-nodes-set",
@@ -63,7 +62,6 @@
         "storageAccountType":"Standard_LRS",
         "vhdBlobContainer":"vhds",
         "subnetRefSlave":"[concat(resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks',variables('virtualNetworkName')),'/subnets/',variables('subnetNameSlave'))]",
-        "sshKeyPath":"[concat('/home/', parameters('adminUsername'), '/.ssh/authorized_keys')]"
     },
     "resources":[
         {
@@ -78,15 +76,6 @@
         {
             "type":"Microsoft.Compute/availabilitySets",
             "name":"[variables('availabilitySetMaster')]",
-            "apiVersion":"2015-05-01-preview",
-            "location":"[resourceGroup().location]",
-            "properties":{
-
-            }
-        },
-        {
-            "type":"Microsoft.Compute/availabilitySets",
-            "name":"[variables('availabilitySetSlaves')]",
             "apiVersion":"2015-05-01-preview",
             "location":"[resourceGroup().location]",
             "properties":{
@@ -116,8 +105,7 @@
             "properties":{
                 "addressSpace":{
                     "addressPrefixes":[
-                        "[variables('addressPrefixMaster')]",
-                        "[variables('addressPrefixSlave')]"
+                        "[variables('addressPrefixMaster')]"
                     ]
                 },
                 "subnets":[
@@ -125,15 +113,6 @@
                         "name":"[variables('subnetNameMaster')]",
                         "properties":{
                             "addressPrefix":"[variables('subnetPrefixMaster')]",
-                            "networkSecurityGroup":{
-                                "id":"[variables('nsgID')]"
-                            }
-                        }
-                    },
-                    {
-                        "name":"[variables('subnetNameSlave')]",
-                        "properties":{
-                            "addressPrefix":"[variables('subnetPrefixSlave')]",
                             "networkSecurityGroup":{
                                 "id":"[variables('nsgID')]"
                             }
@@ -224,7 +203,7 @@
                     "osDisk":{
                         "name":"[concat(variables('vmNameMaster'),'-osdisk')]",
                         "vhd":{
-                            "uri":"[concat('http://', parameters('newStorageAccountName'), '.blob.core.windows.net/', variables('vhdBlobContainer'), '/master-osdisk.vhd')]"
+                            "uri":"[concat('http://', parameters('newStorageAccountName'), '.blob.core.windows.net/', variables('vhdBlobContainer'), '/',variables('vmNameMaster'),'master-osdisk.vhd')]"
                         },
                         "caching":"ReadWrite",
                         "createOption":"FromImage"
