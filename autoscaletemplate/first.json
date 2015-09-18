@@ -310,45 +310,6 @@
         },
         {
             "type":"Microsoft.Compute/virtualMachines/extensions",
-            "name":"[concat(variables('vmNameMaster'), '/DockerExtension')]",
-            "apiVersion":"2015-05-01-preview",
-            "location":"[resourceGroup().location]",
-            "dependsOn":[
-                "[concat('Microsoft.Compute/virtualMachines/', variables('vmNameMaster'))]",
-                "SwarmSlaveNodes"
-            ],
-            "properties":{
-                "publisher":"Microsoft.Azure.Extensions",
-                "type":"DockerExtension",
-                "typeHandlerVersion":"1.0",
-                "settings":{
-                    "compose":{
-                        "swarm":{
-                            "image":"garima0079/swarm",
-                            "restart":"always",
-                            "ports":[
-                                "2375:2375"
-                            ],
-                            "command":"[concat('--debug manage --strategy binpack token://',parameters('swarmClusterId'))]"
-                        },
-                        "autoscale":{
-                            "image":"garima0079/swarmautoscale:v5",
-                            "restart":"always",
-                            "links":["swarm"],
-                            "environment":[
-                                "[concat('TENANT=',parameters('tenantId'))]",
-                                "[concat('SUBSCRIPTION=',parameters('subscriptionId'))]",
-                                "[concat('CLIENT_ID=',parameters('clientId'))]",
-                                "[concat('CLIENT_SECRET=',parameters('clientSecret'))]"
-                                ],
-                            "command":"[concat(resourceGroup().name,' ',parameters('autoscaleCriteria'))]"
-                        }
-                    }
-                }
-            }
-        },
-        {
-            "type":"Microsoft.Compute/virtualMachines/extensions",
             "name":"[concat(variables('vmNameMaster'), '/CustomScriptExtension')]",
             "apiVersion":"2015-05-01-preview",
             "location":"[resourceGroup().location]",
