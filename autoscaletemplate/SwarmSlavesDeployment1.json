@@ -45,12 +45,6 @@
             "metadata":{
                 "description":"Number of nodes for autoscale operation."
             }
-        },
-        "command":{
-            "type":"string",
-            "metadata":{
-                "description":"command"
-            }
         }
     },
     "variables":{
