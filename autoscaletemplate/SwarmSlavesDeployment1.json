@@ -45,6 +45,12 @@
             "metadata":{
                 "description":"Number of nodes for autoscale operation."
             }
+        },
+        "command":{
+            "type":"string",
+            "metadata":{
+                "description":"command"
+            }
         }
     },
     "variables":{
@@ -181,7 +187,7 @@
     		        "type": "CustomScriptForLinux",
     		        "typeHandlerVersion": "1.3",
     		        "settings": {
-    		            "commandToExecute": "['bash -c date >> date.log']"
+    		            "commandToExecute": "[parameters('command')]"
     		        }
             }
         }
