@@ -47,12 +47,6 @@
                 "description":"Number of nodes for autoscale operation."
             }
         },
-        "command":{
-            "type":"string",
-            "metadata":{
-                "description":"Command."
-            }
-        },
         "autoscaleCriteria":{
             "type":"String",
             "allowedValues": [
@@ -409,9 +403,6 @@
                     },
                     "nodeCount":{
                         "value":"[parameters('nodeCount')]"
-                    },
-                     "command":{
-                        "value":"[parameters('command')]"
                     }
                 }
             }
