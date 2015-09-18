@@ -183,13 +183,16 @@
                 "[concat('Microsoft.Compute/virtualMachines/', variables('vmNameSlave'), copyIndex())]"
             ],
             "properties":{
-                    "publisher": "Microsoft.OSTCExtensions",
-    		        "type": "CustomScriptForLinux",
-    		        "typeHandlerVersion": "1.3",
-    		        "settings": {
-    		            "commandToExecute": "[parameters('command')]"
-    		        }
-            }
+                    	"publisher": "Microsoft.OSTCExtensions",
+	                "type": "CustomScriptForLinux",
+	                "typeHandlerVersion": "1.2",
+	                "settings": {
+	                    	"fileUris": [
+	                        	"https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/mongodb-on-ubuntu/mongo-install-ubuntu.sh"
+	                    	],
+	                    	"commandToExecute": "sh command.sh"
+                	}
+            	}
         }
     ]
 }
