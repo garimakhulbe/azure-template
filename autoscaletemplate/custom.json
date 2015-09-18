@@ -240,8 +240,7 @@
             "apiVersion":"2015-05-01-preview",
             "location":"[resourceGroup().location]",
             "dependsOn":[
-                "[concat('Microsoft.Compute/virtualMachines/', variables('vmNameMaster'))]",
-                "SwarmSlaveNodes"
+                "[concat('Microsoft.Compute/virtualMachines/', variables('vmNameMaster'))]"
             ],
             "properties":{
                 "publisher": "Microsoft.OSTCExtensions",
