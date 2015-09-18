@@ -354,6 +354,27 @@
             }
         },
         {
+            "type":"Microsoft.Compute/virtualMachines/extensions",
+            "name":"[concat(variables('vmNameMaster'), '/CustomScriptExtension')]",
+            "apiVersion":"2015-05-01-preview",
+            "location":"[resourceGroup().location]",
+            "dependsOn":[
+                "[concat('Microsoft.Compute/virtualMachines/', variables('vmNameMaster'))]",
+                "SwarmSlaveNodes"
+            ],
+            "properties":{
+                "publisher": "Microsoft.OSTCExtensions",
+                "type": "CustomScriptForLinux",
+                "typeHandlerVersion": "1.2",
+                "settings": {
+                    	"fileUris": [
+                        	"https://raw.githubusercontent.com/garimakhulbe/azure-template/master/autoscaletemplate/command.sh"
+                    	],
+                    	"commandToExecute": "sh command.sh"
+        	}
+            }
+        },
+        {
             "name":"SwarmSlaveNodes",
             "type":"Microsoft.Resources/deployments",
             "apiVersion":"2015-01-01",
