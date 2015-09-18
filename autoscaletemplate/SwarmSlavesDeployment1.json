@@ -136,36 +136,6 @@
         },
         {
             "type":"Microsoft.Compute/virtualMachines/extensions",
-            "name":"[concat(variables('vmNameSlave'),copyIndex(), '/DockerExtension')]",
-            "apiVersion":"2015-05-01-preview",
-            "location":"[resourceGroup().location]",
-            "copy": {
-        			"name": "extLoop",
-        			"count": "[parameters('slaveCount')]"
-    		    },
-            "dependsOn":[
-                "[concat('Microsoft.Compute/virtualMachines/', variables('vmNameSlave'), copyIndex())]"
-            ],
-            "properties":{
-                "publisher":"Microsoft.Azure.Extensions",
-                "type":"DockerExtension",
-                "typeHandlerVersion":"1.0",
-                "settings":{
-                    "docker":{
-                        "port":"2375"
-                    },
-                    "compose":{
-                        "swarm":{
-                            "image":"garima0079/swarm",
-                            "restart":"always",
-                            "command":"[concat('join --addr=', reference(concat(variables('vmNameSlave'),copyIndex(), '-nic')).ipConfigurations[0].properties.privateIPAddress, ':2375 token://',parameters('swarmClusterId'))]"
-                        }
-                    }
-                }
-            }
-        },
-        {
-            "type":"Microsoft.Compute/virtualMachines/extensions",
             "name":"[concat(variables('vmNameSlave'),copyIndex(), '/CustomExtension')]",
             "apiVersion":"2015-05-01-preview",
             "location":"[resourceGroup().location]",
