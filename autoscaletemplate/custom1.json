@@ -58,22 +58,13 @@
         "subnetPrefixSlave":"192.168.0.0/24",
         "subnetRefMaster":"[concat(resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName')),'/subnets/',variables('subnetNameMaster'))]",
         "nsgName":"swarm-nsg",
-        "nsgID":"[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgName'))]",
+        "nsgID":"[resourceId((resourceGroup().name,'Microsoft.Network/networkSecurityGroups',variables('nsgName'))]",
         "storageAccountType":"Standard_LRS",
         "vhdBlobContainer":"vhds",
         "subnetRefSlave":"[concat(resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks',variables('virtualNetworkName')),'/subnets/',variables('subnetNameSlave'))]",
         "sshKeyPath":"[concat('/home/', parameters('adminUsername'), '/.ssh/authorized_keys')]"
     },
     "resources":[
-        {
-            "type":"Microsoft.Storage/storageAccounts",
-            "name":"[parameters('newStorageAccountName')]",
-            "apiVersion":"2015-05-01-preview",
-            "location":"[resourceGroup().location]",
-            "properties":{
-                "accountType":"[variables('storageAccountType')]"
-            }
-        },
         {
             "apiVersion":"2015-05-01-preview",
             "type":"Microsoft.Network/publicIPAddresses",
@@ -88,91 +79,11 @@
         },
         {
             "apiVersion":"2015-05-01-preview",
-            "type":"Microsoft.Network/virtualNetworks",
-            "name":"[variables('virtualNetworkName')]",
-            "location":"[resourceGroup().location]",
-            "dependsOn":[
-                "[variables('nsgID')]"
-            ],
-            "properties":{
-                "addressSpace":{
-                    "addressPrefixes":[
-                        "[variables('addressPrefixMaster')]"
-                    ]
-                },
-                "subnets":[
-                    {
-                        "name":"[variables('subnetNameMaster')]",
-                        "properties":{
-                            "addressPrefix":"[variables('subnetPrefixMaster')]",
-                            "networkSecurityGroup":{
-                                "id":"[variables('nsgID')]"
-                            }
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "apiVersion":"2015-05-01-preview",
-            "type":"Microsoft.Network/networkSecurityGroups",
-            "name":"[variables('nsgName')]",
-            "location":"[resourceGroup().location]",
-            "properties":{
-                "securityRules":[
-                    {
-                        "name":"ssh",
-                        "properties":{
-                            "description":"SSH",
-                            "protocol":"Tcp",
-                            "sourcePortRange":"*",
-                            "destinationPortRange":"22",
-                            "sourceAddressPrefix":"*",
-                            "destinationAddressPrefix":"*",
-                            "access":"Allow",
-                            "priority":200,
-                            "direction":"Inbound"
-                        }
-                    },
-                    {
-                        "name":"SwarmManagementPort",
-                        "properties":{
-                            "description":"Docker swarm endpoint",
-                            "protocol":"Tcp",
-                            "sourcePortRange":"*",
-                            "destinationPortRange":"2375",
-                            "sourceAddressPrefix":"*",
-                            "destinationAddressPrefix":"*",
-                            "access":"Allow",
-                            "priority":100,
-                            "direction":"Inbound"
-                        }
-                    },
-                    {
-                        "name":"Jenkins",
-                        "properties":{
-                            "description":"Jenkins",
-                            "protocol":"Tcp",
-                            "sourcePortRange":"*",
-                            "destinationPortRange":"80",
-                            "sourceAddressPrefix":"*",
-                            "destinationAddressPrefix":"*",
-                            "access":"Allow",
-                            "priority":300,
-                            "direction":"Inbound"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "apiVersion":"2015-05-01-preview",
             "type":"Microsoft.Network/networkInterfaces",
             "name":"[concat(variables('vmNameMaster'),'-nic')]",
             "location":"[resourceGroup().location]",
             "dependsOn":[
-                "[concat('Microsoft.Network/publicIPAddresses/',variables('vmNameMaster'),'-ip')]",
-                "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
+                "[concat('Microsoft.Network/publicIPAddresses/',variables('vmNameMaster'),'-ip')]"
             ],
             "properties":{
                 "ipConfigurations":[
@@ -197,7 +108,6 @@
             "name":"[concat(variables('vmNameMaster'))]",
             "location":"[resourceGroup().location]",
             "dependsOn":[
-                "[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountName'))]",
                 "[concat('Microsoft.Network/networkInterfaces/', variables('vmNameMaster'), '-nic')]"
             ],
             "properties":{
